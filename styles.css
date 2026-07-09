@@ -102,6 +102,32 @@ body {
   height: auto;
 }
 
+.logo-awards {
+  position: absolute;
+  left: 180px;
+  top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  height: 46px;
+  max-width: 46vw;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+}
+
+.logo-awards img {
+  height: 100%;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.logo:hover ~ .logo-awards {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
 .menu-btn {
   background: none;
   border: none;
