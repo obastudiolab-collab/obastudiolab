@@ -18,9 +18,10 @@ body.detail {
 .detail-page {
   display: flex;
   align-items: flex-start;
-  gap: 64px;
+  justify-content: center;
+  gap: 72px;
   min-height: 100vh;
-  padding: 110px 64px 0 64px;
+  padding: 110px 48px 0 180px;
 }
 
 .detail-media {
