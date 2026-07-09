@@ -1,0 +1,122 @@
+{
+  "version": "0.4",
+  "title": "oba- Home",
+  "type": "page",
+  "content": [
+    {
+      "id": "oba1hero",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "layout": "full_width",
+        "height": "full",
+        "column_position": "middle",
+        "css_classes": "oba-hero-section",
+        "background_background": "classic",
+        "background_color": "#000000"
+      },
+      "elements": [
+        {
+          "id": "oba1col1",
+          "elType": "column",
+          "isInner": false,
+          "settings": { "_column_size": 100 },
+          "elements": [
+            {
+              "id": "obahtml1",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<!-- FONDOS + LÓGICA HOVER — Reemplaza las 3 URLs por las de tu Mediateca de WordPress -->\n<div class=\"oba-bg-layer active\" id=\"oba-bg-restaurante\" style=\"background-image:url('URL_FOTO_RESTAURANTE');\"></div>\n<div class=\"oba-bg-layer\" id=\"oba-bg-entorno\" style=\"background-image:url('URL_FOTO_ENTORNO');\"></div>\n<div class=\"oba-bg-layer\" id=\"oba-bg-nosotros\" style=\"background-image:url('URL_FOTO_NOSOTROS');\"></div>\n<div class=\"oba-overlay\"></div>\n<script>\ndocument.addEventListener('DOMContentLoaded',function(){\n  var map={'RESTAURANTE':'oba-bg-restaurante','ENTORNO':'oba-bg-entorno','NOSOTROS':'oba-bg-nosotros'};\n  var layers=document.querySelectorAll('.oba-bg-layer');\n  document.querySelectorAll('.oba-hero-link').forEach(function(el){\n    var key=el.textContent.trim().toUpperCase();\n    var target=map[key];\n    if(!target)return;\n    el.addEventListener('mouseenter',function(){\n      layers.forEach(function(l){l.classList.remove('active');});\n      document.getElementById(target).classList.add('active');\n    });\n  });\n});\n</script>"
+              },
+              "elements": []
+            },
+            {
+              "id": "obainner1",
+              "elType": "section",
+              "isInner": true,
+              "settings": { "structure": "33", "css_classes": "oba-hero-nav" },
+              "elements": [
+                {
+                  "id": "obac1",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obah1",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "RESTAURANTE",
+                        "link": { "url": "/restaurante", "is_external": "", "nofollow": "" },
+                        "align": "left",
+                        "title_color": "#FFFFFF",
+                        "css_classes": "oba-hero-link"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obac2",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obah2",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "ENTORNO",
+                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "align": "center",
+                        "title_color": "#FFFFFF",
+                        "css_classes": "oba-hero-link"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obac3",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obah3",
+                      "elType": "widget",
+                      "widgetType": "heading",
+                      "settings": {
+                        "title": "NOSOTROS",
+                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "align": "right",
+                        "title_color": "#FFFFFF",
+                        "css_classes": "oba-hero-link"
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "obabtn1",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "RESERVAR",
+                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "align": "center",
+                "css_classes": "oba-reserve-btn"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

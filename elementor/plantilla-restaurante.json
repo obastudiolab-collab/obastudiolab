@@ -1,0 +1,215 @@
+{
+  "version": "0.4",
+  "title": "oba- Restaurante",
+  "type": "page",
+  "content": [
+    {
+      "id": "obar1sec",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "layout": "boxed",
+        "gap": "extended",
+        "background_background": "classic",
+        "background_color": "#f4efe4",
+        "padding": { "unit": "px", "top": "110", "right": "40", "bottom": "80", "left": "40", "isLinked": false }
+      },
+      "elements": [
+        {
+          "id": "obarcolL",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 40,
+            "css_classes": "oba-detail-media"
+          },
+          "elements": [
+            {
+              "id": "obarimg1",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": { "url": "", "id": "" },
+                "image_size": "full",
+                "align": "left"
+              },
+              "elements": []
+            }
+          ]
+        },
+        {
+          "id": "obarcolR",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 60,
+            "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "48", "isLinked": false }
+          },
+          "elements": [
+            {
+              "id": "obarh1",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "00 — CUADERNO DOS",
+                "header_size": "h2",
+                "title_color": "#1a1a1a",
+                "css_classes": "oba-detail-title"
+              },
+              "elements": []
+            },
+            {
+              "id": "obart1",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Hoy lugares, historias y personas que merecen ser contadas (y recordadas).</p><p>En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.</p><p>Un libro llamado \"Las 1000 recetas de la cocina de Albacete\" escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "obarbtns1",
+              "elType": "section",
+              "isInner": true,
+              "settings": { "structure": "20" },
+              "elements": [
+                {
+                  "id": "obarbc1",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 50 },
+                  "elements": [
+                    {
+                      "id": "obarb1",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "MENÚ ACTUAL",
+                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "align": "left",
+                        "background_color": "#3626d9",
+                        "button_text_color": "#ffffff",
+                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                        "css_classes": "oba-btn"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obarbc2",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 50 },
+                  "elements": [
+                    {
+                      "id": "obarb2",
+                      "elType": "widget",
+                      "widgetType": "button",
+                      "settings": {
+                        "text": "RESERVAR",
+                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "align": "left",
+                        "background_color": "#3626d9",
+                        "button_text_color": "#ffffff",
+                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                        "css_classes": "oba-btn"
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "obardiv1",
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": { "color": "rgba(0,0,0,0.12)", "gap": { "unit": "px", "size": 40 } },
+              "elements": []
+            },
+            {
+              "id": "obarh2",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "PROGRAMA DE FERMENTOS",
+                "header_size": "h2",
+                "title_color": "#1a1a1a",
+                "css_classes": "oba-detail-title"
+              },
+              "elements": []
+            },
+            {
+              "id": "obart2",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.</p><p>Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "obarb3",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "VER CARTA",
+                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "align": "left",
+                "background_color": "#3626d9",
+                "button_text_color": "#ffffff",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                "css_classes": "oba-btn"
+              },
+              "elements": []
+            },
+            {
+              "id": "obardiv2",
+              "elType": "widget",
+              "widgetType": "divider",
+              "settings": { "color": "rgba(0,0,0,0.12)", "gap": { "unit": "px", "size": 40 } },
+              "elements": []
+            },
+            {
+              "id": "obarh3",
+              "elType": "widget",
+              "widgetType": "heading",
+              "settings": {
+                "title": "EVENTOS PRIVADOS",
+                "header_size": "h2",
+                "title_color": "#1a1a1a",
+                "css_classes": "oba-detail-title"
+              },
+              "elements": []
+            },
+            {
+              "id": "obart3",
+              "elType": "widget",
+              "widgetType": "text-editor",
+              "settings": {
+                "editor": "<p>Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.</p>"
+              },
+              "elements": []
+            },
+            {
+              "id": "obarb4",
+              "elType": "widget",
+              "widgetType": "button",
+              "settings": {
+                "text": "HACER UNA CONSULTA",
+                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "align": "left",
+                "background_color": "#3626d9",
+                "button_text_color": "#ffffff",
+                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                "css_classes": "oba-btn"
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

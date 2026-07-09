@@ -1,0 +1,137 @@
+/* ============================================
+   CSS PERSONALIZADO — WEB OBA (para Elementor)
+   Pegar en: Elementor > Configuración del sitio
+   > CSS personalizado (requiere Elementor Pro),
+   o en Apariencia > Personalizar > CSS adicional
+   ============================================ */
+
+/* ---------- HOME: capas de fondo con hover ---------- */
+.oba-bg-layer {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.oba-bg-layer.active {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
+.oba-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* El contenido de la sección hero por encima de los fondos */
+.oba-hero-section > .elementor-container,
+.oba-hero-section .oba-hero-nav,
+.oba-hero-section .elementor-widget-button {
+  position: relative;
+  z-index: 2;
+}
+
+/* ---------- HOME: títulos con subrayado al hover ---------- */
+.oba-hero-link .elementor-heading-title,
+.oba-hero-link .elementor-heading-title a {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: clamp(20px, 2.6vw, 42px) !important;
+  letter-spacing: 0.01em;
+  color: #fff !important;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.oba-hero-link .elementor-heading-title a {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 10px;
+}
+
+.oba-hero-link .elementor-heading-title a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 2px;
+  width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+
+.oba-hero-link .elementor-heading-title a:hover::after {
+  transform: scaleX(1);
+}
+
+/* ---------- HOME: botón RESERVAR translúcido con blur ---------- */
+.oba-reserve-btn .elementor-button {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 999px !important;
+  color: #fff !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em !important;
+  padding: 16px 42px !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+}
+
+.oba-reserve-btn .elementor-button:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.85) !important;
+}
+
+/* ---------- PÁGINA RESTAURANTE (fondo crema) ---------- */
+.oba-detail-title .elementor-heading-title {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  color: #1a1a1a !important;
+}
+
+.oba-detail-media img {
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  width: 100%;
+}
+
+.oba-btn .elementor-button {
+  background: #3626d9 !important;
+  color: #fff !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em !important;
+  padding: 17px 30px !important;
+  border-radius: 0 !important;
+  transition: background 0.2s ease;
+}
+
+.oba-btn .elementor-button:hover {
+  background: #2a1cae !important;
+}
+
+/* Texto de párrafos página detalle */
+.elementor-widget-text-editor {
+  font-family: 'Archivo', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+  color: #2a2a2a;
+}
