@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oba — Web · brief y seguimiento</title>
+<style>
+  :root {
+    --parchment: #F2EDE2;
+    --olive: #262B1E;
+    --ochre: #B5712A;
+    --olive-soft: #5B5F4F;
+    --line: #DCD4C2;
+    --card: #FBF9F4;
+    --warn-bg: #F3E3CE;
+    --warn-text: #8A4E12;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--parchment);
+    color: var(--olive);
+    font-family: "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.5;
+  }
+  .wrap {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header {
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+  .eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ochre);
+    font-weight: 600;
+    margin: 0 0 6px;
+  }
+  h1 {
+    font-size: 28px;
+    font-weight: 500;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .meta {
+    font-size: 13px;
+    color: var(--olive-soft);
+    text-align: right;
+  }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--ochre);
+    width: 0%;
+    transition: width .3s;
+  }
+  .progress-label {
+    font-size: 14px;
+    font-weight: 500;
+    min-width: 120px;
+    text-align: right;
+  }
+  .decisions {
+    background: var(--warn-bg);
+    color: var(--warn-text);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+  .decisions .title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-bottom: 8px;
+  }
+  .decisions ul {
+    margin: 0;
+    padding-left: 18px;
+  }
+  .decisions li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .nav-map {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: var(--olive-soft);
+    white-space: pre;
+    overflow-x: auto;
+    font-family: "SFMono-Regular", Consolas, monospace;
+  }
+  .section {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+  }
+  .section-head h2 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+  }
+  .section-count {
+    font-size: 13px;
+    color: var(--olive-soft);
+  }
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 0;
+    border-top: 1px solid var(--line);
+    font-size: 14px;
+    cursor: pointer;
+  }
+  .item:first-of-type { border-top: none; }
+  .item input {
+    margin-top: 3px;
+    width: 16px;
+    height: 16px;
+    accent-color: var(--ochre);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .item span.done {
+    text-decoration: line-through;
+    color: var(--olive-soft);
+  }
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line);
+    font-size: 12px;
+    color: var(--olive-soft);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="eyebrow">Oba · Grupo Cañitas Gastro</p>
+      <h1>Brief y seguimiento — web de Oba</h1>
+    </div>
+    <div class="meta">Para: Pablo<br>Referencia de estilo: web de Atomix</div>
+  </header>
+
+  <div class="progress-row">
+    <div class="progress-track"><div class="progress-fill" id="progress-fill"></div></div>
+    <div class="progress-label" id="progress-label">0% completado</div>
+  </div>
+
+  <div class="decisions">
+    <div class="title">Decisiones pendientes</div>
+    <ul>
+      <li>¿La tienda de Oba se abre al público desde ya, o queda montada y cerrada hasta el lanzamiento de las cajas?</li>
+      <li>Definir 3–4 hex concretos de la paleta crema, para no dejarlo a interpretación.</li>
+    </ul>
+  </div>
+
+  <div class="nav-map">Home
+├── Restaurante
+│   ├── Cuaderno 2
+│   ├── Regala Oba
+│   └── Especiales (Raw Season / Eventos privados)
+├── Entorno
+├── Nosotros
+├── Tienda
+└── Contacto (reserva / prensa / trabaja con nosotros)</div>
+
+  <div id="sections"></div>
+
+  <footer>Este documento se actualiza en tu navegador — marca los puntos a medida que los cerréis. No se envía a ningún servidor.</footer>
+
+</div>
+
+<script>
+const DATA = [
+  { id: "estilo", name: "Dirección visual general", items: [
+    "Cambiar tonalidades y fondos a colores crema (toda la web)"
+  ]},
+  { id: "home", name: "Página principal", items: [
+    "Logo arriba a la izquierda, sin nada más",
+    "Selector ES / EN centrado arriba",
+    "Menú arriba a la derecha: Reserva / Tienda / Contacto",
+    "Slider de 3 fotos con control deslizante",
+    "Botón «Reserva ahora» centrado abajo"
+  ]},
+  { id: "cuaderno2", name: "Restaurante · Cuaderno 2", items: [
+    "Explicación del concepto del menú",
+    "Plug con el menú actual y fotos",
+    "Plug con el maridaje actual, opciones y fotos",
+    "Botón «Reserva ahora» → enlaza a TheFork"
+  ]},
+  { id: "regala", name: "Restaurante · Regala Oba", items: [
+    "Explicación breve de los 3 paquetes de regalo",
+    "Plug que lleve a la tienda de Oba"
+  ]},
+  { id: "especiales", name: "Restaurante · Especiales", items: [
+    "Texto general sobre activaciones y eventos a lo largo del año",
+    "Raw Season: explicación + plug con fechas programadas",
+    "Eventos privados: explicación (2 meses de antelación) + formulario de contacto"
+  ]},
+  { id: "tienda", name: "Tienda online", items: [
+    "Infraestructura base de la tienda",
+    "Preparada para vender cajas de producto (fase 2)"
+  ]},
+  { id: "entorno", name: "Entorno", items: [
+    "Vídeo del Cuaderno 2 sobre los parajes",
+    "Foto + texto breve de la ubicación (ej. Alcalá del Júcar)",
+    "Huerto propio: explicación breve + foto",
+    "Parajes de inspiración: explicación breve + varias fotos"
+  ]},
+  { id: "nosotros", name: "Nosotros", items: [
+    "Texto sobre la cocina y los chefs",
+    "Vídeos orgánicos del equipo en cocina",
+    "Fotos del equipo en la naturaleza",
+    "Logros y premios, con enlaces externos (ej. Michelin) + nota de prensa 2026",
+    "Repetir el plug de «Reserva ahora»",
+    "Footer final: contacto reserva / prensa / trabaja con nosotros"
+  ]}
+];
+
+let state = {};
+try { state = JSON.parse(localStorage.getItem('oba-web-checklist') || '{}'); } catch(e) { state = {}; }
+
+function save() {
+  try { localStorage.setItem('oba-web-checklist', JSON.stringify(state)); } catch(e) {}
+}
+
+function render() {
+  const container = document.getElementById('sections');
+  container.innerHTML = '';
+  let total = 0, done = 0;
+
+  DATA.forEach(section => {
+    const doneCount = section.items.filter((_, i) => state[section.id + ':' + i]).length;
+    total += section.items.length;
+    done += doneCount;
+
+    const sectionEl = document.createElement('div');
+    sectionEl.className = 'section';
+
+    const head = document.createElement('div');
+    head.className = 'section-head';
+    head.innerHTML = '<h2>' + section.name + '</h2><span class="section-count">' + doneCount + '/' + section.items.length + '</span>';
+    sectionEl.appendChild(head);
+
+    section.items.forEach((text, idx) => {
+      const checked = !!state[section.id + ':' + idx];
+      const row = document.createElement('label');
+      row.className = 'item';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = checked;
+      cb.onchange = () => {
+        state[section.id + ':' + idx] = cb.checked;
+        save();
+        render();
+      };
+      const span = document.createElement('span');
+      span.textContent = text;
+      if (checked) span.className = 'done';
+      row.appendChild(cb);
+      row.appendChild(span);
+      sectionEl.appendChild(row);
+    });
+
+    container.appendChild(sectionEl);
+  });
+
+  const pct = total ? Math.round((done / total) * 100) : 0;
+  document.getElementById('progress-fill').style.width = pct + '%';
+  document.getElementById('progress-label').textContent = pct + '% completado';
+}
+
+render();
+</script>
+</body>
+</html>
