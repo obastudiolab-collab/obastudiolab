@@ -61,7 +61,8 @@ body.detail {
   padding: 0 64px 100px 0;
 }
 
-.detail-section h2 {
+.detail-section h2,
+.detail-section .detail-kicker {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 0.06em;
