@@ -1,64 +1,44 @@
 # Plantillas Elementor — Web oba-
 
-Archivos incluidos:
-
-| Archivo | Qué es |
-|---|---|
-| `plantilla-home.json` | Página principal (hero con fondos que cambian al hover) |
-| `plantilla-restaurante.json` | Página Restaurante / Cuaderno Dos |
-| `css-personalizado.css` | Estilos custom (subrayados, botón blur, colores) |
+**Todo va incluido dentro de las plantillas** (estilos y efectos ya embebidos).
+No hay que pegar CSS ni tocar código.
 
 ---
 
-## Paso 1 — Requisitos previos
+## Instalación (3 pasos)
 
-1. WordPress con **Elementor** instalado (el plugin gratuito basta para importar; algunos ajustes finos son más cómodos con Pro).
-2. Fuente **Archivo**: en Elementor > Configuración del sitio > Tipografía global, elige "Archivo" (está en Google Fonts, Elementor la carga solo).
+### 1. Importar las plantillas
+En WordPress: **Plantillas → Plantillas guardadas → Importar plantillas**
+Sube `plantilla-home.json` y `plantilla-restaurante.json`.
 
-## Paso 2 — Subir las imágenes a la Mediateca
+### 2. Crear las páginas
+- Crea una página "Inicio", edítala con Elementor, abre la Biblioteca (icono de carpeta) → pestaña **Mis plantillas** → inserta **oba- Home**.
+- Repite con una página "Restaurante" e inserta **oba- Restaurante**.
 
-Sube estos archivos (están en la raíz del proyecto / repositorio):
+### 3. Poner las fotos (con clics, sin código)
+Sube antes las fotos de la carpeta `imagenes/` a la Mediateca.
 
-- `restaurante.jpg` (fondo home – Restaurante)
-- `entorno.jpg` (fondo home – Entorno)
-- `nosotros.jpg` (fondo home – Nosotros)
-- `gallery-restaurante-3.jpg` (foto vertical página Restaurante)
-- `logo.png` (logo blanco) y `logo-dark.png` (logo negro)
-- `premios.png` (logos de premios)
+- **Home:** verás 3 recuadros de imagen con borde azul punteado (Restaurante / Entorno / Nosotros). Haz clic en cada uno y elige su foto. En la web publicada esos recuadros son invisibles: sus fotos se usan como fondos del efecto hover.
+- **Restaurante:** clic en el recuadro de imagen de la izquierda y elige `gallery-restaurante-3.jpg`.
 
-Tras subirlas, copia la **URL** de cada una (Mediateca > clic en la imagen > "Copiar URL al portapapeles").
+¡Listo! Publica las páginas.
 
-## Paso 3 — Importar las plantillas
+---
 
-1. WordPress admin > **Plantillas > Plantillas guardadas > Importar plantillas**.
-2. Sube `plantilla-home.json` y `plantilla-restaurante.json`.
-3. Crea una página nueva ("Inicio"), edítala con Elementor, y desde el icono de carpeta (Biblioteca) > pestaña "Mis plantillas" inserta **oba- Home**.
-4. Repite con otra página ("Restaurante") e inserta **oba- Restaurante**.
+## Consejos
 
-## Paso 4 — Conectar las imágenes
+- En cada página: Configuración (engranaje abajo-izquierda) → Diseño de página → **Elementor a pantalla completa** (así no aparece la cabecera del tema en la Home).
+- Los widgets grises que dicen "⚙️ Widget técnico — no borrar" contienen los estilos y el efecto de fondos. No se ven en la web publicada. **No los borres.**
+- Todos los textos y botones se editan con clic, como cualquier elemento de Elementor.
+- El efecto de cambio de fondo reconoce los títulos por su texto (RESTAURANTE / ENTORNO / NOSOTROS). Si cambias esos textos, avísanos para ajustar el efecto.
+- Botón RESERVAR: ponle el enlace de tu sistema de reservas (CoverManager, TheFork…).
+- Fuente **Archivo**: Elementor → Configuración del sitio → Tipografía global → elegir "Archivo" (Google Fonts).
 
-**Home:** edita el widget HTML (el primero de la página) y reemplaza:
-- `URL_FOTO_RESTAURANTE` → URL de restaurante.jpg
-- `URL_FOTO_ENTORNO` → URL de entorno.jpg
-- `URL_FOTO_NOSOTROS` → URL de nosotros.jpg
+## Contenido del paquete
 
-**Restaurante:** haz clic en el widget de imagen vacío de la columna izquierda y elige `gallery-restaurante-3.jpg`.
-
-## Paso 5 — Pegar el CSS personalizado
-
-Copia todo el contenido de `css-personalizado.css` y pégalo en **una** de estas rutas:
-
-- Con Elementor Pro: Elementor > Configuración del sitio > CSS personalizado.
-- Sin Pro: Apariencia > Personalizar > **CSS adicional**.
-
-## Paso 6 — Ajustes finales
-
-- En la página de Inicio: Configuración de página (engranaje abajo-izquierda) > Diseño de página > **Elementor a pantalla completa** (para que no salga la cabecera del tema).
-- Enlaza los títulos: RESTAURANTE ya apunta a `/restaurante`; ajusta ENTORNO y NOSOTROS cuando existan esas páginas.
-- El botón RESERVAR: ponle la URL de tu sistema de reservas (CoverManager, TheFork, etc.).
-- Logo, selector ES/EN y menú: se recomienda montarlos con el header del tema o con Elementor Pro (Theme Builder > Header). Si lo quieres, se puede preparar también como plantilla.
-
-## Notas
-
-- El efecto "cambio de fondo al pasar el cursor" funciona con el script incluido en el widget HTML de la home: identifica los títulos por su texto (RESTAURANTE / ENTORNO / NOSOTROS). Si traduces o cambias esos textos, actualiza también el `map` del script.
-- Los fondos usan `position: fixed`, así que la sección hero debe ser la única sección de esa página.
+| Archivo | Qué es |
+|---|---|
+| `plantilla-home.json` | Página principal (con efecto de fondos al pasar el cursor) |
+| `plantilla-restaurante.json` | Página Restaurante / Cuaderno Dos |
+| `imagenes/` | Fotos y logos optimizados listos para subir a la Mediateca |
+| `css-personalizado.css` | (Opcional) Solo por si se prefiere gestionar los estilos aparte |

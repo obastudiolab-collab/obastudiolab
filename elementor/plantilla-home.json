@@ -27,9 +27,74 @@
               "elType": "widget",
               "widgetType": "html",
               "settings": {
-                "html": "<!-- FONDOS + LÓGICA HOVER — Reemplaza las 3 URLs por las de tu Mediateca de WordPress -->\n<div class=\"oba-bg-layer active\" id=\"oba-bg-restaurante\" style=\"background-image:url('URL_FOTO_RESTAURANTE');\"></div>\n<div class=\"oba-bg-layer\" id=\"oba-bg-entorno\" style=\"background-image:url('URL_FOTO_ENTORNO');\"></div>\n<div class=\"oba-bg-layer\" id=\"oba-bg-nosotros\" style=\"background-image:url('URL_FOTO_NOSOTROS');\"></div>\n<div class=\"oba-overlay\"></div>\n<script>\ndocument.addEventListener('DOMContentLoaded',function(){\n  var map={'RESTAURANTE':'oba-bg-restaurante','ENTORNO':'oba-bg-entorno','NOSOTROS':'oba-bg-nosotros'};\n  var layers=document.querySelectorAll('.oba-bg-layer');\n  document.querySelectorAll('.oba-hero-link').forEach(function(el){\n    var key=el.textContent.trim().toUpperCase();\n    var target=map[key];\n    if(!target)return;\n    el.addEventListener('mouseenter',function(){\n      layers.forEach(function(l){l.classList.remove('active');});\n      document.getElementById(target).classList.add('active');\n    });\n  });\n});\n</script>"
+                "html": "<style>\n.oba-bg-layer{position:fixed;inset:0;background-size:cover;background-position:center;opacity:0;filter:blur(6px);transform:scale(1.015);transition:opacity .5s ease,filter .5s ease,transform .6s ease;z-index:0;pointer-events:none}\n.oba-bg-layer.active{opacity:1;filter:blur(0);transform:scale(1)}\n.oba-overlay{position:fixed;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.15) 35%,rgba(0,0,0,.55) 100%);z-index:1;pointer-events:none}\n.oba-hero-section>.elementor-container{position:relative;z-index:2}\nbody:not(.elementor-editor-active) .oba-img-src{position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none}\n.elementor-editor-active .oba-img-src img{max-height:90px;width:auto;border:2px dashed #3626d9}\n.oba-hero-link .elementor-heading-title,.oba-hero-link .elementor-heading-title a{font-family:'Archivo','Helvetica Neue',Arial,sans-serif!important;font-weight:500!important;font-size:clamp(20px,2.6vw,42px)!important;letter-spacing:.01em;color:#fff!important;text-decoration:none;white-space:nowrap}\n.oba-hero-link .elementor-heading-title a{position:relative;display:inline-block;padding-bottom:10px}\n.oba-hero-link .elementor-heading-title a::after{content:'';position:absolute;left:0;bottom:0;height:2px;width:100%;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .35s ease}\n.oba-hero-link .elementor-heading-title a:hover::after{transform:scaleX(1)}\n.oba-reserve-btn .elementor-button{background:rgba(255,255,255,.06)!important;border:1px solid rgba(255,255,255,.5)!important;border-radius:999px!important;color:#fff!important;font-family:'Archivo',sans-serif!important;font-size:13px!important;font-weight:400!important;letter-spacing:.2em!important;padding:16px 42px!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:background .25s ease,border-color .25s ease}\n.oba-reserve-btn .elementor-button:hover{background:rgba(255,255,255,.16)!important;border-color:rgba(255,255,255,.85)!important}\n</style>\n<script>\ndocument.addEventListener('DOMContentLoaded',function(){\n  if(document.body.classList.contains('elementor-editor-active'))return;\n  var defs=[['oba-img-restaurante','RESTAURANTE'],['oba-img-entorno','ENTORNO'],['oba-img-nosotros','NOSOTROS']];\n  var layers={};\n  var overlay=document.createElement('div');overlay.className='oba-overlay';\n  defs.forEach(function(d,i){\n    var holder=document.querySelector('.'+d[0]+' img');\n    if(!holder)return;\n    var div=document.createElement('div');\n    div.className='oba-bg-layer'+(i===0?' active':'');\n    div.style.backgroundImage=\"url('\"+(holder.currentSrc||holder.src)+\"')\";\n    document.body.prepend(div);\n    layers[d[1]]=div;\n  });\n  document.body.insertBefore(overlay,document.body.children[3]||null);\n  document.querySelectorAll('.oba-hero-link').forEach(function(el){\n    var key=el.textContent.trim().toUpperCase();\n    if(!layers[key])return;\n    el.addEventListener('mouseenter',function(){\n      Object.values(layers).forEach(function(l){l.classList.remove('active');});\n      layers[key].classList.add('active');\n    });\n  });\n});\n</script>\n<p style=\"color:#888;font-size:12px\">⚙️ Widget técnico del efecto de fondos — no borrar.</p>"
               },
               "elements": []
+            },
+            {
+              "id": "obaimgs1",
+              "elType": "section",
+              "isInner": true,
+              "settings": { "structure": "33" },
+              "elements": [
+                {
+                  "id": "obaimc1",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obaimg1",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": { "url": "", "id": "" },
+                        "image_size": "full",
+                        "css_classes": "oba-img-src oba-img-restaurante"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obaimc2",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obaimg2",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": { "url": "", "id": "" },
+                        "image_size": "full",
+                        "css_classes": "oba-img-src oba-img-entorno"
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obaimc3",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": { "_column_size": 33 },
+                  "elements": [
+                    {
+                      "id": "obaimg3",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": { "url": "", "id": "" },
+                        "image_size": "full",
+                        "css_classes": "oba-img-src oba-img-nosotros"
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
             },
             {
               "id": "obainner1",

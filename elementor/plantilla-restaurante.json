@@ -12,7 +12,14 @@
         "gap": "extended",
         "background_background": "classic",
         "background_color": "#f4efe4",
-        "padding": { "unit": "px", "top": "110", "right": "40", "bottom": "80", "left": "40", "isLinked": false }
+        "padding": {
+          "unit": "px",
+          "top": "110",
+          "right": "40",
+          "bottom": "80",
+          "left": "40",
+          "isLinked": false
+        }
       },
       "elements": [
         {
@@ -25,11 +32,23 @@
           },
           "elements": [
             {
+              "id": "obarcss1",
+              "elType": "widget",
+              "widgetType": "html",
+              "settings": {
+                "html": "<style>\n.oba-detail-title .elementor-heading-title{font-family:'Archivo',sans-serif!important;font-size:20px!important;font-weight:700!important;letter-spacing:.06em;color:#1a1a1a!important}\n.oba-detail-media img{aspect-ratio:9/16;object-fit:cover;width:100%}\n.oba-btn .elementor-button{background:#3626d9!important;color:#fff!important;font-family:'Archivo',sans-serif!important;font-size:12px!important;font-weight:700!important;letter-spacing:.15em!important;padding:17px 30px!important;border-radius:0!important;transition:background .2s ease}\n.oba-btn .elementor-button:hover{background:#2a1cae!important}\n.elementor-widget-text-editor{font-family:'Archivo',sans-serif;font-size:17px;line-height:1.7;color:#2a2a2a}\n</style>\n<p style=\"color:#888;font-size:12px\">⚙️ Widget técnico de estilos — no borrar.</p>"
+              },
+              "elements": []
+            },
+            {
               "id": "obarimg1",
               "elType": "widget",
               "widgetType": "image",
               "settings": {
-                "image": { "url": "", "id": "" },
+                "image": {
+                  "url": "",
+                  "id": ""
+                },
                 "image_size": "full",
                 "align": "left"
               },
@@ -43,7 +62,14 @@
           "isInner": false,
           "settings": {
             "_column_size": 60,
-            "padding": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "48", "isLinked": false }
+            "padding": {
+              "unit": "px",
+              "top": "0",
+              "right": "0",
+              "bottom": "0",
+              "left": "48",
+              "isLinked": false
+            }
           },
           "elements": [
             {
@@ -71,13 +97,17 @@
               "id": "obarbtns1",
               "elType": "section",
               "isInner": true,
-              "settings": { "structure": "20" },
+              "settings": {
+                "structure": "20"
+              },
               "elements": [
                 {
                   "id": "obarbc1",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 50 },
+                  "settings": {
+                    "_column_size": 50
+                  },
                   "elements": [
                     {
                       "id": "obarb1",
@@ -85,11 +115,22 @@
                       "widgetType": "button",
                       "settings": {
                         "text": "MENÚ ACTUAL",
-                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "link": {
+                          "url": "#",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
                         "align": "left",
                         "background_color": "#3626d9",
                         "button_text_color": "#ffffff",
-                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                        "border_radius": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
                         "css_classes": "oba-btn"
                       },
                       "elements": []
@@ -100,7 +141,9 @@
                   "id": "obarbc2",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 50 },
+                  "settings": {
+                    "_column_size": 50
+                  },
                   "elements": [
                     {
                       "id": "obarb2",
@@ -108,11 +151,22 @@
                       "widgetType": "button",
                       "settings": {
                         "text": "RESERVAR",
-                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "link": {
+                          "url": "#",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
                         "align": "left",
                         "background_color": "#3626d9",
                         "button_text_color": "#ffffff",
-                        "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                        "border_radius": {
+                          "unit": "px",
+                          "top": "0",
+                          "right": "0",
+                          "bottom": "0",
+                          "left": "0",
+                          "isLinked": true
+                        },
                         "css_classes": "oba-btn"
                       },
                       "elements": []
@@ -125,7 +179,13 @@
               "id": "obardiv1",
               "elType": "widget",
               "widgetType": "divider",
-              "settings": { "color": "rgba(0,0,0,0.12)", "gap": { "unit": "px", "size": 40 } },
+              "settings": {
+                "color": "rgba(0,0,0,0.12)",
+                "gap": {
+                  "unit": "px",
+                  "size": 40
+                }
+              },
               "elements": []
             },
             {
@@ -155,11 +215,22 @@
               "widgetType": "button",
               "settings": {
                 "text": "VER CARTA",
-                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "link": {
+                  "url": "#",
+                  "is_external": "",
+                  "nofollow": ""
+                },
                 "align": "left",
                 "background_color": "#3626d9",
                 "button_text_color": "#ffffff",
-                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                "border_radius": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
                 "css_classes": "oba-btn"
               },
               "elements": []
@@ -168,7 +239,13 @@
               "id": "obardiv2",
               "elType": "widget",
               "widgetType": "divider",
-              "settings": { "color": "rgba(0,0,0,0.12)", "gap": { "unit": "px", "size": 40 } },
+              "settings": {
+                "color": "rgba(0,0,0,0.12)",
+                "gap": {
+                  "unit": "px",
+                  "size": 40
+                }
+              },
               "elements": []
             },
             {
@@ -198,11 +275,22 @@
               "widgetType": "button",
               "settings": {
                 "text": "HACER UNA CONSULTA",
-                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "link": {
+                  "url": "#",
+                  "is_external": "",
+                  "nofollow": ""
+                },
                 "align": "left",
                 "background_color": "#3626d9",
                 "button_text_color": "#ffffff",
-                "border_radius": { "unit": "px", "top": "0", "right": "0", "bottom": "0", "left": "0", "isLinked": true },
+                "border_radius": {
+                  "unit": "px",
+                  "top": "0",
+                  "right": "0",
+                  "bottom": "0",
+                  "left": "0",
+                  "isLinked": true
+                },
                 "css_classes": "oba-btn"
               },
               "elements": []
