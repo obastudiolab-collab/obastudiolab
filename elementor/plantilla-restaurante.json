@@ -4,6 +4,59 @@
   "type": "page",
   "content": [
     {
+      "id": "obarhdr",
+      "elType": "section",
+      "isInner": false,
+      "settings": {
+        "background_background": "classic",
+        "background_color": "#f4efe4",
+        "padding": {
+          "unit": "px",
+          "top": "28",
+          "right": "40",
+          "bottom": "0",
+          "left": "40",
+          "isLinked": false
+        }
+      },
+      "elements": [
+        {
+          "id": "obarhdrc",
+          "elType": "column",
+          "isInner": false,
+          "settings": {
+            "_column_size": 100
+          },
+          "elements": [
+            {
+              "id": "obarhdrlogo",
+              "elType": "widget",
+              "widgetType": "image",
+              "settings": {
+                "image": {
+                  "url": "https://obastudiolab-collab.github.io/obastudiolab/logo-dark.png",
+                  "id": ""
+                },
+                "image_size": "full",
+                "align": "left",
+                "width": {
+                  "unit": "px",
+                  "size": 100
+                },
+                "link_to": "custom",
+                "link": {
+                  "url": "/",
+                  "is_external": "",
+                  "nofollow": ""
+                }
+              },
+              "elements": []
+            }
+          ]
+        }
+      ]
+    },
+    {
       "id": "obar1sec",
       "elType": "section",
       "isInner": false,
@@ -46,7 +99,7 @@
               "widgetType": "image",
               "settings": {
                 "image": {
-                  "url": "",
+                  "url": "https://obastudiolab-collab.github.io/obastudiolab/gallery-restaurante-3.jpg",
                   "id": ""
                 },
                 "image_size": "full",

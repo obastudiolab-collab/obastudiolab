@@ -20,8 +20,68 @@
           "id": "oba1col1",
           "elType": "column",
           "isInner": false,
-          "settings": { "_column_size": 100 },
+          "settings": {
+            "_column_size": 100
+          },
           "elements": [
+            {
+              "id": "obahdr1",
+              "elType": "section",
+              "isInner": true,
+              "settings": {
+                "structure": "20",
+                "css_classes": "oba-header"
+              },
+              "elements": [
+                {
+                  "id": "obahdrc1",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": {
+                    "_column_size": 33
+                  },
+                  "elements": [
+                    {
+                      "id": "obahdrlogo",
+                      "elType": "widget",
+                      "widgetType": "image",
+                      "settings": {
+                        "image": {
+                          "url": "https://obastudiolab-collab.github.io/obastudiolab/logo.png",
+                          "id": ""
+                        },
+                        "image_size": "full",
+                        "align": "left",
+                        "width": {
+                          "unit": "px",
+                          "size": 110
+                        }
+                      },
+                      "elements": []
+                    }
+                  ]
+                },
+                {
+                  "id": "obahdrc2",
+                  "elType": "column",
+                  "isInner": true,
+                  "settings": {
+                    "_column_size": 66
+                  },
+                  "elements": [
+                    {
+                      "id": "obahdrnav",
+                      "elType": "widget",
+                      "widgetType": "text-editor",
+                      "settings": {
+                        "editor": "<p style=\"text-align:right;letter-spacing:.12em;font-size:13px\"><a href=\"#\" style=\"color:#fff;text-decoration:none;margin-left:28px\">RESERVA</a><a href=\"#\" style=\"color:#fff;text-decoration:none;margin-left:28px\">CONTACTO</a><a href=\"#\" style=\"color:#fff;text-decoration:none;margin-left:28px\">TIENDA</a></p>"
+                      },
+                      "elements": []
+                    }
+                  ]
+                }
+              ]
+            },
             {
               "id": "obahtml1",
               "elType": "widget",
@@ -35,20 +95,27 @@
               "id": "obaimgs1",
               "elType": "section",
               "isInner": true,
-              "settings": { "structure": "33" },
+              "settings": {
+                "structure": "33"
+              },
               "elements": [
                 {
                   "id": "obaimc1",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obaimg1",
                       "elType": "widget",
                       "widgetType": "image",
                       "settings": {
-                        "image": { "url": "", "id": "" },
+                        "image": {
+                          "url": "https://obastudiolab-collab.github.io/obastudiolab/restaurante.jpg",
+                          "id": ""
+                        },
                         "image_size": "full",
                         "css_classes": "oba-img-src oba-img-restaurante"
                       },
@@ -60,14 +127,19 @@
                   "id": "obaimc2",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obaimg2",
                       "elType": "widget",
                       "widgetType": "image",
                       "settings": {
-                        "image": { "url": "", "id": "" },
+                        "image": {
+                          "url": "https://obastudiolab-collab.github.io/obastudiolab/entorno.jpg",
+                          "id": ""
+                        },
                         "image_size": "full",
                         "css_classes": "oba-img-src oba-img-entorno"
                       },
@@ -79,14 +151,19 @@
                   "id": "obaimc3",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obaimg3",
                       "elType": "widget",
                       "widgetType": "image",
                       "settings": {
-                        "image": { "url": "", "id": "" },
+                        "image": {
+                          "url": "https://obastudiolab-collab.github.io/obastudiolab/nosotros.jpg",
+                          "id": ""
+                        },
                         "image_size": "full",
                         "css_classes": "oba-img-src oba-img-nosotros"
                       },
@@ -100,13 +177,18 @@
               "id": "obainner1",
               "elType": "section",
               "isInner": true,
-              "settings": { "structure": "33", "css_classes": "oba-hero-nav" },
+              "settings": {
+                "structure": "33",
+                "css_classes": "oba-hero-nav"
+              },
               "elements": [
                 {
                   "id": "obac1",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obah1",
@@ -114,7 +196,11 @@
                       "widgetType": "heading",
                       "settings": {
                         "title": "RESTAURANTE",
-                        "link": { "url": "/restaurante", "is_external": "", "nofollow": "" },
+                        "link": {
+                          "url": "/restaurante",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
                         "align": "left",
                         "title_color": "#FFFFFF",
                         "css_classes": "oba-hero-link"
@@ -127,7 +213,9 @@
                   "id": "obac2",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obah2",
@@ -135,7 +223,11 @@
                       "widgetType": "heading",
                       "settings": {
                         "title": "ENTORNO",
-                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "link": {
+                          "url": "#",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
                         "align": "center",
                         "title_color": "#FFFFFF",
                         "css_classes": "oba-hero-link"
@@ -148,7 +240,9 @@
                   "id": "obac3",
                   "elType": "column",
                   "isInner": true,
-                  "settings": { "_column_size": 33 },
+                  "settings": {
+                    "_column_size": 33
+                  },
                   "elements": [
                     {
                       "id": "obah3",
@@ -156,7 +250,11 @@
                       "widgetType": "heading",
                       "settings": {
                         "title": "NOSOTROS",
-                        "link": { "url": "#", "is_external": "", "nofollow": "" },
+                        "link": {
+                          "url": "#",
+                          "is_external": "",
+                          "nofollow": ""
+                        },
                         "align": "right",
                         "title_color": "#FFFFFF",
                         "css_classes": "oba-hero-link"
@@ -173,7 +271,11 @@
               "widgetType": "button",
               "settings": {
                 "text": "RESERVAR",
-                "link": { "url": "#", "is_external": "", "nofollow": "" },
+                "link": {
+                  "url": "#",
+                  "is_external": "",
+                  "nofollow": ""
+                },
                 "align": "center",
                 "css_classes": "oba-reserve-btn"
               },
