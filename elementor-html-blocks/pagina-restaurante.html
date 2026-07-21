@@ -1,0 +1,341 @@
+<!-- ================================================================
+  PÁGINA: RESTAURANTE (Cuaderno Dos) — un único widget "HTML" de Elementor
+    Incluye: header propio (logo oscuro + idioma + menú) + motor de traducción ES/EN + contenido
+      Página: Configuración → Diseño de página → "Elementor Canvas"
+        Todas las clases van prefijadas con "oba-" para evitar colisiones con el tema.
+        ================================================================ -->
+        <style>
+
+          .oba-page, .oba-page * { box-sizing: border-box; }
+
+          .oba-page {
+              font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+              background: #f4efe4 !important;
+              color: #1a1a1a !important;
+          }
+
+          /* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
+          .oba-page .oba-detail-header {
+              position: fixed;
+              top: 0; left: 0; right: 0;
+              z-index: 10;
+              display: flex;
+              align-items: center;
+              justify-content: space-between;
+              padding: 28px 48px;
+          }
+
+          .oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+          .oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+          .oba-page .oba-lang-switch {
+              position: absolute;
+              left: 50%; top: 50%;
+              transform: translate(-50%, -50%);
+              display: flex;
+              align-items: center;
+              gap: 8px;
+          }
+          .oba-page .oba-lang-btn {
+              background: none !important;
+              border: none !important;
+              cursor: pointer;
+              color: rgba(26,26,26,0.45) !important;
+              font-family: 'Archivo', sans-serif !important;
+              font-size: 14px !important;
+              font-weight: 400 !important;
+              letter-spacing: 0.08em;
+              padding: 4px 2px;
+              margin: 0;
+              transition: color 0.2s ease;
+              text-decoration: none !important;
+          }
+          .oba-page .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+          .oba-page .oba-lang-btn.active {
+              color: #1a1a1a !important;
+              text-decoration: underline !important;
+              text-underline-offset: 4px;
+          }
+          .oba-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+          .oba-page .oba-menu-btn {
+              background: none !important;
+              border: none !important;
+              cursor: pointer;
+              width: 32px; height: 22px;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              padding: 0; margin: 0;
+          }
+          .oba-page .oba-menu-btn span {
+              display: block;
+              height: 2px; width: 100%;
+              background: #1a1a1a !important;
+              border-radius: 1px;
+              transition: transform 0.3s ease, opacity 0.3s ease;
+          }
+          .oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+          .oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+          .oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+          .oba-page .oba-inline-menu {
+              position: absolute;
+              top: calc(100% + 20px);
+              right: 0;
+              display: flex;
+              flex-direction: column;
+              align-items: flex-end;
+              gap: 16px;
+              margin: 0; padding: 0; list-style: none;
+              opacity: 0;
+              visibility: hidden;
+              transform: translateY(-6px);
+              transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+              z-index: 20;
+          }
+          .oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+          .oba-page .oba-inline-menu a {
+              position: relative;
+              color: rgba(26,26,26,0.65) !important;
+              text-decoration: none !important;
+              font-weight: 600 !important;
+              font-size: 13px !important;
+              letter-spacing: 0.12em;
+              padding-bottom: 4px;
+              transition: color 0.25s ease;
+              white-space: nowrap;
+          }
+          .oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+          @media (max-width: 700px) {
+              .oba-page .oba-detail-header { padding: 20px 24px; }
+          }
+
+          /* -------- Contenido de la página de detalle -------- */
+          .oba-page .oba-detail-page {
+              display: flex;
+              align-items: flex-start;
+              justify-content: center;
+              gap: 72px;
+              min-height: 100vh;
+              padding: 110px 48px 0 180px;
+          }
+
+          .oba-page .oba-detail-media {
+              position: sticky;
+              top: 32px;
+              height: calc(100vh - 64px);
+              aspect-ratio: 9 / 16;
+              overflow: hidden;
+              flex-shrink: 0;
+              background: #111;
+          }
+          .oba-page .oba-detail-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+          .oba-page .oba-detail-content { flex: 1; max-width: 620px; padding: 0 64px 100px 0; }
+
+          .oba-page .oba-detail-section h2,
+          .oba-page .oba-detail-kicker {
+              font-size: 17px !important;
+              font-weight: 700 !important;
+              letter-spacing: 0.06em;
+              margin-bottom: 24px;
+              color: #1a1a1a !important;
+          }
+          .oba-page .oba-detail-section p {
+              font-size: 15px !important;
+              line-height: 1.7;
+              margin-bottom: 20px;
+              max-width: 500px;
+              color: #2a2a2a !important;
+          }
+          .oba-page .oba-detail-divider {
+              border: none;
+              border-top: 1px solid rgba(0,0,0,0.12);
+              margin: 56px 0;
+          }
+          .oba-page .oba-btn-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+          .oba-page .oba-btn {
+              display: inline-block;
+              background: #3626d9 !important;
+              color: #fff !important;
+              text-decoration: none !important;
+              font-size: 12px !important;
+              font-weight: 700 !important;
+              letter-spacing: 0.15em;
+              padding: 17px 30px;
+              text-align: center;
+              transition: background 0.2s ease;
+          }
+          .oba-page .oba-btn:hover { background: #2a1cae !important; }
+
+          @media (max-width: 900px) {
+              .oba-page .oba-detail-page { flex-direction: column; gap: 32px; padding: 90px 24px 0; }
+              .oba-page .oba-detail-media { position: relative; top: 0; width: 100%; height: 60vh; aspect-ratio: auto; }
+              .oba-page .oba-detail-content { width: 100%; max-width: none; padding: 0 0 80px; }
+              .oba-page .oba-detail-divider { margin: 48px 0; }
+          }
+
+          </style>
+
+<div class="oba-page">
+    <header class="oba-detail-header">
+          <a href="index.html" class="oba-detail-logo" aria-label="oba-">
+                  <img src="{{URL_LOGO_DARK}}" alt="oba-">
+          </a>a>
+
+          <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+                  <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>button>
+                  <span class="oba-lang-sep">/</span>span>
+                  <button type="button" class="oba-lang-btn" data-lang="en">EN</button>button>
+          </div>div>
+
+          <div class="oba-header-right" style="position:relative;">
+                  <nav class="oba-inline-menu" id="oba-inline-menu">
+                            <a href="#" data-i18n="menu_reserva">RESERVA</a>a>
+                            <a href="#" data-i18n="menu_contacto">CONTACTO</a>a>
+                            <a href="#" data-i18n="menu_tienda">TIENDA</a>a>
+                  </nav>nav>
+                  <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+                            <span></span><span></span><span></span>
+                  </button>button>
+          </div>div>
+    </header>header>
+
+  <div class="oba-detail-page">
+      <div class="oba-detail-media">
+            <img src="{{URL_GALLERY_RESTAURANTE}}" alt="Restaurante oba-">
+      </div>div>
+  
+      <div class="oba-detail-content">
+      
+            <section class="oba-detail-section">
+                    <p class="oba-detail-kicker" data-i18n="kicker">00 — CUADERNO DOS</p>p>
+                    <p data-i18n="p1">Hoy lugares, historias y personas que merecen ser contadas (y recordadas).</p>p>
+                    <p data-i18n="p2">En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.</p>p>
+                    <p data-i18n="p3">Un libro llamado "Las 1000 recetas de la cocina de Albacete" escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.</p>p>
+                    <div class="oba-btn-row">
+                              <a class="oba-btn" href="#" data-i18n="btn_menu_actual">MENÚ ACTUAL</a>a>
+                              <a class="oba-btn" href="#" data-i18n="btn_reservar_2">RESERVAR</a>a>
+                    </div>div>
+            </section>section>
+      
+            <hr class="oba-detail-divider">
+      
+            <section class="oba-detail-section">
+                    <h2 data-i18n="h2_fermentos">PROGRAMA DE FERMENTOS</h2>h2>
+                    <p data-i18n="p_fermentos_1">Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.</p>p>
+                    <p data-i18n="p_fermentos_2">Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.</p>p>
+                    <div class="oba-btn-row">
+                              <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>a>
+                    </div>div>
+            </section>section>
+      
+            <hr class="oba-detail-divider">
+      
+            <section class="oba-detail-section">
+                    <h2 data-i18n="h2_eventos">EVENTOS PRIVADOS</h2>h2>
+                    <p data-i18n="p_eventos">Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.</p>p>
+                    <div class="oba-btn-row">
+                              <a class="oba-btn" href="#" data-i18n="btn_consulta">HACER UNA CONSULTA</a>a>
+                    </div>div>
+            </section>section>
+      
+      </div>div>
+  </div>div>
+</div>div>
+
+
+<script>
+
+  // ============================================================
+  // MOTOR DE TRADUCCIÓN ES/EN — igual que en el resto de páginas del sitio
+  // ============================================================
+  window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+      es: {
+            menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+            aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+            kicker: "00 — CUADERNO DOS",
+            p1: "Hoy lugares, historias y personas que merecen ser contadas (y recordadas).",
+            p2: "En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.",
+            p3: "Un libro llamado \u201cLas 1000 recetas de la cocina de Albacete\u201d escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.",
+            btn_menu_actual: "MENÚ ACTUAL",
+            btn_reservar_2: "RESERVAR",
+            h2_fermentos: "PROGRAMA DE FERMENTOS",
+            p_fermentos_1: "Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.",
+            p_fermentos_2: "Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.",
+            btn_ver_carta: "VER CARTA",
+            h2_eventos: "EVENTOS PRIVADOS",
+            p_eventos: "Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.",
+            btn_consulta: "HACER UNA CONSULTA"
+      },
+      en: {
+            menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+            aria_menu: "Open menu", aria_lang: "Select language",
+            kicker: "00 — NOTEBOOK TWO",
+            p1: "Today, places, stories and people that deserve to be told (and remembered).",
+            p2: "In this new Notebook our inspiration comes from our deepest-rooted tradition, our closest surroundings and our most personal stories.",
+            p3: "A book called \u201cThe 1000 recipes of Albacete cuisine\u201d written in 1971 by Carmina Useros, has shaped this menu, where every dish and preparation is born from these recipes rescued from our old local cookbook. Our gratitude, dear Carmina.",
+            btn_menu_actual: "CURRENT MENU",
+            btn_reservar_2: "BOOK NOW",
+            h2_fermentos: "FERMENTS PROGRAM",
+            p_fermentos_1: "Our menu changes constantly and combines our own fermentation techniques with local seasonal producers, in line with the flavors of our cuisine.",
+            p_fermentos_2: "Write to us at hola@oba-restaurante.com to receive the latest menu.",
+            btn_ver_carta: "SEE MENU",
+            h2_eventos: "PRIVATE EVENTS",
+            p_eventos: "Our bar is available for private dinners, offering exclusive use of the space for a night. We ask for a minimum of two months notice to secure the date.",
+            btn_consulta: "MAKE AN ENQUIRY"
+      }
+  };
+
+  function obaApplyLang(lang) {
+      const dict = window.OBA_TRANSLATIONS[lang];
+      if (!dict) return;
+      document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.dataset.i18n;
+            if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+            el.dataset.i18nAttr.split(';').forEach((pair) => {
+                    const [attr, key] = pair.split(':').map(s => s.trim());
+                    if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+            });
+      });
+      document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+            btn.classList.toggle('active', btn.dataset.lang === lang);
+      });
+      document.documentElement.lang = lang;
+      try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+  }
+
+  function obaInit() {
+      let saved = 'es';
+      try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+      obaApplyLang(saved);
+
+      document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+            btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+      });
+
+      var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+      var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+      if (menuBtn && inlineMenu) {
+            menuBtn.addEventListener('click', function () {
+                    var isOpen = inlineMenu.classList.toggle('open');
+                    menuBtn.classList.toggle('active', isOpen);
+                    menuBtn.setAttribute('aria-expanded', String(isOpen));
+            });
+      }
+  }
+
+  if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', obaInit);
+  } else {
+      obaInit();
+  }
+
+</script>
+
+</script></span></span>
+        </style>
