@@ -1,395 +1,389 @@
 <!-- ================================================================
   PÁGINA: INICIO (Home) — un único widget "HTML" de Elementor
-    Versión reforzada: todo el contenido va envuelto en .oba-page y el CSS lleva
-      esa clase como prefijo (+ !important en lo esencial) para que el tema de WordPress
-        no pueda pisar nuestros estilos (evita el problema de hover rosa / texto gris).
-          Página: Configuración → Diseño de página → "Elementor Canvas"
-            La sección/columna que contenga este widget NO debe tener Motion Effects (sticky, parallax...)
-            ================================================================ -->
-            <style>
-              .oba-page, .oba-page * {
-                  box-sizing: border-box;
-              }
+    Todo el contenido va envuelto en .oba-page y el CSS lleva esa clase como
+    prefijo (+ !important en lo esencial) para que el tema de WordPress no
+    pueda pisar nuestros estilos.
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La sección/columna que contenga este widget NO debe tener Motion Effects
+    (sticky, parallax...) porque rompe el position: fixed.
+================================================================ -->
+<style>
+.oba-page, .oba-page * {
+  box-sizing: border-box;
+}
 
-              .oba-page {
-                  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
-                  background: #000;
-                  color: #fff !important;
-              }
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #000;
+  color: #fff !important;
+}
 
-              html, body { height: 100%; overflow: hidden; }
+html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
 
-              .oba-page .oba-header {
-                  position: fixed;
-                  top: 0; left: 0; right: 0;
-                  z-index: 10;
-                  display: flex;
-                  align-items: center;
-                  justify-content: space-between;
-                  padding: 28px 48px;
-                  margin: 0;
-              }
+.oba-page .oba-header {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+  margin: 0;
+}
 
-              .oba-page .oba-lang-switch {
-                  position: absolute;
-                  left: 50%; top: 50%;
-                  transform: translate(-50%, -50%);
-                  display: flex;
-                  align-items: center;
-                  gap: 8px;
-              }
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
 
-              .oba-page .oba-lang-btn {
-                  background: none !important;
-                  border: none !important;
-                  cursor: pointer;
-                  color: rgba(255,255,255,0.55) !important;
-                  font-family: 'Archivo', sans-serif !important;
-                  font-size: 14px !important;
-                  font-weight: 400 !important;
-                  letter-spacing: 0.08em;
-                  padding: 4px 2px;
-                  margin: 0;
-                  transition: color 0.2s ease;
-                  text-decoration: none !important;
-              }
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(255,255,255,0.55) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
 
-              .oba-page .oba-lang-btn:hover,
-              .oba-page .oba-lang-btn:focus {
-                  color: rgba(255,255,255,0.85) !important;
-              }
+.oba-page .oba-lang-btn:hover,
+.oba-page .oba-lang-btn:focus {
+  color: rgba(255,255,255,0.85) !important;
+}
 
-              .oba-page .oba-lang-btn.active {
-                  color: #fff !important;
-                  text-decoration: underline !important;
-                  text-underline-offset: 4px;
-              }
+.oba-page .oba-lang-btn.active {
+  color: #fff !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
 
-              .oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; font-size: 14px; }
+.oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; font-size: 14px; }
 
-              .oba-page .oba-logo { display: block; width: 110px; margin: 0; }
-              .oba-page .oba-logo img { display: block; width: 100%; height: auto; }
+.oba-page .oba-logo { display: block; width: 110px; margin: 0; }
+.oba-page .oba-logo img { display: block; width: 100%; height: auto; }
 
-              .oba-page .oba-logo-awards {
-                  position: absolute;
-                  left: 180px; top: 50%;
-                  transform: translateY(-50%) translateX(-8px);
-                  height: 32px;
-                  max-width: 46vw;
-                  opacity: 0;
-                  visibility: hidden;
-                  pointer-events: none;
-                  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-                  margin: 0;
-              }
-              .oba-page .oba-logo-awards img { height: 100%; width: auto; display: block; object-fit: contain; }
-              .oba-page .oba-logo:hover ~ .oba-logo-awards { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
+.oba-page .oba-logo-awards {
+  position: absolute;
+  left: 180px; top: 50%;
+  transform: translateY(-50%) translateX(-8px);
+  height: 32px;
+  max-width: 46vw;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  margin: 0;
+}
+.oba-page .oba-logo-awards img { height: 100%; width: auto; display: block; object-fit: contain; }
+.oba-page .oba-logo:hover ~ .oba-logo-awards { opacity: 1; visibility: visible; transform: translateY(-50%) translateX(0); }
 
-              .oba-page .oba-menu-btn {
-                  background: none !important;
-                  border: none !important;
-                  cursor: pointer;
-                  width: 32px; height: 22px;
-                  display: flex;
-                  flex-direction: column;
-                  justify-content: space-between;
-                  padding: 0; margin: 0;
-              }
-              .oba-page .oba-menu-btn span {
-                  display: block;
-                  height: 2px; width: 100%;
-                  background: #fff !important;
-                  border-radius: 1px;
-                  transition: transform 0.3s ease, opacity 0.3s ease;
-              }
-              .oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
-              .oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
-              .oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #fff !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
 
-              .oba-page .oba-header-right { position: relative; display: flex; align-items: center; gap: 32px; }
+.oba-page .oba-header-right { position: relative; display: flex; align-items: center; gap: 32px; }
 
-              .oba-page .oba-inline-menu {
-                  position: absolute;
-                  top: calc(100% + 20px);
-                  right: 0;
-                  display: flex;
-                  flex-direction: column;
-                  align-items: flex-end;
-                  gap: 16px;
-                  margin: 0; padding: 0; list-style: none;
-                  opacity: 0;
-                  visibility: hidden;
-                  transform: translateY(-6px);
-                  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-                  z-index: 20;
-              }
-              .oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
 
-              .oba-page .oba-inline-menu a {
-                  position: relative;
-                  color: rgba(255,255,255,0.7) !important;
-                  text-decoration: none !important;
-                  font-weight: 600 !important;
-                  font-size: 13px !important;
-                  letter-spacing: 0.12em;
-                  padding-bottom: 4px;
-                  transition: color 0.25s ease;
-                  white-space: nowrap;
-              }
-              .oba-page .oba-inline-menu a::after {
-                  content: '';
-                  position: absolute;
-                  left: 0; bottom: 0;
-                  height: 1px; width: 100%;
-                  background: #fff;
-                  transform: scaleX(0);
-                  transform-origin: left;
-                  transition: transform 0.3s ease;
-              }
-              .oba-page .oba-inline-menu a:hover,
-              .oba-page .oba-inline-menu a:focus-visible { color: #fff !important; }
-              .oba-page .oba-inline-menu a:hover::after,
-              .oba-page .oba-inline-menu a:focus-visible::after { transform: scaleX(1); }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(255,255,255,0.7) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 1px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.oba-page .oba-inline-menu a:hover,
+.oba-page .oba-inline-menu a:focus-visible { color: #fff !important; }
+.oba-page .oba-inline-menu a:hover::after,
+.oba-page .oba-inline-menu a:focus-visible::after { transform: scaleX(1); }
 
-              @media (max-width: 700px) {
-                  .oba-page .oba-inline-menu { display: none; }
-                  .oba-page .oba-header { padding: 20px 24px; }
-                  .oba-page .oba-logo { width: 64px; }
-              }
+@media (max-width: 700px) {
+  .oba-page .oba-inline-menu { display: none; }
+  .oba-page .oba-header { padding: 20px 24px; }
+  .oba-page .oba-logo { width: 64px; }
+}
 
-              .oba-page .oba-bg-layer {
-                  position: fixed;
-                  inset: 0;
-                  background-size: cover;
-                  background-position: center;
-                  opacity: 0;
-                  filter: blur(6px);
-                  transform: scale(1.015);
-                  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
-                  z-index: 0;
-              }
-              .oba-page .oba-bg-layer.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+.oba-page .oba-bg-layer {
+  position: fixed;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+  z-index: 0;
+}
+.oba-page .oba-bg-layer.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
 
-              .oba-page .oba-overlay {
-                  position: fixed;
-                  inset: 0;
-                  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
-                  z-index: 1;
-                  pointer-events: none;
-              }
+.oba-page .oba-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+  z-index: 1;
+  pointer-events: none;
+}
 
-              .oba-page .oba-hero {
-                  position: relative;
-                  z-index: 2;
-                  height: 100vh;
-                  display: flex;
-                  align-items: center;
-                  padding: 0 64px;
-                  margin: 0;
-              }
+.oba-page .oba-hero {
+  position: relative;
+  z-index: 2;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  padding: 0 64px;
+  margin: 0;
+}
 
-              .oba-page .oba-hero-nav {
-                  display: flex;
-                  align-items: baseline;
-                  justify-content: space-between;
-                  width: 100%;
-                  gap: 24px;
-                  margin: 0; padding: 0; list-style: none;
-              }
+.oba-page .oba-hero-nav {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  width: 100%;
+  gap: 24px;
+  margin: 0; padding: 0; list-style: none;
+}
 
-              .oba-page .oba-hero-link {
-                  position: relative;
-                  color: #fff !important;
-                  text-decoration: none !important;
-                  font-weight: 500 !important;
-                  letter-spacing: 0.01em;
-                  font-size: clamp(20px, 2.6vw, 42px);
-                  line-height: 1.1;
-                  white-space: nowrap;
-                  padding-bottom: 10px;
-                  margin: 0;
-              }
-              .oba-page .oba-hero-link::after {
-                  content: '';
-                  position: absolute;
-                  left: 0; bottom: 0;
-                  height: 2px; width: 100%;
-                  background: #fff;
-                  transform: scaleX(0);
-                  transform-origin: left;
-                  transition: transform 0.35s ease;
-              }
-              .oba-page .oba-hero-link:hover,
-              .oba-page .oba-hero-link:focus-visible { color: #fff !important; }
-              .oba-page .oba-hero-link:hover::after,
-              .oba-page .oba-hero-link:focus-visible::after { transform: scaleX(1); }
+.oba-page .oba-hero-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+  margin: 0;
+}
+.oba-page .oba-hero-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-page .oba-hero-link:hover,
+.oba-page .oba-hero-link:focus-visible { color: #fff !important; }
+.oba-page .oba-hero-link:hover::after,
+.oba-page .oba-hero-link:focus-visible::after { transform: scaleX(1); }
 
-              .oba-page .oba-reserve-btn {
-                  position: fixed;
-                  bottom: 48px; left: 50%;
-                  transform: translateX(-50%);
-                  z-index: 10;
-                  color: #fff !important;
-                  text-decoration: none !important;
-                  font-family: 'Archivo', sans-serif !important;
-                  font-size: 13px !important;
-                  font-weight: 400 !important;
-                  letter-spacing: 0.2em;
-                  padding: 16px 42px;
-                  border: none !important;
-                  border-radius: 999px;
-                  background: rgba(255,255,255,0.06) !important;
-                  backdrop-filter: blur(10px);
-                  -webkit-backdrop-filter: blur(10px);
-                  transition: background 0.25s ease, border-color 0.25s ease;
-                  margin: 0;
-              }
-              .oba-page .oba-reserve-btn:hover {
-                  background: rgba(255,255,255,0.16) !important;
-                  color: #fff !important;
-              }
+.oba-page .oba-reserve-btn {
+  position: fixed;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border: none !important;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease, border-color 0.25s ease;
+  margin: 0;
+}
+.oba-page .oba-reserve-btn:hover {
+  background: rgba(255,255,255,0.16) !important;
+  color: #fff !important;
+}
 
 
-              @media (max-width: 700px) {
-                  .oba-page .oba-hero { padding: 0 24px; }
-                  .oba-page .oba-hero-nav { flex-direction: column; align-items: flex-start; gap: 20px; }
-              }
-
-              </style>
+@media (max-width: 700px) {
+  .oba-page .oba-hero { padding: 0 24px; }
+  .oba-page .oba-hero-nav { flex-direction: column; align-items: flex-start; gap: 20px; }
+}
+</style>
 
 <div class="oba-page">
-    <header class="oba-header">
-          <a href="#" class="oba-logo" aria-label="oba-">
-                  <img src="{{URL_LOGO}}" alt="oba-">
-          </a>a>
+  <header class="oba-header">
+    <a href="#" class="oba-logo" aria-label="oba-">
+      <img src="../imagenes/oba-logo.png" alt="oba-">
+    </a>
 
-          <div class="oba-logo-awards" aria-hidden="true">
-                  <img src="{{URL_PREMIOS}}" alt="Premios">
-          </div>div>
+    <div class="oba-logo-awards" aria-hidden="true">
+      <img src="../imagenes/oba-premios.png" alt="Premios">
+    </div>
 
-          <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
-                  <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>button>
-                  <span class="oba-lang-sep">/</span>span>
-                  <button type="button" class="oba-lang-btn" data-lang="en">EN</button>button>
-          </div>div>
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
 
-          <div class="oba-header-right">
-                  <nav class="oba-inline-menu" id="oba-inline-menu">
-                            <a href="#" data-i18n="menu_reserva">RESERVA</a>a>
-                            <a href="#" data-i18n="menu_contacto">CONTACTO</a>a>
-                            <a href="#" data-i18n="menu_tienda">TIENDA</a>a>
-                  </nav>nav>
+    <div class="oba-header-right">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="#" data-i18n="menu_reserva">RESERVA</a>
+        <a href="#" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="#" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
 
-                  <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
-                            <span></span><span></span><span></span>
-                  </button>button>
-          </div>div>
-    </header>header>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
 
-  <div class="oba-bg-layer active" id="bg-chef" style="background-image:url('{{URL_IMAGEN_RESTAURANTE}}');"></div>div>
-  <div class="oba-bg-layer" id="bg-bar" style="background-image:url('{{URL_IMAGEN_ENTORNO}}');"></div>div>
-  <div class="oba-bg-layer" id="bg-about" style="background-image:url('{{URL_IMAGEN_NOSOTROS}}');"></div>div>
-  <div class="oba-overlay"></div>div>
+  <div class="oba-bg-layer active" id="bg-chef" style="background-image:url('../imagenes/oba-restaurante.jpg');"></div>
+  <div class="oba-bg-layer" id="bg-bar" style="background-image:url('../imagenes/oba-entorno.jpg');"></div>
+  <div class="oba-bg-layer" id="bg-about" style="background-image:url('../imagenes/oba-nosotros.jpg');"></div>
+  <div class="oba-overlay"></div>
 
   <main class="oba-hero">
-      <nav class="oba-hero-nav">
-            <a href="restaurante.html" class="oba-hero-link" data-bg="bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>a>
-            <a href="#" class="oba-hero-link" data-bg="bg-bar" data-i18n="nav_entorno">ENTORNO</a>a>
-            <a href="#" class="oba-hero-link" data-bg="bg-about" data-i18n="nav_nosotros">NOSOTROS</a>a>
-      </nav>nav>
-  </main>main>
+    <nav class="oba-hero-nav">
+      <a href="restaurante.html" class="oba-hero-link" data-bg="bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+      <a href="#" class="oba-hero-link" data-bg="bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+      <a href="#" class="oba-hero-link" data-bg="bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+    </nav>
+  </main>
 
-  <a href="#" class="oba-reserve-btn" data-i18n="btn_reservar">RESERVAR</a>a>
-
-</div>div>
+  <a href="#" class="oba-reserve-btn" data-i18n="btn_reservar">RESERVAR</a>
+</div>
 
 <script>
-
-  // ============================================================
-  // MOTOR DE TRADUCCIÓN ES/EN — compartido por todos los bloques y todas las páginas
-  // Añade data-i18n="clave" a cualquier texto nuevo y su traducción aquí abajo.
-  // ============================================================
-  window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
-      es: {
-            menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
-            nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
-            btn_reservar: "RESERVAR",
-            aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
-      },
-      en: {
-            menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
-            nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
-            btn_reservar: "BOOK NOW",
-            aria_menu: "Open menu", aria_lang: "Select language"
-      }
-  };
-
-  function obaApplyLang(lang) {
-      const dict = window.OBA_TRANSLATIONS[lang];
-      if (!dict) return;
-      document.querySelectorAll('[data-i18n]').forEach((el) => {
-            const key = el.dataset.i18n;
-            if (dict[key] !== undefined) el.textContent = dict[key];
-      });
-      document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
-            el.dataset.i18nAttr.split(';').forEach((pair) => {
-                    const [attr, key] = pair.split(':').map(s => s.trim());
-                    if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
-            });
-      });
-      document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
-            btn.classList.toggle('active', btn.dataset.lang === lang);
-      });
-      document.documentElement.lang = lang;
-      try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — compartido por todos los bloques y todas las páginas
+// Añade data-i18n="clave" a cualquier texto nuevo y su traducción aquí abajo.
+// ============================================================
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
+  },
+  en: {
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language"
   }
+};
 
-  function obaInit() {
-      console.log('[oba] script cargado correctamente');
-      let saved = 'es';
-      try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
-      obaApplyLang(saved);
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
 
-      document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
-            btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
-      });
+function obaInit() {
+  console.log('[oba] script cargado correctamente');
+  let saved = 'es';
+  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  obaApplyLang(saved);
 
-      var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
-      var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
-      if (menuBtn && inlineMenu) {
-            menuBtn.addEventListener('click', function () {
-                    var isOpen = inlineMenu.classList.toggle('open');
-                    menuBtn.classList.toggle('active', isOpen);
-                    menuBtn.setAttribute('aria-expanded', String(isOpen));
-            });
-      } else {
-            console.warn('[oba] no se encontró el botón de menú o #oba-inline-menu');
-      }
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
 
-      var links = document.querySelectorAll('.oba-page .oba-hero-link');
-      var layers = document.querySelectorAll('.oba-page .oba-bg-layer');
-      function showBg(targetId) {
-            layers.forEach(function (layer) { layer.classList.remove('active'); });
-            var target = document.getElementById(targetId);
-            if (target) target.classList.add('active');
-      }
-      links.forEach(function (link) {
-            var targetId = link.dataset.bg;
-            link.addEventListener('mouseenter', function () { showBg(targetId); });
-            link.addEventListener('focus', function () { showBg(targetId); });
-      });
-      if (!links.length) console.warn('[oba] no se encontraron .oba-hero-link');
-  }
-
-  // Ejecuta ya si el DOM ya está listo (por si el script se carga tarde dentro de Elementor),
-  // o espera a DOMContentLoaded si no.
-  if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', obaInit);
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
   } else {
-      obaInit();
+    console.warn('[oba] no se encontró el botón de menú o #oba-inline-menu');
   }
 
-</script>
+  var links = document.querySelectorAll('.oba-page .oba-hero-link');
+  var layers = document.querySelectorAll('.oba-page .oba-bg-layer');
+  function showBg(targetId) {
+    layers.forEach(function (layer) { layer.classList.remove('active'); });
+    var target = document.getElementById(targetId);
+    if (target) target.classList.add('active');
+  }
+  links.forEach(function (link) {
+    var targetId = link.dataset.bg;
+    link.addEventListener('mouseenter', function () { showBg(targetId); });
+    link.addEventListener('focus', function () { showBg(targetId); });
+  });
+  if (!links.length) console.warn('[oba] no se encontraron .oba-hero-link');
+}
 
-</script></span></span>
-            </style>
+// Ejecuta ya si el DOM ya está listo (por si el script se carga tarde dentro de Elementor),
+// o espera a DOMContentLoaded si no.
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+</script>

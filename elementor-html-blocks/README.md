@@ -9,11 +9,27 @@ Esta carpeta contiene el codigo real que esta (o debe estar) pegado en los widge
 | `pagina-inicio.html` | Home |
 | `pagina-restaurante.html` | Restaurante / Cuaderno Dos |
 
+## Imagenes
+
+Todas las fotos y logos del sitio viven en `imagenes/` (en la raiz del repo), ya con el nombre con el que deben quedar en la Mediateca de WordPress:
+
+| Archivo en `imagenes/` | Se usa en | Placeholder que reemplaza |
+|---|---|---|
+| `oba-logo.png` | Home | `{{URL_LOGO}}` |
+| `oba-premios.png` | Home | `{{URL_PREMIOS}}` |
+| `oba-restaurante.jpg` | Home (fondo hover) | `{{URL_IMAGEN_RESTAURANTE}}` |
+| `oba-entorno.jpg` | Home (fondo hover) | `{{URL_IMAGEN_ENTORNO}}` |
+| `oba-nosotros.jpg` | Home (fondo hover) | `{{URL_IMAGEN_NOSOTROS}}` |
+| `oba-logo-dark.png` | Restaurante | `{{URL_LOGO_DARK}}` |
+| `oba-galeria-restaurante.jpg` | Restaurante | `{{URL_GALLERY_RESTAURANTE}}` |
+
+Nota: mientras no se suben a WordPress, `pagina-inicio.html` y `pagina-restaurante.html` apuntan directamente a `../imagenes/...` para poder previsualizarlas en el navegador. Hay que volver a dejarlas como placeholders `{{URL_...}}` (o pegar la URL real de la Mediateca) antes de pegar el bloque en Elementor, porque esa ruta relativa no existe en WordPress.
+
 ## Como usarlos
 
-Paso uno: sube las imagenes correspondientes a la Mediateca de WordPress y copia la URL de cada una.
+Paso uno: sube las 7 imagenes de `imagenes/` a la Mediateca de WordPress (conservan su nombre, asi es facil identificarlas) y copia la URL de cada una.
 
-Paso dos: abre el archivo y sustituye los placeholders `{{URL_...}}` por esas URLs reales. En `pagina-inicio.html` son: `{{URL_LOGO}}`, `{{URL_PREMIOS}}`, `{{URL_IMAGEN_RESTAURANTE}}`, `{{URL_IMAGEN_ENTORNO}}`, `{{URL_IMAGEN_NOSOTROS}}`. En `pagina-restaurante.html` son: `{{URL_LOGO_DARK}}`, `{{URL_GALLERY_RESTAURANTE}}`.
+Paso dos: abre el archivo y sustituye las rutas `../imagenes/...` (o los placeholders `{{URL_...}}` si ya los restauraste) por esas URLs reales, segun la tabla de arriba.
 
 Paso tres: copia todo el contenido del archivo en un unico widget "HTML" de Elementor, en esa pagina.
 
