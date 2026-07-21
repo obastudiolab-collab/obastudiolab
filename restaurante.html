@@ -9,65 +9,73 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="detail.css">
 </head>
-<body class="detail">
+<body>
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="index.html" class="oba-detail-logo" aria-label="oba-">
+      <img src="logo-dark.png" alt="oba-">
+    </a>
 
-  <a href="index.html" class="detail-logo" aria-label="oba-">
-    <img src="logo-dark.png" alt="oba-">
-  </a>
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
 
-  <div class="detail-page">
-    <div class="detail-media">
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="#" data-i18n="menu_reserva">RESERVA</a>
+        <a href="#" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="#" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="oba-detail-page">
+    <div class="oba-detail-media">
       <img src="gallery-restaurante-3.jpg" alt="Restaurante oba-">
     </div>
 
-    <div class="detail-content">
+    <div class="oba-detail-content">
 
-      <section class="detail-section">
-        <p class="detail-kicker">00 — CUADERNO DOS</p>
-        <p>Hoy lugares, historias y personas que merecen ser contadas (y recordadas).</p>
-        <p>En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.</p>
-        <p>Un libro llamado "Las 1000 recetas de la cocina de Albacete" escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.</p>
-        <div class="btn-row">
-          <a class="btn" href="#">MENÚ ACTUAL</a>
-          <a class="btn" href="#">RESERVAR</a>
+      <section class="oba-detail-section">
+        <p class="oba-detail-kicker" data-i18n="kicker">00 — CUADERNO DOS</p>
+        <p data-i18n="p1">Hoy lugares, historias y personas que merecen ser contadas (y recordadas).</p>
+        <p data-i18n="p2">En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.</p>
+        <p data-i18n="p3">Un libro llamado "Las 1000 recetas de la cocina de Albacete" escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="#" data-i18n="btn_menu_actual">MENÚ ACTUAL</a>
+          <a class="oba-btn" href="#" data-i18n="btn_reservar_2">RESERVAR</a>
         </div>
       </section>
 
-      <hr class="detail-divider">
+      <hr class="oba-detail-divider">
 
-      <section class="detail-section">
-        <h2>PROGRAMA DE FERMENTOS</h2>
-        <p>Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.</p>
-        <p>Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.</p>
-        <div class="btn-row">
-          <a class="btn" href="#">VER CARTA</a>
+      <section class="oba-detail-section">
+        <h2 data-i18n="h2_fermentos">PROGRAMA DE FERMENTOS</h2>
+        <p data-i18n="p_fermentos_1">Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.</p>
+        <p data-i18n="p_fermentos_2">Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
         </div>
       </section>
 
-      <hr class="detail-divider">
+      <hr class="oba-detail-divider">
 
-      <section class="detail-section">
-        <h2>EVENTOS PRIVADOS</h2>
-        <p>Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.</p>
-        <div class="btn-row">
-          <a class="btn" href="#">HACER UNA CONSULTA</a>
+      <section class="oba-detail-section">
+        <h2 data-i18n="h2_eventos">EVENTOS PRIVADOS</h2>
+        <p data-i18n="p_eventos">Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="#" data-i18n="btn_consulta">HACER UNA CONSULTA</a>
         </div>
       </section>
 
     </div>
   </div>
-
-  <button class="menu-btn detail-menu-btn" aria-label="Abrir menú">
-    <span></span><span></span><span></span>
-  </button>
-
-  <button class="a11y-btn" aria-label="Opciones de accesibilidad">
-    <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor">
-      <circle cx="12" cy="4" r="2"/>
-      <path d="M12 7c-3 0-8 1-8 3 0 1 1 1.5 2 1.5 1.5 0 3-1 6-1s4.5 1 6 1c1 0 2-.5 2-1.5 0-2-5-3-8-3z"/>
-      <path d="M12 12.5c-1.6 0-3-.3-4-.6l-2 8.6 2 .5 1.6-6.8c.6.1 1.4.2 2.4.2s1.8-.1 2.4-.2l1.6 6.8 2-.5-2-8.6c-1 .3-2.4.6-4 .6z"/>
-    </svg>
-  </button>
-
+</div>
+<script src="detail.js"></script>
 </body>
 </html>
