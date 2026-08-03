@@ -1,0 +1,14 @@
+/* Transición de entrada/salida compartida por todas las páginas del sitio.
+   .oba-page arranca invisible; transitions.js la revela con un fundido suave
+   al cargar, y la vuelve a ocultar antes de navegar a otra página interna. */
+.oba-page {
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.oba-page.oba-page-visible {
+  opacity: 1;
+}
+.oba-page.oba-page-exit {
+  opacity: 0 !important;
+  transition: opacity 0.35s ease;
+}
