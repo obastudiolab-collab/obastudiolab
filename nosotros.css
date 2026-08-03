@@ -1,0 +1,116 @@
+/* -------- Intro: titular + texto + botones -------- */
+.oba-nosotros-intro {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 180px 24px 100px;
+  text-align: center;
+}
+.oba-nosotros-eyebrow {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em;
+  margin: 0 0 28px;
+  color: #1a1a1a !important;
+}
+.oba-nosotros-dash {
+  width: 28px;
+  height: 1px;
+  background: #1a1a1a;
+  opacity: 0.35;
+  margin: 0 auto 40px;
+}
+.oba-nosotros-intro p {
+  font-size: 16px !important;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  color: #2a2a2a !important;
+}
+.oba-nosotros-intro em { font-style: italic; color: #1a1a1a; }
+
+.oba-nosotros-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.oba-btn-outline {
+  display: inline-block;
+  border: 1px solid #607900;
+  color: #607900 !important;
+  background: transparent !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em;
+  padding: 16px 28px;
+  text-decoration: none !important;
+  text-align: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.oba-btn-outline:hover { background: #607900 !important; color: #fff !important; }
+
+/* -------- Collage estilo Pinterest -------- */
+.oba-nosotros-collage {
+  columns: 3 240px;
+  column-gap: 14px;
+  padding: 0 48px 110px;
+}
+.oba-nosotros-collage figure {
+  margin: 0 0 14px;
+  break-inside: avoid;
+  overflow: hidden;
+}
+.oba-nosotros-collage img {
+  width: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+/* -------- Prensa -------- */
+.oba-nosotros-press {
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 90px 24px;
+  text-align: center;
+  border-top: 1px solid rgba(26,26,26,0.12);
+}
+.oba-nosotros-press h2 {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em;
+  margin: 0 0 48px;
+  color: #1a1a1a !important;
+}
+.oba-press-item { margin-bottom: 30px; }
+.oba-press-name {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  margin: 0 0 6px;
+  color: #1a1a1a !important;
+}
+.oba-press-detail {
+  font-size: 13px !important;
+  font-style: italic;
+  color: rgba(26,26,26,0.5) !important;
+  margin: 0;
+}
+.oba-press-extra { margin-top: 36px; }
+.oba-press-extra .oba-press-detail { font-size: 12px !important; }
+
+/* -------- Info -------- */
+.oba-nosotros-info {
+  border-top: 1px solid rgba(26,26,26,0.12);
+  padding: 56px 24px 90px;
+  text-align: center;
+}
+.oba-info-row { margin-bottom: 16px; font-size: 14px !important; }
+.oba-info-row:last-child { margin-bottom: 0; }
+.oba-info-label { font-weight: 600; color: #1a1a1a !important; }
+.oba-info-value { color: #607900 !important; text-decoration: none; }
+.oba-info-value:hover { text-decoration: underline; }
+
+@media (max-width: 700px) {
+  .oba-nosotros-intro { padding: 130px 24px 80px; }
+  .oba-nosotros-collage { columns: 2 160px; padding: 0 24px 80px; }
+  .oba-nosotros-press { padding: 70px 24px; }
+}
