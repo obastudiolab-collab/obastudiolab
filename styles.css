@@ -8,7 +8,7 @@
   color: #fff !important;
 }
 
-html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
+html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; background: #000; }
 
 .oba-page .oba-header {
   position: fixed;
@@ -58,7 +58,7 @@ html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
 
 .oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; font-size: 14px; }
 
-.oba-page .oba-logo { display: block; width: 110px; margin: 0; }
+.oba-page .oba-logo { display: block; width: 90px; margin: 0; }
 .oba-page .oba-logo img { display: block; width: 100%; height: auto; }
 
 .oba-page .oba-logo-awards {
@@ -143,9 +143,9 @@ html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
 .oba-page .oba-inline-menu a:focus-visible::after { transform: scaleX(1); }
 
 @media (max-width: 700px) {
-  .oba-page .oba-inline-menu { display: none; }
   .oba-page .oba-header { padding: 20px 24px; }
   .oba-page .oba-logo { width: 64px; }
+  .oba-page .oba-logo-awards { display: none; }
 }
 
 .oba-page .oba-bg-layer {
@@ -243,5 +243,6 @@ html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; }
 
 @media (max-width: 700px) {
   .oba-page .oba-hero { padding: 0 24px; }
-  .oba-page .oba-hero-nav { flex-direction: column; align-items: flex-start; gap: 20px; }
+  .oba-page .oba-hero-nav { flex-direction: column; align-items: center; gap: 28px; }
+  .oba-page .oba-hero-link { text-align: center; }
 }
