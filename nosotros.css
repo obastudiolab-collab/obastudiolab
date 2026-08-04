@@ -81,12 +81,20 @@
   margin: 0 0 48px;
   color: #1a1a1a !important;
 }
-.oba-press-item { margin-bottom: 30px; }
+.oba-press-item {
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.oba-press-item:hover { opacity: 0.6; }
+.oba-press-item:hover .oba-press-name { color: #607900 !important; }
 .oba-press-name {
   font-size: 15px !important;
   font-weight: 600 !important;
   margin: 0 0 6px;
   color: #1a1a1a !important;
+  transition: color 0.2s ease;
 }
 .oba-press-detail {
   font-size: 13px !important;
@@ -94,7 +102,13 @@
   color: rgba(26,26,26,0.5) !important;
   margin: 0;
 }
-.oba-press-extra { margin-top: 36px; }
+.oba-press-extra {
+  display: block;
+  margin-top: 36px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.oba-press-extra:hover { opacity: 0.6; }
 .oba-press-extra .oba-press-detail { font-size: 12px !important; }
 
 /* -------- Info -------- */
