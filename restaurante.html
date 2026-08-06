@@ -58,21 +58,33 @@
 
         <div class="oba-maridajes">
 
-          <div class="oba-maridaje">
-            <h3 data-i18n="maridaje_1_titulo">NATURA</h3>
+          <div class="oba-maridajes-tabs" role="tablist" aria-label="Maridajes">
+            <button type="button" class="oba-maridaje-tab activo" role="tab" id="tab-maridaje-1"
+                    aria-controls="panel-maridaje-1" aria-selected="true" data-maridaje="1"
+                    data-i18n="maridaje_1_titulo">NATURA</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-2"
+                    aria-controls="panel-maridaje-2" aria-selected="false" tabindex="-1" data-maridaje="2"
+                    data-i18n="maridaje_2_titulo">MATICES OLVIDADOS</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-3"
+                    aria-controls="panel-maridaje-3" aria-selected="false" tabindex="-1" data-maridaje="3"
+                    data-i18n="maridaje_3_titulo">CONTRASTES</button>
+          </div>
+
+          <div class="oba-maridaje-panel activo" role="tabpanel" id="panel-maridaje-1"
+               aria-labelledby="tab-maridaje-1" data-maridaje="1">
             <p class="oba-maridaje-sub" data-i18n="maridaje_1_sub">(maridaje no/lo)</p>
             <p data-i18n="maridaje_1_texto">Natura es un maridaje vivo que expresa nuestra filosofía a través de la fermentación. Cada bebida nace de un constante proceso de investigación y experimentación, donde ingredientes de nuestro entorno se transforman mediante levaduras salvajes, microorganismos seleccionados y técnicas fermentativas propias. El resultado es una colección de bebidas únicas, creadas para acompañar el menú y descubrir una nueva dimensión de cada plato.</p>
             <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
           </div>
 
-          <div class="oba-maridaje">
-            <h3 data-i18n="maridaje_2_titulo">MATICES OLVIDADOS</h3>
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-2"
+               aria-labelledby="tab-maridaje-2" data-maridaje="2" hidden>
             <p data-i18n="maridaje_2_texto">Matices Olvidados es un recorrido por variedades ancestrales y minoritarias del territorio nacional. Una selección de vinos con identidad, elaborados por pequeños productores que preservan un patrimonio vitivinícola único.</p>
             <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
           </div>
 
-          <div class="oba-maridaje">
-            <h3 data-i18n="maridaje_3_titulo">CONTRASTES</h3>
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-3"
+               aria-labelledby="tab-maridaje-3" data-maridaje="3" hidden>
             <p data-i18n="maridaje_3_texto">Contrastes es un recorrido por los grandes vinos que han definido la historia. Una selección de regiones y bodegas icónicas que representan la esencia de los estilos más influyentes del mundo del vino.</p>
             <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
           </div>

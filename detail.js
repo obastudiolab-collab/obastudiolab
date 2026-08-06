@@ -114,6 +114,41 @@ function obaInit() {
       menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
   }
+
+  obaInitMaridajes();
+}
+
+// Pestañas de la sección Maridajes
+function obaInitMaridajes() {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.oba-maridaje-tab'));
+  var paneles = Array.prototype.slice.call(document.querySelectorAll('.oba-maridaje-panel'));
+  if (!tabs.length) return;
+
+  function mostrar(id, mover) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.maridaje === id;
+      t.classList.toggle('activo', on);
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && mover) t.focus();
+    });
+    paneles.forEach(function (p) {
+      var on = p.dataset.maridaje === id;
+      p.classList.toggle('activo', on);
+      p.hidden = !on;
+    });
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { mostrar(tab.dataset.maridaje, false); });
+    tab.addEventListener('keydown', function (e) {
+      var salto = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!salto) return;
+      e.preventDefault();
+      var siguiente = tabs[(i + salto + tabs.length) % tabs.length];
+      mostrar(siguiente.dataset.maridaje, true);
+    });
+  });
 }
 
 if (document.readyState === 'loading') {

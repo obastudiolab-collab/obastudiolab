@@ -164,34 +164,50 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
 }
 .oba-page .oba-btn:hover { background: #4d6100 !important; }
 
-/* --- MARIDAJES: tres columnas separadas por línea vertical --- */
-.oba-page .oba-maridajes {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 4px;
-}
-.oba-page .oba-maridaje {
+/* --- MARIDAJES: pestañas --- */
+.oba-page .oba-maridajes { margin-top: 4px; }
+
+.oba-page .oba-maridajes-tabs {
   display: flex;
-  flex-direction: column;
-  padding-left: 24px;
-  border-left: 1px solid rgba(0,0,0,0.12);
+  flex-wrap: wrap;
+  gap: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 26px;
 }
-.oba-page .oba-maridaje:first-child { padding-left: 0; border-left: none; }
-.oba-page .oba-maridaje h3 {
+.oba-page .oba-maridaje-tab {
+  position: relative;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 0 14px;
+  margin: 0;
+  cursor: pointer;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
   font-size: 14px !important;
   font-weight: 700 !important;
   letter-spacing: 0.06em;
-  margin: 0 0 4px;
-  color: #1a1a1a !important;
+  color: #6a6a62 !important;
+  transition: color 0.2s ease;
 }
-.oba-page .oba-maridaje .oba-maridaje-sub {
-  font-size: 13px !important;
-  font-style: italic;
-  margin: 0 0 14px;
-  color: #6a6a6a !important;
+.oba-page .oba-maridaje-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
-.oba-page .oba-maridaje p {
+.oba-page .oba-maridaje-tab:hover { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo::after { transform: scaleX(1); }
+.oba-page .oba-maridaje-tab:focus-visible { outline: 2px solid #607900; outline-offset: 3px; }
+
+.oba-page .oba-maridaje-panel { display: none; }
+.oba-page .oba-maridaje-panel.activo { display: block; }
+.oba-page .oba-maridaje-panel p {
   font-size: 15px !important;
   margin-bottom: 20px;
   max-width: none;
@@ -200,27 +216,24 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   -webkit-hyphens: auto;
   hyphens: auto;
 }
-.oba-page .oba-maridaje .oba-maridaje-sub {
+.oba-page .oba-maridaje-panel .oba-maridaje-sub {
+  font-size: 13px !important;
+  font-style: italic;
+  margin: 0 0 14px;
+  color: #6a6a62 !important;
   text-align: left;
   -webkit-hyphens: none;
   hyphens: none;
 }
-.oba-page .oba-maridaje .oba-btn {
-  align-self: flex-start;
-  margin-top: auto;
+.oba-page .oba-maridaje-panel .oba-btn {
+  display: inline-block;
   padding: 14px 22px;
   font-size: 11px !important;
 }
 
 @media (max-width: 900px) {
-  .oba-page .oba-maridajes { grid-template-columns: 1fr; gap: 36px; }
-  .oba-page .oba-maridaje {
-    padding-left: 0;
-    border-left: none;
-    border-top: 1px solid rgba(0,0,0,0.12);
-    padding-top: 28px;
-  }
-  .oba-page .oba-maridaje:first-child { border-top: none; padding-top: 0; }
+  .oba-page .oba-maridajes-tabs { gap: 20px; }
+  .oba-page .oba-maridaje-tab { font-size: 13px !important; }
 }
 
 @media (max-width: 900px) {
