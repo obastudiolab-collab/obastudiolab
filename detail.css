@@ -16,20 +16,21 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 28px 48px;
+  padding: 20px 48px;
 }
 
-/* Banda difuminada que aparece al hacer scroll, para que el header
-   siga legible cuando el contenido pasa por debajo. */
+/* Banda que aparece al hacer scroll: sin color, solo desenfoque,
+   con el borde inferior difuminado para que no se vea un corte. */
 .oba-page .oba-detail-header::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(244, 239, 228, 0.72);
-  -webkit-backdrop-filter: blur(14px) saturate(140%);
-  backdrop-filter: blur(14px) saturate(140%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+  background: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  -webkit-mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0) 100%);
+  mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0) 100%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
@@ -40,7 +41,7 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   .oba-page .oba-detail-header::before { transition: none; }
 }
 
-.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo { display: block; width: 76px; margin: 0; }
 .oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
 
 .oba-page .oba-lang-switch {
