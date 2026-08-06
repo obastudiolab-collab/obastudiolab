@@ -192,9 +192,18 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   color: #6a6a6a !important;
 }
 .oba-page .oba-maridaje p {
-  font-size: 14px !important;
+  font-size: 15px !important;
   margin-bottom: 20px;
   max-width: none;
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.oba-page .oba-maridaje .oba-maridaje-sub {
+  text-align: left;
+  -webkit-hyphens: none;
+  hyphens: none;
 }
 .oba-page .oba-maridaje .oba-btn {
   align-self: flex-start;
