@@ -118,6 +118,21 @@ function obaInit() {
   }
 
   obaInitMaridajes();
+  obaInitHeaderScroll();
+}
+
+// Banda difuminada tras el header al hacer scroll
+function obaInitHeaderScroll() {
+  var header = document.querySelector('.oba-detail-header');
+  if (!header) return;
+
+  function actualizar() {
+    header.classList.toggle('oba-con-fondo', window.scrollY > 12);
+  }
+
+  window.addEventListener('scroll', actualizar, { passive: true });
+  window.addEventListener('resize', actualizar, { passive: true });
+  actualizar();
 }
 
 // Pestañas de la sección Maridajes
