@@ -10,38 +10,16 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
 
 /* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
 .oba-page .oba-detail-header {
-  position: fixed;
+  position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 10;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 20px 48px;
+  padding: 28px 48px;
 }
 
-/* Banda que aparece al hacer scroll: sin color, solo desenfoque,
-   con el borde inferior difuminado para que no se vea un corte. */
-.oba-page .oba-detail-header::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: transparent;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  -webkit-mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0) 100%);
-  mask-image: linear-gradient(to bottom, #000 55%, rgba(0, 0, 0, 0) 100%);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  pointer-events: none;
-}
-.oba-page .oba-detail-header.oba-con-fondo::before { opacity: 1; }
-
-@media (prefers-reduced-motion: reduce) {
-  .oba-page .oba-detail-header::before { transition: none; }
-}
-
-.oba-page .oba-detail-logo { display: block; width: 76px; margin: 0; }
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
 .oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
 
 .oba-page .oba-lang-switch {
