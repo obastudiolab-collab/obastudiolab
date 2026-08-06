@@ -113,7 +113,7 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   justify-content: center;
   gap: 72px;
   min-height: 100vh;
-  padding: 110px 48px 0 180px;
+  padding: 110px 48px 0 120px;
 }
 
 .oba-page .oba-detail-media {
@@ -127,7 +127,7 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
 }
 .oba-page .oba-detail-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.oba-page .oba-detail-content { flex: 1; max-width: 620px; padding: 0 64px 100px 0; }
+.oba-page .oba-detail-content { flex: 1; max-width: 780px; padding: 0 64px 100px 0; }
 
 .oba-page .oba-detail-section h2,
 .oba-page .oba-detail-kicker {
@@ -163,6 +163,56 @@ html, body { margin: 0; padding: 0; background: #f4efe4; }
   transition: background 0.2s ease;
 }
 .oba-page .oba-btn:hover { background: #4d6100 !important; }
+
+/* --- MARIDAJES: tres columnas separadas por línea vertical --- */
+.oba-page .oba-maridajes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 4px;
+}
+.oba-page .oba-maridaje {
+  display: flex;
+  flex-direction: column;
+  padding-left: 24px;
+  border-left: 1px solid rgba(0,0,0,0.12);
+}
+.oba-page .oba-maridaje:first-child { padding-left: 0; border-left: none; }
+.oba-page .oba-maridaje h3 {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  margin: 0 0 4px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-maridaje .oba-maridaje-sub {
+  font-size: 13px !important;
+  font-style: italic;
+  margin: 0 0 14px;
+  color: #6a6a6a !important;
+}
+.oba-page .oba-maridaje p {
+  font-size: 14px !important;
+  margin-bottom: 20px;
+  max-width: none;
+}
+.oba-page .oba-maridaje .oba-btn {
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 14px 22px;
+  font-size: 11px !important;
+}
+
+@media (max-width: 900px) {
+  .oba-page .oba-maridajes { grid-template-columns: 1fr; gap: 36px; }
+  .oba-page .oba-maridaje {
+    padding-left: 0;
+    border-left: none;
+    border-top: 1px solid rgba(0,0,0,0.12);
+    padding-top: 28px;
+  }
+  .oba-page .oba-maridaje:first-child { border-top: none; padding-top: 0; }
+}
 
 @media (max-width: 900px) {
   .oba-page .oba-detail-page { flex-direction: column; gap: 32px; padding: 90px 24px 0; }
