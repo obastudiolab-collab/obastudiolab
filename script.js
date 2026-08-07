@@ -7,12 +7,14 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
     nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
     btn_reservar: "RESERVAR",
+    title_home: "oba-",
     aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
     nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
     btn_reservar: "BOOK NOW",
+    title_home: "oba-",
     aria_menu: "Open menu", aria_lang: "Select language"
   }
 };
@@ -33,6 +35,8 @@ function obaApplyLang(lang) {
   document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+  var claveTitulo = document.documentElement.dataset.titleKey;
+  if (claveTitulo && dict[claveTitulo] !== undefined) document.title = dict[claveTitulo];
   document.documentElement.lang = lang;
   try { localStorage.setItem('oba_lang', lang); } catch (e) {}
 }

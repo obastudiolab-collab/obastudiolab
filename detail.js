@@ -4,6 +4,18 @@
 window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   es: {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    h2_maridajes: "MARIDAJES",
+    maridaje_1_titulo: "NATURA",
+    maridaje_1_sub: "(MARIDAJE NO/LO)",
+    maridaje_1_texto: "Maridaje vivo que expresa nuestra filosofía a través de la fermentación. Cada bebida nace de un constante proceso de investigación y experimentación, donde ingredientes de nuestro entorno se transforman mediante levaduras salvajes, microorganismos seleccionados y técnicas fermentativas propias. El resultado es una colección de bebidas únicas, creadas para acompañar el menú y descubrir una nueva dimensión de cada plato.",
+    maridaje_2_titulo: "MATICES OLVIDADOS",
+    maridaje_2_texto: "Recorrido por variedades ancestrales y minoritarias del territorio nacional. Una selección de vinos con identidad, elaborados por pequeños productores que preservan un patrimonio vitivinícola único.",
+    maridaje_3_titulo: "CONTRASTES",
+    maridaje_3_texto: "Recorrido por los grandes vinos que han definido la historia. Una selección de regiones y bodegas icónicas que representan la esencia de los estilos más influyentes del mundo del vino.",
+    p_nosotros_0: ", que en bonifaciano significa raíz, ",
+    title_restaurante: "oba- · Restaurante",
+    title_entorno: "oba- · Entorno",
+    title_nosotros: "oba- · Nosotros",
     aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
     kicker: "00 — CUADERNO DOS",
     p1: "Cuaderno Dos es un viaje por los paisajes, las historias y la memoria gastronómica de nuestra tierra. Inspirado en Las 1000 recetas de la cocina de Albacete, publicado por Carmina Useros en 1971, reinterpretamos el recetario tradicional desde una mirada contemporánea. El menú se desarrolla a través de diferentes parajes, donde cada pase reúne pequeñas elaboraciones que conviven entre sí, proponiendo una nueva forma de recorrer un menú degustación.",
@@ -41,8 +53,20 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    h2_maridajes: "PAIRINGS",
+    maridaje_1_titulo: "NATURA",
+    maridaje_1_sub: "(NO/LOW ALCOHOL PAIRING)",
+    maridaje_1_texto: "A living pairing that expresses our philosophy through fermentation. Every drink is born from a constant process of research and experimentation, where ingredients from our surroundings are transformed using wild yeasts, selected microorganisms and our own fermentation techniques. The result is a collection of unique drinks, created to accompany the menu and reveal a new dimension in every dish.",
+    maridaje_2_titulo: "MATICES OLVIDADOS",
+    maridaje_2_texto: "A journey through ancestral and lesser-known grape varieties from across Spain. A selection of wines with character, made by small producers who preserve a unique winegrowing heritage.",
+    maridaje_3_titulo: "CONTRASTES",
+    maridaje_3_texto: "A journey through the great wines that have shaped history. A selection of iconic regions and wineries that capture the essence of the most influential styles in the world of wine.",
+    p_nosotros_0: ", which in bonifaciano means root, ",
+    title_restaurante: "oba- · Restaurant",
+    title_entorno: "oba- · Surroundings",
+    title_nosotros: "oba- · About us",
     aria_menu: "Open menu", aria_lang: "Select language",
-    kicker: "00 — NOTEBOOK TWO",
+    kicker: "00 — CUADERNO DOS",
     p1: "Cuaderno Dos is a journey through the landscapes, the stories and the culinary memory of our land. Inspired by Las 1000 recetas de la cocina de Albacete, published by Carmina Useros in 1971, we reinterpret the traditional recipe book from a contemporary perspective. The menu unfolds through different landscapes, where each course brings together small preparations that coexist with one another, proposing a new way to travel through a tasting menu.",
     btn_menu_actual: "CURRENT MENU",
     btn_reservar_2: "BOOK NOW",
@@ -94,6 +118,8 @@ function obaApplyLang(lang) {
   document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
     btn.classList.toggle('active', btn.dataset.lang === lang);
   });
+  var claveTitulo = document.documentElement.dataset.titleKey;
+  if (claveTitulo && dict[claveTitulo] !== undefined) document.title = dict[claveTitulo];
   document.documentElement.lang = lang;
   try { localStorage.setItem('oba_lang', lang); } catch (e) {}
 }
