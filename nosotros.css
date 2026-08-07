@@ -16,13 +16,15 @@
   padding: 0;
   text-align: center;
 }
-.oba-nosotros-eyebrow {
-  font-size: 13px !important;
+/* Los dos titulares de la página (COCINA CON RAÍZ y PRENSA) comparten estilo */
+.oba-nosotros-intro .oba-nosotros-eyebrow,
+.oba-nosotros-press h2 {
+  font-size: 16px !important;
   font-weight: 700 !important;
   letter-spacing: 0.18em;
-  margin: 0 0 28px;
   color: #1a1a1a !important;
 }
+.oba-nosotros-eyebrow { margin: 0 0 28px; }
 .oba-nosotros-dash {
   width: 28px;
   height: 1px;
@@ -60,23 +62,6 @@
 }
 .oba-btn-outline:hover { background: #607900 !important; color: #fff !important; }
 
-/* -------- Collage estilo Pinterest -------- */
-.oba-nosotros-collage {
-  columns: 3 240px;
-  column-gap: 14px;
-  padding: 0 48px 110px;
-}
-.oba-nosotros-collage figure {
-  margin: 0 0 14px;
-  break-inside: avoid;
-  overflow: hidden;
-}
-.oba-nosotros-collage img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 /* -------- Prensa -------- */
 .oba-nosotros-press {
   max-width: 460px;
@@ -84,13 +69,7 @@
   padding: 0;
   text-align: center;
 }
-.oba-nosotros-press h2 {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.18em;
-  margin: 0 0 48px;
-  color: #1a1a1a !important;
-}
+.oba-nosotros-press h2 { margin: 0 0 48px; }
 .oba-press-item {
   display: block;
   margin-bottom: 30px;
@@ -148,5 +127,4 @@
 
 @media (max-width: 700px) {
   .oba-nosotros-top { padding: 130px 24px 70px; }
-  .oba-nosotros-collage { columns: 2 160px; padding: 0 24px 80px; }
 }
