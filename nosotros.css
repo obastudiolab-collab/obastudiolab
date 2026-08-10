@@ -36,8 +36,8 @@
 }
 .oba-btn-outline {
   display: inline-block;
-  border: 1px solid #607900;
-  color: #607900 !important;
+  border: 1px solid #583c26;
+  color: #583c26 !important;
   background: transparent !important;
   font-size: 12px !important;
   font-weight: 700 !important;
@@ -47,7 +47,7 @@
   text-align: center;
   transition: background 0.2s ease, color 0.2s ease;
 }
-.oba-btn-outline:hover { background: #607900 !important; color: #fff !important; }
+.oba-btn-outline:hover { background: #583c26 !important; color: #fff !important; }
 
 /* -------- Collage estilo Pinterest -------- */
 .oba-nosotros-collage {
@@ -106,7 +106,7 @@
 .oba-info-row { margin-bottom: 16px; font-size: 14px !important; }
 .oba-info-row:last-child { margin-bottom: 0; }
 .oba-info-label { font-weight: 600; color: #1a1a1a !important; }
-.oba-info-value { color: #607900 !important; text-decoration: none; }
+.oba-info-value { color: #583c26 !important; text-decoration: none; }
 .oba-info-value:hover { text-decoration: underline; }
 
 @media (max-width: 700px) {
