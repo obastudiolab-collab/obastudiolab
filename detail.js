@@ -4,6 +4,8 @@
 window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   es: {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
     h2_maridajes: "MARIDAJES",
     maridaje_1_titulo: "NATURA",
     maridaje_1_sub: "(MARIDAJE NO/LO)",
@@ -99,6 +101,8 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
     h2_maridajes: "PAIRINGS",
     maridaje_1_titulo: "NATURA",
     maridaje_1_sub: "(NO/LOW ALCOHOL PAIRING)",

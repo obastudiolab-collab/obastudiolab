@@ -9,6 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="detail.css">
 <link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="reveal-footer.css">
 <link rel="stylesheet" href="transitions.css">
 </head>
 <body>
@@ -50,7 +51,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-huerta.png" alt="Ilustración — Huerta">
+        <img src="imagenes/parajes/oba-paraje-huerta.webp" alt="Ilustración — Huerta">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_01">01. Huerta</h2>
@@ -62,7 +63,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-pinar.png" alt="Ilustración — Pinar">
+        <img src="imagenes/parajes/oba-paraje-pinar.webp" alt="Ilustración — Pinar">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_02">02. Pinar</h2>
@@ -81,7 +82,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-afluente.png" alt="Ilustración — Afluente">
+        <img src="imagenes/parajes/oba-paraje-afluente.webp" alt="Ilustración — Afluente">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_03">03. Afluente</h2>
@@ -101,7 +102,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-corral.png" alt="Ilustración — Corral">
+        <img src="imagenes/parajes/oba-paraje-corral.webp" alt="Ilustración — Corral">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_04">04. Corral</h2>
@@ -118,7 +119,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-acantilado.png" alt="Ilustración — Acantilado">
+        <img src="imagenes/parajes/oba-paraje-acantilado.webp" alt="Ilustración — Acantilado">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_05">05. Acantilado</h2>
@@ -135,7 +136,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-montebajo.png" alt="Ilustración — Monte Bajo">
+        <img src="imagenes/parajes/oba-paraje-montebajo.webp" alt="Ilustración — Monte Bajo">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_06">06. Monte Bajo</h2>
@@ -152,7 +153,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-llanura.png" alt="Ilustración — Llanura">
+        <img src="imagenes/parajes/oba-paraje-llanura.webp" alt="Ilustración — Llanura">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_07">07. Llanura</h2>
@@ -168,7 +169,7 @@
 
     <article class="oba-menu-item">
       <div class="oba-menu-item-media">
-        <img src="imagenes/parajes/oba-paraje-ribera.png" alt="Ilustración — Ribera">
+        <img src="imagenes/parajes/oba-paraje-ribera.webp" alt="Ilustración — Ribera">
       </div>
       <div class="oba-menu-item-content">
         <h2 data-i18n="menu_h_08">08. Ribera</h2>
@@ -189,7 +190,25 @@
   </section>
 
 </div>
+
+<footer class="oba-reveal-footer">
+  <a href="index.html" class="oba-reveal-logo" aria-label="oba-">
+    <img src="imagenes/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-chef" style="background-image:url('imagenes/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-bar" style="background-image:url('imagenes/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('imagenes/oba-nosotros.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="restaurante.html" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="entorno.html" class="oba-reveal-link" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="nosotros.html" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+  </nav>
+  <a href="#" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
+</footer>
+
 <script src="detail.js"></script>
+<script src="reveal-footer.js"></script>
 <script src="transitions.js"></script>
 </body>
 </html>
