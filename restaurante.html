@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-title-key="title_restaurante">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -44,23 +44,52 @@
 
       <section class="oba-detail-section">
         <p class="oba-detail-kicker" data-i18n="kicker">00 — CUADERNO DOS</p>
-        <p data-i18n="p1">Hoy lugares, historias y personas que merecen ser contadas (y recordadas).</p>
-        <p data-i18n="p2">En este nuevo Cuaderno nuestra inspiración parte de nuestra tradición más arraigada, de nuestro entorno más cercano y de nuestras historias más personales.</p>
-        <p data-i18n="p3">Un libro llamado "Las 1000 recetas de la cocina de Albacete" escrito en 1971 por Carmina Useros, ha compuesto este menú, donde todo el conjunto de platos y elaboraciones nacen de estas recetas rescatadas de nuestro antiguo recetario local. Aquí nuestro agradecimiento querida Carmina.</p>
+        <p data-i18n="p1">Cuaderno Dos es un viaje por los paisajes, las historias y la memoria gastronómica de nuestra tierra. Inspirado en Las 1000 recetas de la cocina de Albacete, publicado por Carmina Useros en 1971, reinterpretamos el recetario tradicional desde una mirada contemporánea. El menú se desarrolla a través de diferentes parajes, donde cada pase reúne pequeñas elaboraciones que conviven entre sí, proponiendo una nueva forma de recorrer un menú degustación.</p>
         <div class="oba-btn-row">
           <a class="oba-btn" href="menu.html" data-i18n="btn_menu_actual">MENÚ ACTUAL</a>
           <a class="oba-btn" href="#" data-i18n="btn_reservar_2">RESERVAR</a>
+          <a class="oba-btn" href="#" data-i18n="btn_regala">REGALA OBA-</a>
         </div>
       </section>
 
       <hr class="oba-detail-divider">
 
       <section class="oba-detail-section">
-        <h2 data-i18n="h2_fermentos">PROGRAMA DE FERMENTOS</h2>
-        <p data-i18n="p_fermentos_1">Nuestra carta cambia constantemente y combina técnicas de fermentación propias con productores locales de temporada, en línea con los sabores de nuestra cocina.</p>
-        <p data-i18n="p_fermentos_2">Escríbenos a hola@oba-restaurante.com para recibir la carta más reciente.</p>
-        <div class="oba-btn-row">
-          <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
+        <h2 data-i18n="h2_maridajes">MARIDAJES</h2>
+
+        <div class="oba-maridajes">
+
+          <div class="oba-maridajes-tabs" role="tablist" aria-label="Maridajes">
+            <button type="button" class="oba-maridaje-tab activo" role="tab" id="tab-maridaje-1"
+                    aria-controls="panel-maridaje-1" aria-selected="true" data-maridaje="1"
+                    data-i18n="maridaje_1_titulo">NATURA</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-2"
+                    aria-controls="panel-maridaje-2" aria-selected="false" tabindex="-1" data-maridaje="2"
+                    data-i18n="maridaje_2_titulo">MATICES OLVIDADOS</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-3"
+                    aria-controls="panel-maridaje-3" aria-selected="false" tabindex="-1" data-maridaje="3"
+                    data-i18n="maridaje_3_titulo">CONTRASTES</button>
+          </div>
+
+          <div class="oba-maridaje-panel activo" role="tabpanel" id="panel-maridaje-1"
+               aria-labelledby="tab-maridaje-1" data-maridaje="1">
+            <p class="oba-maridaje-sub" data-i18n="maridaje_1_sub">(MARIDAJE NO/LO)</p>
+            <p data-i18n="maridaje_1_texto">Maridaje vivo que expresa nuestra filosofía a través de la fermentación. Cada bebida nace de un constante proceso de investigación y experimentación, donde ingredientes de nuestro entorno se transforman mediante levaduras salvajes, microorganismos seleccionados y técnicas fermentativas propias. El resultado es una colección de bebidas únicas, creadas para acompañar el menú y descubrir una nueva dimensión de cada plato.</p>
+            <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
+          </div>
+
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-2"
+               aria-labelledby="tab-maridaje-2" data-maridaje="2" hidden>
+            <p data-i18n="maridaje_2_texto">Recorrido por variedades ancestrales y minoritarias del territorio nacional. Una selección de vinos con identidad, elaborados por pequeños productores que preservan un patrimonio vitivinícola único.</p>
+            <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
+          </div>
+
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-3"
+               aria-labelledby="tab-maridaje-3" data-maridaje="3" hidden>
+            <p data-i18n="maridaje_3_texto">Recorrido por los grandes vinos que han definido la historia. Una selección de regiones y bodegas icónicas que representan la esencia de los estilos más influyentes del mundo del vino.</p>
+            <a class="oba-btn" href="#" data-i18n="btn_ver_carta">VER CARTA</a>
+          </div>
+
         </div>
       </section>
 
@@ -68,7 +97,7 @@
 
       <section class="oba-detail-section">
         <h2 data-i18n="h2_eventos">EVENTOS PRIVADOS</h2>
-        <p data-i18n="p_eventos">Nuestra barra está disponible para cenas privadas, ofreciendo el uso exclusivo del espacio por una noche. Solicitamos un mínimo de dos meses de antelación para asegurar la fecha.</p>
+        <p data-i18n="p_eventos">Llevamos la experiencia Oba allí donde la imagines o reservamos nuestro espacio en exclusiva para ti. Celebraciones, encuentros privados o eventos corporativos diseñados a medida, donde cada detalle se adapta a tu ocasión.</p>
         <div class="oba-btn-row">
           <a class="oba-btn" href="#" data-i18n="btn_consulta">HACER UNA CONSULTA</a>
         </div>

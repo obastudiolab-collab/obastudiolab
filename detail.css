@@ -10,7 +10,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
 
 /* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
 .oba-page .oba-detail-header {
-  position: fixed;
+  position: absolute;
   top: 0; left: 0; right: 0;
   z-index: 10;
   display: flex;
@@ -113,7 +113,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
   justify-content: center;
   gap: 72px;
   min-height: 100vh;
-  padding: 110px 48px 0 180px;
+  padding: 110px 48px 0 120px;
 }
 
 .oba-page .oba-detail-media {
@@ -127,7 +127,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
 }
 .oba-page .oba-detail-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-.oba-page .oba-detail-content { flex: 1; max-width: 620px; padding: 0 64px 100px 0; }
+.oba-page .oba-detail-content { flex: 1; max-width: 780px; padding: 0 64px 100px 0; }
 
 .oba-page .oba-detail-section h2,
 .oba-page .oba-detail-kicker {
@@ -163,6 +163,78 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
   transition: background 0.2s ease;
 }
 .oba-page .oba-btn:hover { background: #46301e !important; }
+
+/* --- MARIDAJES: pestañas --- */
+.oba-page .oba-maridajes { margin-top: 4px; }
+
+.oba-page .oba-maridajes-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 26px;
+}
+.oba-page .oba-maridaje-tab {
+  position: relative;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 0 14px;
+  margin: 0;
+  cursor: pointer;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  color: #6a6a62 !important;
+  transition: color 0.2s ease;
+}
+.oba-page .oba-maridaje-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.oba-page .oba-maridaje-tab:hover { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo::after { transform: scaleX(1); }
+.oba-page .oba-maridaje-tab:focus-visible { outline: 2px solid #583c26; outline-offset: 3px; }
+
+.oba-page .oba-maridaje-panel { display: none; }
+.oba-page .oba-maridaje-panel.activo { display: block; }
+.oba-page .oba-maridaje-panel p {
+  font-size: 15px !important;
+  margin-bottom: 20px;
+  max-width: none;
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.oba-page .oba-maridaje-panel .oba-maridaje-sub {
+  font-size: 13px !important;
+  font-style: italic;
+  margin: 0 0 14px;
+  color: #6a6a62 !important;
+  text-align: left;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+.oba-page .oba-maridaje-panel .oba-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  font-size: 11px !important;
+}
+
+@media (max-width: 900px) {
+  .oba-page .oba-maridajes-tabs { gap: 20px; }
+  .oba-page .oba-maridaje-tab { font-size: 13px !important; }
+}
 
 @media (max-width: 900px) {
   .oba-page .oba-detail-page { flex-direction: column; gap: 32px; padding: 132px 24px 0; }

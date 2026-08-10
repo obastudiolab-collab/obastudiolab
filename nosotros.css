@@ -1,17 +1,30 @@
+/* -------- Bloque superior: descripción a la izquierda, prensa a la derecha -------- */
+.oba-nosotros-top {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 90px;
+  align-items: start;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 180px 48px 100px;
+}
+
 /* -------- Intro: titular + texto + botones -------- */
 .oba-nosotros-intro {
   max-width: 640px;
   margin: 0 auto;
-  padding: 180px 24px 100px;
+  padding: 0;
   text-align: center;
 }
-.oba-nosotros-eyebrow {
-  font-size: 13px !important;
+/* Los dos titulares de la página (COCINA CON RAÍZ y PRENSA) comparten estilo */
+.oba-nosotros-intro .oba-nosotros-eyebrow,
+.oba-nosotros-press h2 {
+  font-size: 16px !important;
   font-weight: 700 !important;
   letter-spacing: 0.18em;
-  margin: 0 0 28px;
   color: #1a1a1a !important;
 }
+.oba-nosotros-eyebrow { margin: 0 0 28px; }
 .oba-nosotros-dash {
   width: 28px;
   height: 1px;
@@ -49,44 +62,28 @@
 }
 .oba-btn-outline:hover { background: #583c26 !important; color: #fff !important; }
 
-/* -------- Collage estilo Pinterest -------- */
-.oba-nosotros-collage {
-  columns: 3 240px;
-  column-gap: 14px;
-  padding: 0 48px 110px;
-}
-.oba-nosotros-collage figure {
-  margin: 0 0 14px;
-  break-inside: avoid;
-  overflow: hidden;
-}
-.oba-nosotros-collage img {
-  width: 100%;
-  display: block;
-  object-fit: cover;
-}
-
 /* -------- Prensa -------- */
 .oba-nosotros-press {
-  max-width: 520px;
+  max-width: 460px;
   margin: 0 auto;
-  padding: 90px 24px;
+  padding: 0;
   text-align: center;
-  border-top: 1px solid rgba(26,26,26,0.12);
 }
-.oba-nosotros-press h2 {
-  font-size: 13px !important;
-  font-weight: 700 !important;
-  letter-spacing: 0.18em;
-  margin: 0 0 48px;
-  color: #1a1a1a !important;
+.oba-nosotros-press h2 { margin: 0 0 48px; }
+.oba-press-item {
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
 }
-.oba-press-item { margin-bottom: 30px; }
+.oba-press-item:hover { opacity: 0.6; }
+.oba-press-item:hover .oba-press-name { color: #583c26 !important; }
 .oba-press-name {
   font-size: 15px !important;
   font-weight: 600 !important;
   margin: 0 0 6px;
   color: #1a1a1a !important;
+  transition: color 0.2s ease;
 }
 .oba-press-detail {
   font-size: 13px !important;
@@ -94,7 +91,13 @@
   color: rgba(26,26,26,0.5) !important;
   margin: 0;
 }
-.oba-press-extra { margin-top: 36px; }
+.oba-press-extra {
+  display: block;
+  margin-top: 36px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.oba-press-extra:hover { opacity: 0.6; }
 .oba-press-extra .oba-press-detail { font-size: 12px !important; }
 
 /* -------- Info -------- */
@@ -109,8 +112,19 @@
 .oba-info-value { color: #583c26 !important; text-decoration: none; }
 .oba-info-value:hover { text-decoration: underline; }
 
+@media (max-width: 980px) {
+  .oba-nosotros-top {
+    grid-template-columns: 1fr;
+    gap: 72px;
+    padding: 150px 24px 80px;
+  }
+  .oba-nosotros-press {
+    max-width: 520px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+  }
+}
+
 @media (max-width: 700px) {
-  .oba-nosotros-intro { padding: 130px 24px 80px; }
-  .oba-nosotros-collage { columns: 2 160px; padding: 0 24px 80px; }
-  .oba-nosotros-press { padding: 70px 24px; }
+  .oba-nosotros-top { padding: 130px 24px 70px; }
 }
