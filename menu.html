@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>oba- · Cuaderno Dos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="detail.css">
+<link rel="stylesheet" href="menu.css">
+<link rel="stylesheet" href="transitions.css">
+</head>
+<body>
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="index.html" class="oba-detail-logo" aria-label="oba-">
+      <img src="imagenes/oba-logo-dark.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="#" data-i18n="menu_reserva">RESERVA</a>
+        <a href="#" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="#" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="oba-menu-hero">
+    <div class="oba-menu-hero-left">
+      <h1 data-i18n="kicker">00 — CUADERNO DOS</h1>
+      <p data-i18n="menu_intro_summary">Cuaderno Dos nace de "Las 1000 recetas de la cocina de Albacete", el libro que Carmina Useros escribió en 1971. A partir de esas recetas rescatadas construimos un menú por parajes: cada lugar de nuestro entorno con su propia historia y sus propios platos.</p>
+    </div>
+    <div class="oba-menu-hero-right">
+      <p class="oba-menu-hero-quote" data-i18n="quote_carmina">"Esta edición es para ellos, como representantes de toda la juventud de nuestra tierra, para que amen las costumbres tradicionales de nuestros guisos y costumbres y las extiendan por todos los lugares por donde transcurran sus vidas."</p>
+    </div>
+  </section>
+
+  <section class="oba-menu-list">
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-huerta.png" alt="Ilustración — Huerta">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_01">01. Huerta</h2>
+        <p class="oba-menu-item-location">Calzada de Vergara</p>
+        <p class="oba-menu-item-coords">39,17114° N, 1,53659° O</p>
+        <p class="oba-menu-item-empty-note" data-i18n="menu_huerta_note">Pases de temporada — próximamente.</p>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-pinar.png" alt="Ilustración — Pinar">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_02">02. Pinar</h2>
+        <p class="oba-menu-item-location">Pinar de Don Vicente</p>
+        <p class="oba-menu-item-coords">39,3262° N, -1,4507° O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_pinar_1">Cuajada de castañas</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_pinar_2">Pastel de avellanas</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_pinar_3">Escabeche de setas</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_pinar_4">Crema de trufas</span></li>
+          <li><span class="oba-menu-pase-index">05</span><span data-i18n="menu_pinar_5">Setas del momento</span></li>
+          <li><span class="oba-menu-pase-index">06</span><span data-i18n="menu_pinar_6">Jalea de montaña</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-afluente.png" alt="Ilustración — Afluente">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_03">03. Afluente</h2>
+        <p class="oba-menu-item-location">Tamayo</p>
+        <p class="oba-menu-item-coords">39.371° N, -1.44876° O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_afluente_1">Truchas al sarmiento</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_afluente_2">Salazón de trucha</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_afluente_3">Moje de primavera</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_afluente_4">Cangrejos en tomate</span></li>
+          <li><span class="oba-menu-pase-index">05</span><span data-i18n="menu_afluente_5">Fritos de cangrejo</span></li>
+          <li><span class="oba-menu-pase-index">06</span><span data-i18n="menu_afluente_6">Lucio en conserva</span></li>
+          <li><span class="oba-menu-pase-index">07</span><span data-i18n="menu_afluente_7">Blanco de almendras tiernas</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-corral.png" alt="Ilustración — Corral">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_04">04. Corral</h2>
+        <p class="oba-menu-item-location">Casa de Doña Trànsitos</p>
+        <p class="oba-menu-item-coords">39°17'45"N 1°39'11"O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_corral_1">Alita rellena</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_corral_2">Gallina dorada en pebre</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_corral_3">Gachas de maíz y cerdo</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_corral_4">Bizcocho de arroz</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-acantilado.png" alt="Ilustración — Acantilado">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_05">05. Acantilado</h2>
+        <p class="oba-menu-item-location">Barranco del Molinar</p>
+        <p class="oba-menu-item-coords">39°13'08.0"N 1°14'15.0"O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_acantilado_1">Torcaz con nabos</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_acantilado_2">Paloma bravía frita</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_acantilado_3">Caramelo de malvavisco</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_acantilado_4">Helado de chumbera</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-montebajo.png" alt="Ilustración — Monte Bajo">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_06">06. Monte Bajo</h2>
+        <p class="oba-menu-item-location">Casas del Cerro</p>
+        <p class="oba-menu-item-coords">39°11'07"N 1°25'46"O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_montebajo_1">Codorniz en hoja de acelga</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_montebajo_2">Morcilla blanca de cordero</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_montebajo_3">Guiso de acederas con conejo</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_montebajo_4">Torta de pan ácimo</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-llanura.png" alt="Ilustración — Llanura">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_07">07. Llanura</h2>
+        <p class="oba-menu-item-location">Villa de Ves</p>
+        <p class="oba-menu-item-coords">39°13'20"N 1°15'32"O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_llanura_1">Cuajada de leche de cabra</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_llanura_2">Tostones de trigo y cereales</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_llanura_3">Sopas frías de leche</span></li>
+        </ul>
+      </div>
+    </article>
+
+    <article class="oba-menu-item">
+      <div class="oba-menu-item-media">
+        <img src="imagenes/parajes/oba-paraje-ribera.png" alt="Ilustración — Ribera">
+      </div>
+      <div class="oba-menu-item-content">
+        <h2 data-i18n="menu_h_08">08. Ribera</h2>
+        <p class="oba-menu-item-location">Cilanco</p>
+        <p class="oba-menu-item-coords">39°20'11"N 1°18'21"O</p>
+        <ul class="oba-menu-pases">
+          <li><span class="oba-menu-pase-index">01</span><span data-i18n="menu_ribera_1">Calabaza con leche</span></li>
+          <li><span class="oba-menu-pase-index">02</span><span data-i18n="menu_ribera_2">Melocotón en almíbar</span></li>
+          <li><span class="oba-menu-pase-index">03</span><span data-i18n="menu_ribera_3">Albaricoque y flores</span></li>
+          <li><span class="oba-menu-pase-index">04</span><span data-i18n="menu_ribera_4">Escabeche de rosas</span></li>
+          <li><span class="oba-menu-pase-index">05</span><span data-i18n="menu_ribera_5">Fresas rellenas</span></li>
+          <li><span class="oba-menu-pase-index">06</span><span data-i18n="menu_ribera_6">Caquis secos al sol</span></li>
+          <li><span class="oba-menu-pase-index">07</span><span data-i18n="menu_ribera_7">Ciruela encurtida</span></li>
+        </ul>
+      </div>
+    </article>
+
+  </section>
+
+</div>
+<script src="detail.js"></script>
+<script src="transitions.js"></script>
+</body>
+</html>
