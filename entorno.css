@@ -4,7 +4,9 @@
   display: flex;
   align-items: flex-start;
   gap: 64px;
-  padding: 160px 48px 90px 120px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 160px 48px 90px;
 }
 .oba-entorno-row + .oba-entorno-row {
   padding-top: 90px;
