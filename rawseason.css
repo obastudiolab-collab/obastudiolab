@@ -1,0 +1,237 @@
+html, body { margin: 0; padding: 0; background: #0c0c0c; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #0c0c0c !important;
+  color: #fff !important;
+}
+
+/* -------- Header, versión oscura (fondo claro cae detrás, texto blanco) -------- */
+.oba-rs-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-rs-logo { display: block; width: 90px; margin: 0; }
+.oba-rs-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(255,255,255,0.55) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover,
+.oba-page .oba-lang-btn:focus { color: rgba(255,255,255,0.85) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #fff !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #fff !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(255,255,255,0.7) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover,
+.oba-page .oba-inline-menu a:focus-visible { color: #fff !important; }
+
+@media (max-width: 700px) {
+  .oba-rs-header { padding: 20px 24px; }
+  .oba-rs-logo { width: 64px; }
+}
+
+/* -------- Hero: foto completa de fondo -------- */
+.oba-rs-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  background-position: center;
+  padding: 160px 24px 100px;
+}
+.oba-rs-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.75) 100%);
+}
+.oba-rs-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  text-align: center;
+}
+.oba-rs-kicker {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.7) !important;
+  margin: 0 0 20px;
+}
+.oba-rs-hero-content h1 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: clamp(32px, 4.6vw, 52px) !important;
+  font-weight: 500 !important;
+  line-height: 1.15;
+  color: #fff !important;
+  margin: 0 0 24px;
+}
+.oba-rs-intro {
+  font-size: 15px !important;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8) !important;
+  margin: 0 0 36px;
+}
+
+.oba-rs-details {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.oba-rs-details li {
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.65) !important;
+}
+.oba-rs-details li strong { color: #fff !important; font-weight: 500 !important; }
+
+.oba-rs-btn {
+  display: inline-block;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border: none !important;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-rs-btn:hover { background: rgba(255,255,255,0.18) !important; }
+
+/* -------- Tarjetas: una por Raw Season -------- */
+.oba-rs-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.12);
+}
+.oba-rs-card {
+  background: #0c0c0c;
+  padding: 56px 36px;
+  min-height: 320px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.oba-rs-card-month {
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em;
+  color: #c9a876 !important;
+  margin: 0 0 14px;
+}
+.oba-rs-card h2 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 26px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+  color: #fff !important;
+  margin: 0 0 16px;
+}
+.oba-rs-card p {
+  font-size: 14px !important;
+  font-weight: 300 !important;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.65) !important;
+  margin: 0;
+}
+
+@media (max-width: 1100px) {
+  .oba-rs-cards { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 700px) {
+  .oba-rs-hero { padding: 132px 24px 70px; }
+  .oba-rs-cards { grid-template-columns: 1fr; }
+  .oba-rs-card { min-height: 0; padding: 44px 24px; }
+}
