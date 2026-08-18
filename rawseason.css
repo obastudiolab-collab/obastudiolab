@@ -197,12 +197,28 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
   background: rgba(255,255,255,0.12);
 }
 .oba-rs-card {
-  background: #0c0c0c;
+  position: relative;
+  background-color: #0c0c0c;
+  background-size: cover;
+  background-position: center;
   padding: 56px 36px;
-  min-height: 320px;
+  min-height: 420px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  overflow: hidden;
+}
+.oba-rs-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(12,12,12,0.15) 0%, rgba(12,12,12,0.4) 55%, rgba(12,12,12,0.93) 100%);
+}
+.oba-rs-card-month,
+.oba-rs-card h2,
+.oba-rs-card p {
+  position: relative;
+  z-index: 1;
 }
 .oba-rs-card-month {
   font-size: 12px !important;
@@ -233,5 +249,5 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
 @media (max-width: 700px) {
   .oba-rs-hero { padding: 132px 24px 70px; }
   .oba-rs-cards { grid-template-columns: 1fr; }
-  .oba-rs-card { min-height: 0; padding: 44px 24px; }
+  .oba-rs-card { min-height: 340px; padding: 44px 24px; }
 }

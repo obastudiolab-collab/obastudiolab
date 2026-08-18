@@ -1,0 +1,132 @@
+/* -------- Header claro: el huerto arranca con foto oscura de fondo -------- */
+.oba-page .oba-lang-btn { color: rgba(255,255,255,0.55) !important; }
+.oba-page .oba-lang-btn:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-page .oba-lang-btn.active { color: #fff !important; }
+.oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; }
+.oba-page .oba-menu-btn span { background: #fff !important; }
+.oba-page .oba-inline-menu a { color: rgba(255,255,255,0.7) !important; }
+.oba-page .oba-inline-menu a:hover { color: #fff !important; }
+
+/* -------- Huerto: hero fotográfico + filas alternas + cierre editorial -------- */
+
+.oba-huerto-hero {
+  position: relative;
+  height: 88vh;
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+  background-size: cover;
+  background-position: center;
+}
+.oba-huerto-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.75) 100%);
+}
+.oba-huerto-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  padding: 0 48px 72px;
+}
+.oba-huerto-kicker {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.75) !important;
+  margin: 0 0 18px;
+}
+.oba-huerto-hero-content h1 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: clamp(30px, 4vw, 46px) !important;
+  font-weight: 500 !important;
+  line-height: 1.15;
+  color: #fff !important;
+  margin: 0 0 20px;
+}
+.oba-huerto-hero-content p {
+  font-size: 15px !important;
+  line-height: 1.75;
+  color: rgba(255,255,255,0.85) !important;
+  max-width: 520px;
+  margin: 0 0 14px;
+}
+
+/* -------- Filas alternas: foto + texto -------- */
+.oba-huerto-row {
+  display: flex;
+  align-items: center;
+  gap: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 110px 48px;
+}
+.oba-huerto-row.reverse { flex-direction: row-reverse; }
+
+.oba-huerto-media {
+  flex: 0 0 44%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #111;
+}
+.oba-huerto-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.oba-huerto-text { flex: 1; max-width: 460px; }
+.oba-huerto-text h2 {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  color: #1a1a1a !important;
+  margin: 0 0 22px;
+}
+.oba-huerto-text p {
+  font-size: 15px !important;
+  line-height: 1.75;
+  color: #2a2a2a !important;
+  margin: 0 0 18px;
+}
+.oba-huerto-text p:last-child { margin-bottom: 0; }
+
+/* -------- Cierre: bloque de texto centrado -------- */
+.oba-huerto-closing {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 48px 140px;
+  text-align: center;
+  border-top: 1px solid rgba(26,26,26,0.12);
+}
+.oba-huerto-closing h2 {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  color: #1a1a1a !important;
+  margin: 56px 0 26px;
+}
+.oba-huerto-closing p {
+  font-size: 15px !important;
+  line-height: 1.75;
+  color: #2a2a2a !important;
+  margin: 0 0 18px;
+}
+.oba-huerto-closing .oba-huerto-quote {
+  font-size: 19px !important;
+  font-style: italic;
+  line-height: 1.6;
+  color: #583c26 !important;
+  margin: 0 0 22px;
+}
+.oba-huerto-closing .oba-btn-row { justify-content: center; margin-top: 32px; }
+
+@media (max-width: 900px) {
+  .oba-huerto-hero-content { padding: 0 24px 56px; }
+  .oba-huerto-row {
+    flex-direction: column;
+    gap: 28px;
+    padding: 70px 24px;
+  }
+  .oba-huerto-row.reverse { flex-direction: column; }
+  .oba-huerto-media { flex: none; width: 100%; aspect-ratio: 4 / 3; }
+  .oba-huerto-text { max-width: none; }
+  .oba-huerto-closing { padding: 0 24px 100px; }
+  .oba-huerto-closing h2 { margin-top: 44px; }
+}
