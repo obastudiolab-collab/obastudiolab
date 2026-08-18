@@ -65,6 +65,8 @@ function obaInit() {
 
   var links = document.querySelectorAll('.oba-page .oba-hero-link');
   var layers = document.querySelectorAll('.oba-page .oba-bg-layer');
+  var nav = document.querySelector('.oba-page .oba-hero-nav');
+  var DEFAULT_BG = 'bg-default';
   function showBg(targetId) {
     layers.forEach(function (layer) { layer.classList.remove('active'); });
     var target = document.getElementById(targetId);
@@ -75,7 +77,38 @@ function obaInit() {
     link.addEventListener('mouseenter', function () { showBg(targetId); });
     link.addEventListener('focus', function () { showBg(targetId); });
   });
+  if (nav) {
+    nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+    nav.addEventListener('focusout', function (e) {
+      if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+    });
+  }
   if (!links.length) console.warn('[oba] no se encontraron .oba-hero-link');
+
+  // En móvil no hay hover: las fotos van rotando solas cada ~2s
+  if (layers.length) {
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  }
 }
 
 // Ejecuta ya si el DOM ya está listo (por si el script se carga tarde dentro de Elementor),
