@@ -215,6 +215,12 @@ html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; background: 
 .oba-page .oba-hero-link:hover::after,
 .oba-page .oba-hero-link:focus-visible::after { transform: scaleX(1); }
 
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .oba-page .oba-reserve-btn {
   position: fixed;
   bottom: 48px; left: 50%;
@@ -238,6 +244,25 @@ html, body { height: 100%; overflow: hidden; margin: 0; padding: 0; background: 
 .oba-page .oba-reserve-btn:hover {
   background: rgba(255,255,255,0.16) !important;
   color: #fff !important;
+}
+.oba-page .oba-reserve-btn::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-page .oba-reserve-btn::before { animation: none; }
 }
 
 

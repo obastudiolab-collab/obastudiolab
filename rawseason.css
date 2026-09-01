@@ -171,6 +171,31 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
 }
 .oba-rs-details li strong { color: #fff !important; font-weight: 500 !important; }
 
+/* -------- Variante: caja con más contraste, texto centrado, precio destacado -------- */
+.oba-pack-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  border-top: none;
+  margin: 0 0 40px;
+  padding: 36px 44px;
+  background: rgba(0,0,0,0.42);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 4px;
+}
+.oba-pack-details li { text-align: center; }
+.oba-pack-details .oba-pack-price {
+  font-size: 24px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em;
+  color: #fff !important;
+  margin: 2px 0;
+}
+
 .oba-rs-btn {
   display: inline-block;
   color: #fff !important;
@@ -188,6 +213,33 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
   transition: background 0.25s ease;
 }
 .oba-rs-btn:hover { background: rgba(255,255,255,0.18) !important; }
+
+/* -------- Variante: borde con destello animado (RESERVA TU PACK) -------- */
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+.oba-rs-btn--shine { position: relative; }
+.oba-rs-btn--shine::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-rs-btn--shine::before { animation: none; }
+}
 
 /* -------- Tarjetas: una por Raw Season -------- */
 .oba-rs-cards {

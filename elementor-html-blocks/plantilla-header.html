@@ -1,0 +1,212 @@
+<!-- ================================================================
+  PLANTILLA: HEADER (versión clara, fondo crema) — para probar como
+  plantilla GLOBAL en Elementor (Theme Builder → Header), no como
+  parte de un único widget de página.
+
+  A diferencia de los demás bloques de elementor-html-blocks/ (que
+  llevan el header anidado dentro de .oba-page, junto con el resto
+  del contenido de esa página), aquí el CSS NO depende de ningún
+  contenedor padre concreto: todo está namespaced bajo .oba-header-tpl,
+  que es el propio wrapper que ves más abajo. Así funciona igual esté
+  donde esté Elementor lo inserte (dentro del área global de header,
+  antes del contenido de la página).
+
+  Placeholders a sustituir por la URL real de la Mediateca:
+    {{URL_LOGO_DARK}}  →  imagenes/oba-logo-dark.png
+
+  El link RESERVA ya apunta a TheFork real:
+    https://www.thefork.es/restaurante/oba-r721580
+  CONTACTO y TIENDA siguen como "#" (pendientes de destino).
+================================================================ -->
+<style>
+.oba-header-tpl, .oba-header-tpl * { box-sizing: border-box; }
+
+.oba-header-tpl {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+}
+
+.oba-header-tpl .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-header-tpl .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-header-tpl .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-header-tpl .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-header-tpl .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(26,26,26,0.45) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-header-tpl .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+.oba-header-tpl .oba-lang-btn.active {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-header-tpl .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+.oba-header-tpl .oba-header-right { position: relative; display: flex; align-items: center; gap: 32px; }
+
+.oba-header-tpl .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-header-tpl .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-header-tpl .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-header-tpl .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-header-tpl .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-header-tpl .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-header-tpl .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-header-tpl .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-header-tpl .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-header-tpl .oba-detail-header { padding: 20px 24px; }
+}
+</style>
+
+<div class="oba-header-tpl">
+  <header class="oba-detail-header">
+    <a href="/" class="oba-detail-logo" aria-label="oba-">
+      <img src="{{URL_LOGO_DARK}}" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <div class="oba-header-right">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
+        <a href="#" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="#" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+</div>
+
+<script>
+(function () {
+  var OBA_HEADER_TRANSLATIONS = {
+    es: {
+      menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+      aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
+    },
+    en: {
+      menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+      aria_menu: "Open menu", aria_lang: "Select language"
+    }
+  };
+
+  function applyLang(lang) {
+    var dict = OBA_HEADER_TRANSLATIONS[lang];
+    if (!dict) return;
+    document.querySelectorAll('.oba-header-tpl [data-i18n]').forEach(function (el) {
+      var key = el.dataset.i18n;
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+    document.querySelectorAll('.oba-header-tpl [data-i18n-attr]').forEach(function (el) {
+      el.dataset.i18nAttr.split(';').forEach(function (pair) {
+        var parts = pair.split(':').map(function (s) { return s.trim(); });
+        var attr = parts[0], key = parts[1];
+        if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+      });
+    });
+    document.querySelectorAll('.oba-header-tpl .oba-lang-btn').forEach(function (btn) {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+    try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+  }
+
+  function init() {
+    var saved = 'es';
+    try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+    applyLang(saved);
+
+    document.querySelectorAll('.oba-header-tpl .oba-lang-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () { applyLang(btn.dataset.lang); });
+    });
+
+    var menuBtn = document.querySelector('.oba-header-tpl .oba-menu-btn');
+    var inlineMenu = document.querySelector('.oba-header-tpl #oba-inline-menu');
+    if (menuBtn && inlineMenu) {
+      menuBtn.addEventListener('click', function () {
+        var isOpen = inlineMenu.classList.toggle('open');
+        menuBtn.classList.toggle('active', isOpen);
+        menuBtn.setAttribute('aria-expanded', String(isOpen));
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+</script>

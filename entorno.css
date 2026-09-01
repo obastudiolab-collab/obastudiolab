@@ -23,7 +23,30 @@
 
 .oba-entorno-row .oba-detail-section { flex: 1; max-width: 560px; }
 
+.oba-entorno-row--rev { flex-direction: row-reverse; }
+
+/* -------- Parajes: bloque de introducción sin foto, seguido de filas -------- */
+.oba-parajes-intro {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 160px 48px 56px;
+  border-bottom: 1px solid rgba(26,26,26,0.1);
+}
+.oba-parajes-intro + .oba-entorno-row { padding-top: 90px; }
+
+.oba-parajes-page .oba-entorno-media { aspect-ratio: 1 / 1; }
+
+.oba-parajes-cta {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 90px 48px 140px;
+  text-align: center;
+  border-top: 1px solid rgba(26,26,26,0.1);
+}
+
 @media (max-width: 900px) {
+  .oba-parajes-intro { padding: 132px 24px 40px; }
+  .oba-entorno-row--rev { flex-direction: column; }
   .oba-entorno-row {
     flex-direction: column;
     gap: 32px;
@@ -31,4 +54,5 @@
   }
   .oba-entorno-row + .oba-entorno-row { padding-top: 56px; }
   .oba-entorno-media { flex: none; width: 100%; aspect-ratio: 4 / 3; }
+  .oba-parajes-page .oba-entorno-media { aspect-ratio: 1 / 1; }
 }

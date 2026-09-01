@@ -87,6 +87,12 @@
 .oba-reveal-link:focus-visible::after,
 .oba-reveal-link.active::after { transform: scaleX(1); }
 
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
 .oba-reveal-reserve {
   position: absolute;
   bottom: 48px; left: 50%;
@@ -106,6 +112,25 @@
   transition: background 0.25s ease;
 }
 .oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
 
 @media (max-width: 700px) {
   .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }

@@ -1,10 +1,10 @@
-html, body { margin: 0; padding: 0; background: #f9eddd; }
+html, body { margin: 0; padding: 0; background: #fae1c0; }
 
 .oba-page, .oba-page * { box-sizing: border-box; }
 
 .oba-page {
   font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
-  background: #f9eddd !important;
+  background: #fae1c0 !important;
   color: #1a1a1a !important;
 }
 
@@ -152,7 +152,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
 .oba-page .oba-btn-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
 .oba-page .oba-btn {
   display: inline-block;
-  background: #583c26 !important;
+  background: #9d7759 !important;
   color: #fff !important;
   text-decoration: none !important;
   font-size: 12px !important;
@@ -162,7 +162,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
   text-align: center;
   transition: background 0.2s ease;
 }
-.oba-page .oba-btn:hover { background: #46301e !important; }
+.oba-page .oba-btn:hover { background: #806148 !important; }
 
 /* --- MARIDAJES: pestañas --- */
 .oba-page .oba-maridajes { margin-top: 4px; }
@@ -203,7 +203,7 @@ html, body { margin: 0; padding: 0; background: #f9eddd; }
 .oba-page .oba-maridaje-tab:hover { color: #1a1a1a !important; }
 .oba-page .oba-maridaje-tab.activo { color: #1a1a1a !important; }
 .oba-page .oba-maridaje-tab.activo::after { transform: scaleX(1); }
-.oba-page .oba-maridaje-tab:focus-visible { outline: 2px solid #583c26; outline-offset: 3px; }
+.oba-page .oba-maridaje-tab:focus-visible { outline: 2px solid #9d7759; outline-offset: 3px; }
 
 .oba-page .oba-maridaje-panel { display: none; }
 .oba-page .oba-maridaje-panel.activo { display: block; }
