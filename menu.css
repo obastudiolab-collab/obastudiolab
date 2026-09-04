@@ -71,7 +71,7 @@
   flex-direction: row;
   align-items: flex-start;
   gap: 16px;
-  padding: 22px 22px;
+  padding: 12px 22px;
   aspect-ratio: 1.64 / 1;
   overflow: hidden;
   min-width: 0;
@@ -87,7 +87,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
-  flex: 0 0 208px;
+  flex: 0 0 108px;
   height: 100%;
   overflow: hidden;
 }
@@ -100,7 +100,7 @@
 }
 .oba-menu-item-media img {
   width: 100%;
-  max-width: 208px;
+  max-width: 108px;
   height: auto;
   display: block;
 }
@@ -113,7 +113,7 @@
   justify-content: center;
 }
 .oba-menu-item--imagen .oba-menu-item-media img {
-  max-width: 260px;
+  max-width: 280px;
   max-height: 100%;
   width: auto;
   object-fit: contain;
@@ -121,7 +121,7 @@
 
 .oba-menu-item-info h2 {
   font-family: 'Archivo', sans-serif !important;
-  font-size: clamp(12px, 1vw, 14px) !important;
+  font-size: clamp(14px, 1.2vw, 16px) !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em;
   line-height: 1.1;
@@ -129,7 +129,7 @@
   color: #1a1a1a !important;
 }
 .oba-menu-item-location {
-  font-size: 9.5px !important;
+  font-size: 11px !important;
   font-style: italic;
   letter-spacing: 0.02em;
   line-height: 1.2;
@@ -137,7 +137,7 @@
   margin: 0;
 }
 .oba-menu-item-coords {
-  font-size: 8.5px !important;
+  font-size: 10px !important;
   letter-spacing: 0.01em;
   line-height: 1.2;
   color: rgba(26,26,26,0.4) !important;
@@ -151,20 +151,20 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
 }
 .oba-menu-pases li {
   display: flex;
   align-items: baseline;
-  gap: 8px;
-  font-size: 10.5px !important;
+  gap: 9px;
+  font-size: 12px !important;
   line-height: 1.2;
   color: #2a2a2a !important;
 }
 .oba-menu-pases .oba-menu-pase-index {
   font-family: 'Archivo', sans-serif !important;
   font-weight: 600 !important;
-  font-size: 8.5px !important;
+  font-size: 9.5px !important;
   color: #9d7759 !important;
   flex: 0 0 auto;
 }
@@ -175,11 +175,11 @@
   color: rgba(26,26,26,0.4) !important;
 }
 
-@media (max-width: 1685px) {
+@media (max-width: 1180px) {
   .oba-menu-list { grid-template-columns: repeat(2, 1fr); }
 }
 
-@media (max-width: 1180px) {
+@media (max-width: 900px) {
   .oba-menu-hero { flex-direction: column; gap: 40px; padding: 132px 24px 32px; }
   .oba-menu-hero-right { align-items: flex-start; }
   .oba-menu-options { padding: 0 24px 40px; }
