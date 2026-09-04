@@ -63,14 +63,15 @@
 /* Cada paraje como una tarjeta de papel rectangular, con textura sutil
    de grano y una sombra suave que la separa del fondo. Imagen a la
    izquierda y contenido a la derecha, como en la tarjeta impresa.
-   Tamaño equivalente al que tenían con 2 columnas, ahora repartido
-   entre 3 gracias a un contenedor más ancho. */
+   Proporción 1.64:1, calculada sobre la tarjeta física real. Si el
+   contenido no cabe en esa altura, la tarjeta crece (no se recorta). */
 .oba-menu-item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 28px;
   padding: 48px 36px;
+  aspect-ratio: 1.64 / 1;
   background-color: #f9f2e2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 140px 140px;
@@ -175,6 +176,7 @@
     align-items: flex-start;
     gap: 20px;
     padding: 40px 24px;
+    aspect-ratio: auto;
   }
   .oba-menu-item-info { flex: none; width: 100%; }
   .oba-menu-item-media img { max-width: 160px; }
