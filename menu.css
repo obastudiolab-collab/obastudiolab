@@ -94,14 +94,6 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  transition: transform 0.4s ease, opacity 0.3s ease;
-}
-
-.oba-menu-item:not(.oba-menu-item--imagen):hover .oba-menu-item-media img,
-.oba-menu-item:not(.oba-menu-item--imagen):focus-visible .oba-menu-item-media img,
-.oba-menu-item:not(.oba-menu-item--imagen).is-open .oba-menu-item-media img {
-  transform: scale(1.04);
-  opacity: 0.16;
 }
 
 /* Ficha superpuesta: oculta por defecto, aparece con el cursor encima
@@ -114,16 +106,15 @@
   align-items: center;
   gap: 5%;
   padding: 9% 8%;
+  background-color: #f9f2e2;
   opacity: 0;
-  transform: translateY(6px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.15s ease;
   pointer-events: none;
 }
 .oba-menu-item:hover .oba-menu-item-overlay,
 .oba-menu-item:focus-visible .oba-menu-item-overlay,
 .oba-menu-item.is-open .oba-menu-item-overlay {
   opacity: 1;
-  transform: translateY(0);
   pointer-events: auto;
 }
 
