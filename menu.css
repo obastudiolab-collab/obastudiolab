@@ -60,14 +60,14 @@
   gap: 32px 28px;
 }
 
-/* Cada paraje como una tarjeta de papel independiente, con textura
-   sutil de grano y una sombra suave que la separa del fondo. Imagen
-   arriba y contenido debajo, para que quepa bien en tres columnas. */
+/* Cada paraje como una tarjeta de papel rectangular, con textura sutil
+   de grano y una sombra suave que la separa del fondo. Imagen a la
+   izquierda y contenido a la derecha, como en la tarjeta impresa. */
 .oba-menu-item {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: flex-start;
-  gap: 20px;
+  gap: 24px;
   padding: 40px 32px;
   background-color: #f9f2e2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -80,7 +80,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  width: 100%;
+  flex: 0 0 110px;
 }
 
 .oba-menu-item-media {
@@ -90,14 +90,14 @@
 }
 .oba-menu-item-media img {
   width: 100%;
-  max-width: 120px;
+  max-width: 100px;
   height: auto;
   display: block;
 }
 
-.oba-menu-item-pases { width: 100%; min-width: 0; }
+.oba-menu-item-pases { flex: 1; min-width: 0; }
 
-/* Tarjeta 9: solo la ilustración, centrada, sin texto */
+/* Tarjeta de apertura: solo la ilustración, centrada, sin texto */
 .oba-menu-item--imagen {
   align-items: center;
   justify-content: center;
@@ -169,8 +169,12 @@
 
   .oba-menu-list { grid-template-columns: 1fr; padding: 0 24px 60px; gap: 24px; }
   .oba-menu-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
     padding: 40px 24px;
   }
+  .oba-menu-item-info { flex: none; width: 100%; }
   .oba-menu-item-media img { max-width: 160px; }
-  .oba-menu-item-pases { width: 100%; }
+  .oba-menu-item-pases { width: 100%; flex: none; }
 }
