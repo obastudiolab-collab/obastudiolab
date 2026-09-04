@@ -382,3 +382,31 @@ html, body { margin: 0; padding: 0; background: #fae1c0; }
   .oba-page .oba-detail-content { width: 100%; max-width: none; padding: 0 0 80px; }
   .oba-page .oba-detail-divider { margin: 48px 0; }
 }
+
+/* --- Página independiente de un maridaje (VER MARIDAJE) --- */
+.oba-page .oba-maridaje-standalone {
+  max-width: 900px;
+  margin: 0 auto;
+  min-height: 100vh;
+  padding: 170px 24px 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+}
+.oba-page .oba-maridaje-back {
+  align-self: flex-start;
+  color: rgba(26,26,26,0.55) !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.1em;
+  transition: color 0.2s ease;
+}
+.oba-page .oba-maridaje-back:hover { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-card--grande { max-width: 100%; width: 100%; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-maridaje-standalone { padding: 132px 24px 80px; gap: 24px; }
+}
