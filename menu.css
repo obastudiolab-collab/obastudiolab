@@ -52,23 +52,25 @@
 
 /* -------- Lista de parajes: cuadrícula de tres columnas -------- */
 .oba-menu-list {
-  max-width: 1320px;
+  max-width: 1680px;
   margin: 0 auto;
-  padding: 0 24px 60px;
+  padding: 0 40px 60px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px 28px;
+  gap: 32px 32px;
 }
 
 /* Cada paraje como una tarjeta de papel rectangular, con textura sutil
    de grano y una sombra suave que la separa del fondo. Imagen a la
-   izquierda y contenido a la derecha, como en la tarjeta impresa. */
+   izquierda y contenido a la derecha, como en la tarjeta impresa.
+   Tamaño equivalente al que tenían con 2 columnas, ahora repartido
+   entre 3 gracias a un contenedor más ancho. */
 .oba-menu-item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 24px;
-  padding: 40px 32px;
+  gap: 28px;
+  padding: 48px 36px;
   background-color: #f9f2e2;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 140px 140px;
@@ -80,7 +82,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  flex: 0 0 110px;
+  flex: 0 0 150px;
 }
 
 .oba-menu-item-media {
@@ -90,7 +92,7 @@
 }
 .oba-menu-item-media img {
   width: 100%;
-  max-width: 100px;
+  max-width: 140px;
   height: auto;
   display: block;
 }
@@ -103,7 +105,7 @@
   justify-content: center;
 }
 .oba-menu-item--imagen .oba-menu-item-media img {
-  max-width: 220px;
+  max-width: 340px;
 }
 
 .oba-menu-item-info h2 {
