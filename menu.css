@@ -63,16 +63,16 @@
 /* Cada paraje como una tarjeta de papel rectangular, con textura sutil
    de grano y una sombra suave que la separa del fondo. Imagen a la
    izquierda y contenido a la derecha, como en la tarjeta impresa.
-   Altura fija en px (no aspect-ratio): así las 9 tarjetas miden
-   exactamente lo mismo sin importar cuánto texto tenga cada una.
-   overflow:hidden actúa de red de seguridad si algún texto no cupiera. */
+   Proporción fija 1.64:1 (igual en las 9), en vez de una altura en px:
+   así mantiene la forma de "postal" sea cual sea el ancho de columna.
+   overflow:hidden recorta si algún texto no cupiera (no debería). */
 .oba-menu-item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  gap: 22px;
-  padding: 36px 30px;
-  height: 400px;
+  gap: 16px;
+  padding: 22px 22px;
+  aspect-ratio: 1.64 / 1;
   overflow: hidden;
   min-width: 0;
   width: 100%;
@@ -86,18 +86,21 @@
 .oba-menu-item-info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  flex: 0 0 130px;
+  gap: 5px;
+  flex: 0 0 92px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .oba-menu-item-media {
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  flex-shrink: 0;
 }
 .oba-menu-item-media img {
   width: 100%;
-  max-width: 120px;
+  max-width: 62px;
   height: auto;
   display: block;
 }
@@ -110,7 +113,7 @@
   justify-content: center;
 }
 .oba-menu-item--imagen .oba-menu-item-media img {
-  max-width: 300px;
+  max-width: 260px;
   max-height: 100%;
   width: auto;
   object-fit: contain;
@@ -118,23 +121,25 @@
 
 .oba-menu-item-info h2 {
   font-family: 'Archivo', sans-serif !important;
-  font-size: clamp(17px, 1.6vw, 22px) !important;
+  font-size: clamp(12px, 1vw, 14px) !important;
   font-weight: 600 !important;
   letter-spacing: 0.01em;
-  line-height: 1.15;
-  margin: 4px 0 0;
+  line-height: 1.1;
+  margin: 2px 0 0;
   color: #1a1a1a !important;
 }
 .oba-menu-item-location {
-  font-size: 12px !important;
+  font-size: 9.5px !important;
   font-style: italic;
-  letter-spacing: 0.03em;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
   color: rgba(26,26,26,0.5) !important;
   margin: 0;
 }
 .oba-menu-item-coords {
-  font-size: 11px !important;
-  letter-spacing: 0.02em;
+  font-size: 8.5px !important;
+  letter-spacing: 0.01em;
+  line-height: 1.2;
   color: rgba(26,26,26,0.4) !important;
   margin: 0;
 }
@@ -146,20 +151,20 @@
   max-width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
 }
 .oba-menu-pases li {
   display: flex;
   align-items: baseline;
-  gap: 10px;
-  font-size: 12px !important;
-  line-height: 1.25;
+  gap: 8px;
+  font-size: 10.5px !important;
+  line-height: 1.2;
   color: #2a2a2a !important;
 }
 .oba-menu-pases .oba-menu-pase-index {
   font-family: 'Archivo', sans-serif !important;
   font-weight: 600 !important;
-  font-size: 9.5px !important;
+  font-size: 8.5px !important;
   color: #9d7759 !important;
   flex: 0 0 auto;
 }
@@ -172,7 +177,6 @@
 
 @media (max-width: 1180px) {
   .oba-menu-list { grid-template-columns: repeat(2, 1fr); }
-  .oba-menu-item { height: 340px; }
 }
 
 @media (max-width: 900px) {
@@ -186,6 +190,7 @@
     align-items: flex-start;
     gap: 20px;
     padding: 40px 24px;
+    aspect-ratio: auto;
     height: auto;
     overflow: visible;
   }
