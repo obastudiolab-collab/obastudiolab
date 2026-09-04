@@ -64,9 +64,7 @@
   align-items: flex-start;
   gap: 28px;
   padding: 56px 40px;
-  border-top: 1px solid rgba(26,26,26,0.1);
 }
-.oba-menu-item:nth-child(odd) { border-right: 1px solid rgba(26,26,26,0.1); }
 
 .oba-menu-item-info {
   flex: 0 0 180px;
