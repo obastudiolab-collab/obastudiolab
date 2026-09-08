@@ -17,7 +17,6 @@
   justify-content: center;
   gap: 16px;
 }
-.oba-btn--static { cursor: default; }
 .oba-menu-hero-left { flex: 1.25; }
 .oba-menu-hero-right {
   flex: 1;

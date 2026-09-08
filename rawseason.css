@@ -116,6 +116,7 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #0c0c0c;
   background-size: cover;
   background-position: center;
   padding: 160px 24px 100px;
@@ -245,8 +246,8 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
 .oba-rs-cards {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1px;
-  background: rgba(255,255,255,0.12);
+  gap: 0;
+  background: #0c0c0c;
 }
 .oba-rs-card {
   position: relative;
@@ -303,3 +304,39 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
   .oba-rs-cards { grid-template-columns: 1fr; }
   .oba-rs-card { min-height: 340px; padding: 44px 24px; }
 }
+
+/* ============================================================
+   RAW SEASON — variante clara (fondo crema, como el resto del sitio).
+   Solo afecta al hero/header de esta página; las tarjetas de temporada
+   (fotos) y el reveal-footer se quedan igual, y Eventos/Pack Noche
+   siguen con su tema oscuro porque comparten este mismo archivo.
+   ============================================================ */
+body.oba-rawseason-page .oba-lang-btn { color: rgba(26,26,26,0.45) !important; }
+body.oba-rawseason-page .oba-lang-btn:hover,
+body.oba-rawseason-page .oba-lang-btn:focus { color: rgba(26,26,26,0.75) !important; }
+body.oba-rawseason-page .oba-lang-btn.active { color: #1a1a1a !important; }
+body.oba-rawseason-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; }
+
+body.oba-rawseason-page .oba-menu-btn span { background: #1a1a1a !important; }
+
+body.oba-rawseason-page .oba-inline-menu a { color: rgba(26,26,26,0.65) !important; }
+body.oba-rawseason-page .oba-inline-menu a:hover,
+body.oba-rawseason-page .oba-inline-menu a:focus-visible { color: #1a1a1a !important; }
+
+body.oba-rawseason-page .oba-rs-hero { background-color: #fae1c0; }
+body.oba-rawseason-page .oba-rs-overlay { display: none; }
+body.oba-rawseason-page .oba-rs-kicker { color: rgba(26,26,26,0.55) !important; }
+body.oba-rawseason-page .oba-rs-hero-content h1 { color: #1a1a1a !important; }
+body.oba-rawseason-page .oba-rs-intro { color: rgba(26,26,26,0.7) !important; }
+
+body.oba-rawseason-page .oba-rs-details { border-top: 1px solid rgba(26,26,26,0.2); }
+body.oba-rawseason-page .oba-rs-details li { color: rgba(26,26,26,0.6) !important; }
+body.oba-rawseason-page .oba-rs-details li strong { color: #1a1a1a !important; }
+
+body.oba-rawseason-page .oba-rs-btn {
+  color: #fff !important;
+  background: #9d7759 !important;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+body.oba-rawseason-page .oba-rs-btn:hover { background: #806148 !important; }
