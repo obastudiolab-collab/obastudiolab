@@ -1,0 +1,1461 @@
+<!-- ================================================================
+  PÁGINA: TIENDA — pegar todo esto en un único widget "HTML" de Elementor
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La Sección/Contenedor que contenga este widget debe estar en modo
+    "Full Width" (ancho completo) y con Margen/Relleno a 0 — si no, el
+    contenido queda encogido con huecos a los lados (visto ya en Restaurante).
+    La sección/columna que contenga este widget tampoco debe tener Motion
+    Effects (sticky, parallax...) porque rompe el position: fixed.
+    El logo usa la Mediateca (wp-content/uploads/oba-logo*.png), igual que
+    el resto de páginas. Las fotos de producto NO son de la Mediateca: se
+    cargan directamente desde regalaoba.myshopify.com (el mismo CDN de
+    Shopify que ya sirve esas imágenes), así que no hay que subir nada
+    para que esta página funcione.
+    El catálogo (título, foto, precio, id de variante) está escrito a mano
+    más abajo en el <script>, copiado de los productos activos en
+    regalaoba.myshopify.com. Si se añade, retira o cambia de precio un
+    producto en Shopify, hay que actualizar el array OBA_PRODUCTS aquí
+    (y en tienda.js del sitio estático) a mano — no se sincroniza solo.
+    El botón "FINALIZAR COMPRA" no usa la Storefront API (no hay token
+    configurado): arma la URL "carrito permalink" de Shopify
+    (regalaoba.myshopify.com/cart/<variante>:<cantidad>,...) y redirige
+    ahí directamente al checkout real de Shopify, con la cesta ya cargada.
+================================================================ -->
+<style>
+html { scroll-behavior: smooth; }
+html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #fae1c0 !important;
+  color: #1a1a1a !important;
+}
+
+/* -------- Header (logo + idioma + menú + cesta), versión clara para fondo crema -------- */
+.oba-page .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(26,26,26,0.45) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-detail-header { padding: 20px 24px; }
+}
+
+.oba-page .oba-detail-kicker {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  color: #1a1a1a !important;
+}
+
+/* -------- Botón cesta, fijo en el header -------- */
+.oba-page .oba-tienda-cart-btn {
+  position: relative;
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-tienda-cart-btn svg { width: 22px; height: 22px; display: block; }
+.oba-tienda-cart-count {
+  position: absolute;
+  top: -6px; right: -8px;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: #9d7759;
+  color: #fff;
+  font-family: 'Archivo', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  opacity: 0;
+  transform: scale(0.6);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.oba-tienda-cart-count.visible { opacity: 1; transform: scale(1); }
+
+/* -------- Tienda: catálogo de bonos regalo -------- */
+.oba-tienda-hero {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 160px 24px 56px;
+  text-align: center;
+}
+.oba-tienda-hero h1 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: clamp(30px, 4.2vw, 46px) !important;
+  font-weight: 500 !important;
+  line-height: 1.15;
+  color: #1a1a1a !important;
+  margin: 0 0 20px;
+}
+.oba-tienda-hero p {
+  font-size: 15px !important;
+  line-height: 1.75;
+  color: rgba(26,26,26,0.7) !important;
+  margin: 0;
+}
+
+.oba-tienda-jump {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+.oba-tienda-jump-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 180px;
+  padding: 18px 28px;
+  background: #9d7759;
+  border: 1px solid #9d7759;
+  border-radius: 14px;
+  text-decoration: none !important;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.oba-tienda-jump-btn:hover { background: #806148; border-color: #806148; transform: translateY(-2px); }
+.oba-tienda-jump-title {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em;
+  color: #fff !important;
+}
+.oba-tienda-jump-sub {
+  font-size: 11.5px !important;
+  color: rgba(255,255,255,0.75) !important;
+}
+
+.oba-tienda-section { max-width: 1240px; margin: 0 auto; padding: 0 48px; scroll-margin-top: 28px; }
+.oba-tienda-section + .oba-tienda-section { margin-top: 8px; }
+.oba-tienda-section-title {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em;
+  color: #1a1a1a !important;
+  margin: 0 0 8px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(26,26,26,0.14);
+}
+.oba-tienda-section-desc {
+  font-size: 13px !important;
+  color: rgba(26,26,26,0.55) !important;
+  margin: 0 0 28px;
+}
+
+.oba-tienda-grid {
+  margin: 0 0 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.oba-tienda-card {
+  display: flex;
+  flex-direction: column;
+  background-color: #f9f2e2;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 140px 140px;
+  border: 1px solid rgba(26,20,12,0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(60,40,20,0.06), 0 10px 24px -14px rgba(60,40,20,0.22);
+}
+
+.oba-tienda-card-media { aspect-ratio: 4 / 3; overflow: hidden; background: #111; }
+.oba-tienda-card-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.oba-tienda-card-body { display: flex; flex-direction: column; gap: 10px; padding: 22px 22px 24px; flex: 1; }
+
+.oba-tienda-card-title {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 600 !important;
+  line-height: 1.3;
+  color: #1a1a1a !important;
+  margin: 0;
+}
+.oba-tienda-card-desc {
+  font-size: 13px !important;
+  line-height: 1.6;
+  color: rgba(26,26,26,0.62) !important;
+  margin: 0 0 4px;
+  flex: 1;
+}
+
+.oba-tienda-card-more {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin: -4px 0 4px;
+}
+.oba-tienda-card.is-expanded .oba-tienda-card-more { display: flex; }
+.oba-tienda-card-more p {
+  font-size: 12.5px !important;
+  line-height: 1.65;
+  color: rgba(26,26,26,0.62) !important;
+  margin: 0;
+  white-space: pre-line;
+}
+
+.oba-tienda-more-btn {
+  align-self: flex-start;
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  padding: 0 0 2px;
+  margin: -6px 0 2px;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em;
+  color: #9d7759 !important;
+  border-bottom: 1px solid rgba(157,119,89,0.4) !important;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+.oba-tienda-more-btn:hover { color: #806148 !important; border-color: rgba(128,97,72,0.6) !important; }
+
+.oba-tienda-card-price {
+  font-size: 13px !important;
+  letter-spacing: 0.03em;
+  color: rgba(26,26,26,0.5) !important;
+  margin: 0;
+}
+.oba-tienda-card-price strong { color: #1a1a1a !important; font-weight: 600 !important; font-size: 15px !important; }
+
+.oba-tienda-card-row { display: flex; gap: 10px; margin-top: 6px; }
+
+.oba-tienda-select {
+  flex: 1;
+  min-width: 0;
+  background: rgba(255,255,255,0.5) !important;
+  border: 1px solid rgba(26,20,12,0.18) !important;
+  border-radius: 8px;
+  color: #1a1a1a !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 12.5px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.02em;
+  padding: 0 10px;
+  height: 42px;
+  cursor: pointer;
+}
+
+.oba-tienda-add {
+  flex: 0 0 auto;
+  background: #9d7759 !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 8px;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.1em;
+  padding: 0 18px;
+  height: 42px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-tienda-add:hover { background: #806148 !important; }
+.oba-tienda-add.is-added { background: #5f6b4c !important; }
+
+.oba-tienda-note {
+  max-width: 700px;
+  margin: -20px auto 90px;
+  padding: 0 24px;
+  text-align: center;
+  font-size: 12.5px !important;
+  color: rgba(26,26,26,0.45) !important;
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 700px) {
+  .oba-tienda-hero { padding: 132px 24px 40px; }
+  .oba-tienda-section { padding: 0 24px; }
+  .oba-tienda-grid { margin-bottom: 40px; gap: 22px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); }
+}
+
+/* -------- Cesta lateral -------- */
+.oba-cart-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(12,10,8,0.4);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  z-index: 40;
+}
+.oba-cart-overlay.open { opacity: 1; visibility: visible; }
+
+.oba-cart-drawer {
+  position: fixed;
+  top: 0; right: 0; bottom: 0;
+  width: min(420px, 100vw);
+  background: #fae1c0;
+  z-index: 41;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.65,0,0.35,1);
+  box-shadow: -20px 0 50px rgba(0,0,0,0.2);
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cart-drawer.open { transform: translateX(0); }
+
+.oba-cart-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 26px 28px;
+  border-bottom: 1px solid rgba(26,26,26,0.14);
+}
+.oba-cart-head h2 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em;
+  margin: 0;
+  color: #1a1a1a !important;
+}
+.oba-cart-close {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
+  color: #1a1a1a !important;
+  padding: 0;
+}
+
+.oba-cart-items { flex: 1; overflow-y: auto; padding: 10px 28px; }
+.oba-cart-empty { font-size: 13px; color: rgba(26,26,26,0.55); padding: 30px 0; }
+
+.oba-cart-item {
+  display: flex;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(26,26,26,0.1);
+}
+.oba-cart-item img { width: 64px; height: 64px; object-fit: cover; flex-shrink: 0; background: #111; }
+.oba-cart-item-info { flex: 1; min-width: 0; }
+.oba-cart-item-title { font-size: 13px !important; font-weight: 600 !important; color: #1a1a1a !important; margin: 0 0 4px; line-height: 1.3; }
+.oba-cart-item-variant { font-size: 12px !important; color: rgba(26,26,26,0.55) !important; margin: 0 0 8px; }
+.oba-cart-item-row { display: flex; align-items: center; justify-content: space-between; }
+.oba-cart-item-price { font-size: 13px !important; font-weight: 600 !important; color: #1a1a1a !important; }
+.oba-cart-item-remove {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  font-size: 11px !important;
+  letter-spacing: 0.05em;
+  color: rgba(26,26,26,0.45) !important;
+  text-decoration: underline !important;
+  padding: 0;
+}
+.oba-cart-item-remove:hover { color: #1a1a1a !important; }
+
+.oba-cart-foot { padding: 22px 28px 30px; border-top: 1px solid rgba(26,26,26,0.14); }
+.oba-cart-subtotal { display: flex; justify-content: space-between; font-size: 14px !important; font-weight: 600 !important; color: #1a1a1a !important; margin-bottom: 16px; }
+.oba-cart-checkout {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background: #9d7759 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.14em;
+  padding: 17px 20px;
+  border: none !important;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.oba-cart-checkout:hover { background: #806148 !important; }
+.oba-cart-checkout:disabled { opacity: 0.4; cursor: not-allowed; }
+.oba-cart-secure { font-size: 11px !important; color: rgba(26,26,26,0.45) !important; text-align: center; margin: 12px 0 0; }
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+</style>
+
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="/" class="oba-detail-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo-dark.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <div class="oba-header-right" style="position:relative; display:flex; align-items:center; gap:18px;">
+      <button type="button" class="oba-tienda-cart-btn" id="oba-tienda-cart-btn" aria-label="Ver cesta" data-i18n-attr="aria-label:aria_cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 3h2l2.4 12.2a2 2 0 0 0 2 1.8h8.2a2 2 0 0 0 2-1.6L21 8H6" />
+          <circle cx="9.5" cy="20.5" r="1.4" />
+          <circle cx="17.5" cy="20.5" r="1.4" />
+        </svg>
+        <span class="oba-tienda-cart-count" id="oba-cart-count">0</span>
+      </button>
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
+        <a href="/nosotros/#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda/" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="oba-tienda-hero">
+    <p class="oba-detail-kicker" data-i18n="kicker_tienda">00 — TIENDA ONLINE</p>
+    <h1 data-i18n="h1_tienda">Regala Oba-</h1>
+    <p data-i18n="p_tienda_intro">Bonos regalo digitales para vivir la experiencia Oba- en la mesa, con estancia en Cañitas Maite Gastronómico o recorriendo nuestros tres espacios. Se envían al instante por email.</p>
+
+    <div class="oba-tienda-jump">
+      <a href="#tienda-bonos" class="oba-tienda-jump-btn">
+        <span class="oba-tienda-jump-title" data-i18n="tienda_cat_bonos">BONOS</span>
+        <span class="oba-tienda-jump-sub" data-i18n="tienda_jump_bonos_sub">Solo restaurante</span>
+      </a>
+      <a href="#tienda-experiencias" class="oba-tienda-jump-btn">
+        <span class="oba-tienda-jump-title" data-i18n="tienda_cat_experiencias">EXPERIENCIAS</span>
+        <span class="oba-tienda-jump-sub" data-i18n="tienda_jump_exp_sub">Restaurante + Hotel</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="oba-tienda-section" id="tienda-bonos">
+    <h2 class="oba-tienda-section-title" data-i18n="tienda_cat_bonos">BONOS</h2>
+    <p class="oba-tienda-section-desc" data-i18n="tienda_cat_bonos_desc">Solo restaurante</p>
+    <div class="oba-tienda-grid" id="oba-tienda-grid-bono"></div>
+  </section>
+
+  <section class="oba-tienda-section" id="tienda-experiencias">
+    <h2 class="oba-tienda-section-title" data-i18n="tienda_cat_experiencias">EXPERIENCIAS</h2>
+    <p class="oba-tienda-section-desc" data-i18n="tienda_cat_experiencias_desc">Restaurante y alojamiento en Cañitas Maite Gastronómico.</p>
+    <div class="oba-tienda-grid" id="oba-tienda-grid-experiencia"></div>
+  </section>
+
+  <p class="oba-tienda-note" data-i18n="tienda_note">El pago se completa de forma segura en la pasarela de Shopify. Recibirás el bono por email tras la compra.</p>
+</div>
+
+<div class="oba-cart-overlay" id="oba-cart-overlay"></div>
+<aside class="oba-cart-drawer" id="oba-cart-drawer" aria-label="Cesta">
+  <div class="oba-cart-head">
+    <h2 data-i18n="tienda_cart_title">TU CESTA</h2>
+    <button type="button" class="oba-cart-close" id="oba-cart-close" aria-label="Cerrar">&times;</button>
+  </div>
+  <div class="oba-cart-items" id="oba-cart-items"></div>
+  <div class="oba-cart-foot">
+    <div class="oba-cart-subtotal">
+      <span data-i18n="tienda_subtotal">Subtotal</span>
+      <span id="oba-cart-subtotal-value">0€</span>
+    </div>
+    <button type="button" class="oba-cart-checkout" id="oba-cart-checkout" data-i18n="tienda_checkout" disabled>FINALIZAR COMPRA</button>
+    <p class="oba-cart-secure" data-i18n="tienda_note">El pago se completa de forma segura en la pasarela de Shopify. Recibirás el bono por email tras la compra.</p>
+  </div>
+</aside>
+
+<footer class="oba-reveal-footer">
+  <a href="/" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-bar" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-nosotros.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/restaurante/" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="/entorno/" class="oba-reveal-link" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="/nosotros/" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+  </nav>
+  <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal/">Aviso Legal</a><span>·</span><a href="/politica-privacidad/">Privacidad</a><span>·</span><a href="/politica-cookies/">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
+// (solo con las claves de texto que usa esta página).
+// ============================================================
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma", aria_cart: "Ver cesta",
+    kicker_tienda: "00 — TIENDA ONLINE",
+    h1_tienda: "Regala Oba-",
+    p_tienda_intro: "Bonos regalo digitales para vivir la experiencia Oba- en la mesa, con estancia en Cañitas Maite Gastronómico o recorriendo nuestros tres espacios. Se envían al instante por email.",
+    tienda_cat_bonos: "BONOS",
+    tienda_cat_bonos_desc: "Solo restaurante",
+    tienda_cat_experiencias: "EXPERIENCIAS",
+    tienda_cat_experiencias_desc: "Restaurante y alojamiento en Cañitas Maite Gastronómico.",
+    tienda_jump_bonos_sub: "Solo restaurante",
+    tienda_jump_exp_sub: "Restaurante + Hotel",
+    tienda_note: "El pago se completa de forma segura en la pasarela de Shopify. Recibirás el bono por email tras la compra.",
+    tienda_cart_title: "TU CESTA",
+    tienda_subtotal: "Subtotal",
+    tienda_checkout: "FINALIZAR COMPRA"
+  },
+  en: {
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language", aria_cart: "View cart",
+    kicker_tienda: "00 — ONLINE SHOP",
+    h1_tienda: "Gift Oba-",
+    p_tienda_intro: "Digital gift vouchers to experience Oba- at the table, with a stay at Cañitas Maite Gastronómico or a journey through our three spaces. Delivered instantly by email.",
+    tienda_cat_bonos: "VOUCHERS",
+    tienda_cat_bonos_desc: "Restaurant only",
+    tienda_cat_experiencias: "EXPERIENCES",
+    tienda_cat_experiencias_desc: "Restaurant and a stay at Cañitas Maite Gastronómico.",
+    tienda_jump_bonos_sub: "Restaurant only",
+    tienda_jump_exp_sub: "Restaurant + Hotel",
+    tienda_note: "Payment is completed securely through Shopify's checkout. You'll receive the voucher by email after purchase.",
+    tienda_cart_title: "YOUR CART",
+    tienda_subtotal: "Subtotal",
+    tienda_checkout: "CHECKOUT"
+  }
+};
+
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
+
+function obaInit() {
+  let saved = 'es';
+  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  obaApplyLang(saved);
+
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
+
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+
+// ============================================================
+// TIENDA — catálogo real de regalaoba.myshopify.com, embebido en la
+// propia web. El checkout final se resuelve en Shopify (plan Basic no
+// permite checkout propio), pero navegar, elegir y montar la cesta
+// ocurre entera aquí, en obarestaurante.es.
+// ============================================================
+var OBA_SHOP_DOMAIN = 'https://regalaoba.myshopify.com';
+var OBA_CART_KEY = 'oba_cart_v1';
+
+var OBA_PRODUCTS = [
+  {
+    handle: 'bono-regalo-oba-cuaderno-dos',
+    category: 'bono',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-052_90b3d6bb-b617-4843-ac9f-334e06c158cd.jpg?v=1788768734',
+    es: {
+      title: 'Bono Regalo · Cuaderno Dos',
+      desc: 'Menú Cuaderno Dos, 8 parajes de nuestra cocina con Estrella Michelin y Estrella Verde.',
+      long: 'Bono regalo digital para descubrir el menú Cuaderno Dos de OBA-, restaurante con Estrella Michelin y Estrella Verde de Javier Sanz y Juan Sahuquillo en Casas-Ibáñez (Albacete).\n\n8 parajes de nuestro entorno contados a través de otros tantos platos, en una experiencia gastronómica única inspirada en la tierra y las tradiciones de nuestro pueblo.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar mesa bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'Gift Voucher · Cuaderno Dos',
+      desc: 'The Cuaderno Dos menu, 8 courses from our Michelin Star & Green Star kitchen.',
+      long: "Digital gift voucher for the Cuaderno Dos menu at OBA-, the Michelin Star & Green Star restaurant by Javier Sanz and Juan Sahuquillo in Casas-Ibáñez (Albacete).\n\n8 landscapes from our surroundings told through as many dishes, in a one-of-a-kind experience inspired by the land and traditions of our village.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book a table, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969646977371', n: 1, price: 195 },
+      { id: '53969647010139', n: 2, price: 390 },
+      { id: '53969647042907', n: 3, price: 585 },
+      { id: '53969647075675', n: 4, price: 780 }
+    ]
+  },
+  {
+    handle: 'bono-regalo-oba-cuaderno-dos-con-maridaje',
+    category: 'bono',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-141_bcc88d7f-0c47-4f11-81af-111ac1198597.jpg?v=1788768751',
+    es: {
+      title: 'Bono Regalo · Cuaderno Dos con Maridaje',
+      desc: 'El menú Cuaderno Dos completo con maridaje a elegir.',
+      long: 'Bono regalo digital para descubrir el menú Cuaderno Dos de OBA-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), con maridaje incluido.\n\n8 parajes de nuestro entorno contados a través de otros tantos platos, acompañados de un maridaje a elegir entre Natura (fermentados) o el vínico Matices Olvidados.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar mesa bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'Gift Voucher · Cuaderno Dos with Pairing',
+      desc: 'The full Cuaderno Dos menu with your choice of pairing.',
+      long: "Digital gift voucher for the Cuaderno Dos menu at OBA-, the Michelin Star & Green Star restaurant in Casas-Ibáñez (Albacete), pairing included.\n\n8 landscapes from our surroundings told through as many dishes, paired with your choice of Natura (fermented drinks) or the wine-based Matices Olvidados.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book a table, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969649140059', n: 1, price: 305 },
+      { id: '53969649172827', n: 2, price: 610 },
+      { id: '53969649205595', n: 3, price: 915 },
+      { id: '53969649238363', n: 4, price: 1220 }
+    ]
+  },
+  {
+    handle: 'bono-regalo-oba-cuaderno-medio',
+    category: 'bono',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-273_135b42bd-de2d-4948-98a3-863eb647ea92.jpg?v=1788768728',
+    es: {
+      title: 'Bono Regalo · Cuaderno Medio',
+      desc: 'Menú Cuaderno Medio, 6 parajes de nuestra cocina.',
+      long: 'Bono regalo digital para vivir la experiencia gastronómica de OBA-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete).\n\nEl Cuaderno Medio recorre 6 parajes de nuestro entorno a través de otros tantos platos, contados como si fueran páginas de un cuaderno inspirado en la tierra y las tradiciones de nuestro pueblo.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar mesa bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'Gift Voucher · Cuaderno Medio',
+      desc: 'The Cuaderno Medio menu, 6 courses of our cuisine.',
+      long: "Digital gift voucher to experience OBA-, the Michelin Star & Green Star restaurant in Casas-Ibáñez (Albacete).\n\nThe Cuaderno Medio menu travels through 6 landscapes from our surroundings through as many dishes, told like pages of a notebook inspired by the land and traditions of our village.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book a table, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969639571803', n: 1, price: 155 },
+      { id: '53969639604571', n: 2, price: 310 },
+      { id: '53969639637339', n: 3, price: 465 },
+      { id: '53969639670107', n: 4, price: 620 }
+    ]
+  },
+  {
+    handle: 'bono-regalo-oba-cuaderno-medio-con-maridaje',
+    category: 'bono',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-144_ebfdf4e9-6225-4d86-9eca-8537123606d5.jpg?v=1788768744',
+    es: {
+      title: 'Bono Regalo · Cuaderno Medio con Maridaje',
+      desc: 'El menú Cuaderno Medio con maridaje a elegir.',
+      long: 'Bono regalo digital para vivir la experiencia gastronómica de OBA-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), con maridaje incluido.\n\nEl Cuaderno Medio recorre 6 parajes de nuestro entorno a través de otros tantos platos, acompañado de un maridaje a elegir entre Natura (fermentados) o el vínico Matices Olvidados.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar mesa bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'Gift Voucher · Cuaderno Medio with Pairing',
+      desc: 'The Cuaderno Medio menu with your choice of pairing.',
+      long: "Digital gift voucher to experience OBA-, the Michelin Star & Green Star restaurant in Casas-Ibáñez (Albacete), pairing included.\n\nThe Cuaderno Medio menu travels through 6 landscapes from our surroundings, paired with your choice of Natura (fermented drinks) or the wine-based Matices Olvidados.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book a table, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969648714075', n: 1, price: 235 },
+      { id: '53969648746843', n: 2, price: 470 },
+      { id: '53969648779611', n: 3, price: 705 },
+      { id: '53969648812379', n: 4, price: 940 }
+    ]
+  },
+  {
+    handle: 'experiencia-oba-hotel-cuaderno-dos',
+    category: 'experiencia',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-049_f16b36ff-afbf-4321-ba7c-9fc4c47da072.jpg?v=1788768767',
+    es: {
+      title: 'Experiencia OBA- + Hotel · Cuaderno Dos',
+      desc: 'Cena Cuaderno Dos y noche de alojamiento en Cañitas Maite Gastronómico, con desayuno.',
+      long: 'Bono regalo digital que combina una cena con el menú Cuaderno Dos de OBA- —restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete)— con una noche de alojamiento en el Hotel Cañitas Maite.\n\n8 parajes de nuestro entorno contados a través de otros tantos platos, con maridaje a elegir entre Natura (fermentados) o el vínico Matices Olvidados, más una habitación en el hotel con desayuno incluido.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'OBA- Experience + Hotel · Cuaderno Dos',
+      desc: 'Cuaderno Dos dinner and an overnight stay at Cañitas Maite Gastronómico, breakfast included.',
+      long: "Digital gift voucher combining a Cuaderno Dos dinner at OBA- —the Michelin Star & Green Star restaurant in Casas-Ibáñez (Albacete)— with an overnight stay at Hotel Cañitas Maite.\n\n8 landscapes from our surroundings through as many dishes, with your choice of Natura (fermented drinks) or the wine-based Matices Olvidados pairing, plus a hotel room with breakfast included.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969654219099', n: 1, price: 405 },
+      { id: '53969654251867', n: 2, price: 725 }
+    ]
+  },
+  {
+    handle: 'experiencia-oba-hotel-cuaderno-medio',
+    category: 'experiencia',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-047_39505755-8b87-47a7-bee4-9eaa09d6bdd0.jpg?v=1788768758',
+    es: {
+      title: 'Experiencia OBA- + Hotel · Cuaderno Medio',
+      desc: 'Cena Cuaderno Medio y noche de alojamiento en Cañitas Maite Gastronómico, con desayuno.',
+      long: 'Bono regalo digital que combina una cena en OBA- —restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete)— con una noche de alojamiento en el Hotel Cañitas Maite.\n\nIncluye el menú Cuaderno Medio (6 parajes) con maridaje a elegir entre Natura (fermentados) o el vínico Matices Olvidados, más una habitación en el hotel con desayuno incluido.\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'OBA- Experience + Hotel · Cuaderno Medio',
+      desc: 'Cuaderno Medio dinner and an overnight stay at Cañitas Maite Gastronómico, breakfast included.',
+      long: "Digital gift voucher combining a dinner at OBA- —the Michelin Star & Green Star restaurant in Casas-Ibáñez (Albacete)— with an overnight stay at Hotel Cañitas Maite.\n\nIncludes the Cuaderno Medio menu (6 landscapes) with your choice of Natura (fermented drinks) or the wine-based Matices Olvidados pairing, plus a hotel room with breakfast included.\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969652973915', n: 1, price: 335 },
+      { id: '53969653006683', n: 2, price: 585 }
+    ]
+  },
+  {
+    handle: 'experiencia-total-oba-2-noches-y-3-restaurantes',
+    category: 'experiencia',
+    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-083_3ee893da-6e5a-4334-a3c8-fa5dea33b537.jpg?v=1788768775',
+    es: {
+      title: 'Experiencia Total OBA- · 2 Noches y 3 Restaurantes',
+      desc: 'Dos noches en Casas-Ibáñez recorriendo nuestros tres espacios gastronómicos, alojamiento incluido.',
+      long: 'El bono regalo digital más completo de OBA-: una inmersión de dos noches en Casas-Ibáñez (Albacete) que recorre los tres espacios gastronómicos del grupo, con alojamiento en el Hotel Cañitas Maite.\n\nIncluye el menú degustación Cuaderno Dos en OBA- con maridaje a elegir entre Natura o Matices Olvidados; una cena informal en La Taberñita con burgers o pizzas de masa madre y bebida; una comida o cena con menú degustación a elegir en Cañitas Maite (Pura Barra o Hits) con bebida incluida; y 2 noches de alojamiento en habitación doble con desayuno buffet libre (fines de semana).\n\nCómo funciona: recibirás un PDF por email nada más completar la compra, con el detalle del bono y los pasos para canjearlo. Para reservar bastará con el número de pedido o el nombre del comprador. El bono es válido durante 6 meses desde la fecha de compra.'
+    },
+    en: {
+      title: 'OBA- Total Experience · 2 Nights & 3 Restaurants',
+      desc: 'Two nights in Casas-Ibáñez exploring our three restaurants, accommodation included.',
+      long: "OBA-'s most complete digital gift voucher: a two-night immersion in Casas-Ibáñez (Albacete) through the group's three restaurants, staying at Hotel Cañitas Maite.\n\nIncludes the Cuaderno Dos tasting menu at OBA- with your choice of Natura or Matices Olvidados pairing; a casual dinner at La Taberñita with burgers or sourdough pizzas and a drink; a meal with a tasting menu of your choice at Cañitas Maite (Pura Barra or Hits) with a drink included; and 2 nights in a double room with a free breakfast buffet (weekends).\n\nHow it works: you'll receive a PDF by email right after purchase, with your voucher details and how to redeem it. To book, just the order number or the buyer's name is needed. The voucher is valid for 6 months from the purchase date."
+    },
+    variants: [
+      { id: '53969654907227', n: 1, price: 580 },
+      { id: '53969654939995', n: 2, price: 995 }
+    ]
+  }
+];
+
+function obaLang() {
+  try { return localStorage.getItem('oba_lang') || 'es'; } catch (e) { return 'es'; }
+}
+function obaComensalLabel(n, lang) {
+  if (lang === 'en') return n + (n > 1 ? ' Guests' : ' Guest');
+  return n + (n > 1 ? ' Comensales' : ' Comensal');
+}
+function obaFormatPrice(v) { return v.toLocaleString('es-ES') + '€'; }
+function obaLoadCart() {
+  try { var raw = localStorage.getItem(OBA_CART_KEY); return raw ? JSON.parse(raw) : []; } catch (e) { return []; }
+}
+function obaSaveCart(cart) {
+  try { localStorage.setItem(OBA_CART_KEY, JSON.stringify(cart)); } catch (e) {}
+}
+function obaFindProductByVariant(variantId) {
+  for (var i = 0; i < OBA_PRODUCTS.length; i++) {
+    var p = OBA_PRODUCTS[i];
+    for (var j = 0; j < p.variants.length; j++) {
+      if (p.variants[j].id === variantId) return { product: p, variant: p.variants[j] };
+    }
+  }
+  return null;
+}
+
+function obaBuildProductCard(p, lang) {
+    var t = p[lang] || p.es;
+    var minPrice = p.variants[0].price;
+    var card = document.createElement('article');
+    card.className = 'oba-tienda-card';
+
+    var media = document.createElement('div');
+    media.className = 'oba-tienda-card-media';
+    var img = document.createElement('img');
+    img.src = p.image;
+    img.alt = t.title;
+    img.loading = 'lazy';
+    media.appendChild(img);
+    card.appendChild(media);
+
+    var body = document.createElement('div');
+    body.className = 'oba-tienda-card-body';
+
+    var title = document.createElement('h3');
+    title.className = 'oba-tienda-card-title';
+    title.textContent = t.title;
+    body.appendChild(title);
+
+    var desc = document.createElement('p');
+    desc.className = 'oba-tienda-card-desc';
+    desc.textContent = t.desc;
+    body.appendChild(desc);
+
+    if (t.long) {
+      var more = document.createElement('div');
+      more.className = 'oba-tienda-card-more';
+      t.long.split('\n\n').forEach(function (para) {
+        var p2 = document.createElement('p');
+        p2.textContent = para;
+        more.appendChild(p2);
+      });
+      body.appendChild(more);
+
+      var moreBtn = document.createElement('button');
+      moreBtn.type = 'button';
+      moreBtn.className = 'oba-tienda-more-btn';
+      var moreLabel = '+ INFO';
+      var lessLabel = '- INFO';
+      moreBtn.textContent = moreLabel;
+      moreBtn.setAttribute('aria-expanded', 'false');
+      moreBtn.addEventListener('click', function () {
+        var open = card.classList.toggle('is-expanded');
+        moreBtn.textContent = open ? lessLabel : moreLabel;
+        moreBtn.setAttribute('aria-expanded', String(open));
+      });
+      body.appendChild(moreBtn);
+    }
+
+    var price = document.createElement('p');
+    price.className = 'oba-tienda-card-price';
+    var descLabel = lang === 'en' ? 'From ' : 'Desde ';
+    price.innerHTML = descLabel + '<strong>' + obaFormatPrice(minPrice) + '</strong>';
+    body.appendChild(price);
+
+    var row = document.createElement('div');
+    row.className = 'oba-tienda-card-row';
+
+    var select = document.createElement('select');
+    select.className = 'oba-tienda-select';
+    select.setAttribute('aria-label', lang === 'en' ? 'Guests' : 'Comensales');
+    p.variants.forEach(function (v) {
+      var opt = document.createElement('option');
+      opt.value = v.id;
+      opt.textContent = obaComensalLabel(v.n, lang) + ' — ' + obaFormatPrice(v.price);
+      select.appendChild(opt);
+    });
+    row.appendChild(select);
+
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'oba-tienda-add';
+    var addLabel = lang === 'en' ? 'ADD' : 'AÑADIR';
+    btn.textContent = addLabel;
+    btn.addEventListener('click', function () {
+      var variantId = select.value;
+      var found = obaFindProductByVariant(variantId);
+      if (!found) return;
+      obaAddToCart(found.product, found.variant);
+      var addedLabel = lang === 'en' ? 'ADDED' : 'AÑADIDO';
+      btn.textContent = addedLabel;
+      btn.classList.add('is-added');
+      setTimeout(function () {
+        btn.textContent = addLabel;
+        btn.classList.remove('is-added');
+      }, 1100);
+    });
+    row.appendChild(btn);
+
+    body.appendChild(row);
+    card.appendChild(body);
+    return card;
+}
+
+function obaRenderProducts() {
+  var lang = obaLang();
+  var groups = { bono: [], experiencia: [] };
+  OBA_PRODUCTS.forEach(function (p) {
+    if (groups[p.category]) groups[p.category].push(p);
+  });
+  ['bono', 'experiencia'].forEach(function (cat) {
+    var grid = document.getElementById('oba-tienda-grid-' + cat);
+    if (!grid) return;
+    grid.innerHTML = '';
+    groups[cat]
+      .slice()
+      .sort(function (a, b) { return a.variants[0].price - b.variants[0].price; })
+      .forEach(function (p) { grid.appendChild(obaBuildProductCard(p, lang)); });
+  });
+}
+
+function obaAddToCart(product, variant) {
+  var cart = obaLoadCart();
+  var existing = cart.find(function (l) { return l.variantId === variant.id; });
+  if (existing) {
+    existing.qty += 1;
+  } else {
+    cart.push({ variantId: variant.id, handle: product.handle, image: product.image, n: variant.n, price: variant.price, qty: 1 });
+  }
+  obaSaveCart(cart);
+  obaRenderCart();
+  obaOpenCart();
+}
+
+function obaRemoveFromCart(variantId) {
+  var cart = obaLoadCart().filter(function (l) { return l.variantId !== variantId; });
+  obaSaveCart(cart);
+  obaRenderCart();
+}
+
+function obaRenderCart() {
+  var cart = obaLoadCart();
+  var lang = obaLang();
+  var itemsEl = document.getElementById('oba-cart-items');
+  var countEl = document.getElementById('oba-cart-count');
+  var subtotalEl = document.getElementById('oba-cart-subtotal-value');
+  var checkoutBtn = document.getElementById('oba-cart-checkout');
+  if (!itemsEl) return;
+
+  var totalQty = cart.reduce(function (s, l) { return s + l.qty; }, 0);
+  if (countEl) {
+    countEl.textContent = String(totalQty);
+    countEl.classList.toggle('visible', totalQty > 0);
+  }
+
+  itemsEl.innerHTML = '';
+  if (cart.length === 0) {
+    var empty = document.createElement('p');
+    empty.className = 'oba-cart-empty';
+    empty.textContent = lang === 'en' ? 'Your cart is empty.' : 'Tu cesta está vacía.';
+    itemsEl.appendChild(empty);
+  } else {
+    cart.forEach(function (l) {
+      var product = OBA_PRODUCTS.find(function (p) { return p.handle === l.handle; });
+      var t = product ? (product[lang] || product.es) : { title: l.handle };
+      var row = document.createElement('div');
+      row.className = 'oba-cart-item';
+
+      var img = document.createElement('img');
+      img.src = l.image;
+      img.alt = t.title;
+      row.appendChild(img);
+
+      var info = document.createElement('div');
+      info.className = 'oba-cart-item-info';
+
+      var title = document.createElement('p');
+      title.className = 'oba-cart-item-title';
+      title.textContent = t.title;
+      info.appendChild(title);
+
+      var variant = document.createElement('p');
+      variant.className = 'oba-cart-item-variant';
+      variant.textContent = obaComensalLabel(l.n, lang) + (l.qty > 1 ? ' × ' + l.qty : '');
+      info.appendChild(variant);
+
+      var bottomRow = document.createElement('div');
+      bottomRow.className = 'oba-cart-item-row';
+
+      var price = document.createElement('span');
+      price.className = 'oba-cart-item-price';
+      price.textContent = obaFormatPrice(l.price * l.qty);
+      bottomRow.appendChild(price);
+
+      var remove = document.createElement('button');
+      remove.type = 'button';
+      remove.className = 'oba-cart-item-remove';
+      remove.textContent = lang === 'en' ? 'Remove' : 'Eliminar';
+      remove.addEventListener('click', function () { obaRemoveFromCart(l.variantId); });
+      bottomRow.appendChild(remove);
+
+      info.appendChild(bottomRow);
+      row.appendChild(info);
+      itemsEl.appendChild(row);
+    });
+  }
+
+  var subtotal = cart.reduce(function (s, l) { return s + l.price * l.qty; }, 0);
+  if (subtotalEl) subtotalEl.textContent = obaFormatPrice(subtotal);
+  if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+}
+
+function obaOpenCart() {
+  var overlay = document.getElementById('oba-cart-overlay');
+  var drawer = document.getElementById('oba-cart-drawer');
+  if (overlay) overlay.classList.add('open');
+  if (drawer) drawer.classList.add('open');
+}
+function obaCloseCart() {
+  var overlay = document.getElementById('oba-cart-overlay');
+  var drawer = document.getElementById('oba-cart-drawer');
+  if (overlay) overlay.classList.remove('open');
+  if (drawer) drawer.classList.remove('open');
+}
+function obaBuildCheckoutUrl() {
+  var cart = obaLoadCart();
+  if (!cart.length) return null;
+  var parts = cart.map(function (l) { return l.variantId + ':' + l.qty; });
+  return OBA_SHOP_DOMAIN + '/cart/' + parts.join(',');
+}
+
+function obaInitTienda() {
+  if (!document.getElementById('oba-tienda-grid-bono')) return;
+  obaRenderProducts();
+  obaRenderCart();
+
+  var cartBtn = document.getElementById('oba-tienda-cart-btn');
+  var closeBtn = document.getElementById('oba-cart-close');
+  var overlay = document.getElementById('oba-cart-overlay');
+  var checkoutBtn = document.getElementById('oba-cart-checkout');
+
+  if (cartBtn) cartBtn.addEventListener('click', obaOpenCart);
+  if (closeBtn) closeBtn.addEventListener('click', obaCloseCart);
+  if (overlay) overlay.addEventListener('click', obaCloseCart);
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function () {
+      var url = obaBuildCheckoutUrl();
+      if (url) window.location.href = url;
+    });
+  }
+
+  document.querySelectorAll('.oba-lang-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      setTimeout(function () { obaRenderProducts(); obaRenderCart(); }, 0);
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInitTienda);
+} else {
+  obaInitTienda();
+}
+
+// ============================================================
+// REVEAL FOOTER — cruce de fondos al pasar el ratón por los links,
+// igual que en el hero de la Home.
+// ============================================================
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var links = document.querySelectorAll('.oba-reveal-link');
+    var layers = document.querySelectorAll('.oba-reveal-bg');
+    var nav = document.querySelector('.oba-reveal-nav');
+    var DEFAULT_BG = 'rv-bg-default';
+    if (!links.length || !layers.length) return;
+
+    function showBg(targetId) {
+      layers.forEach(function (layer) { layer.classList.remove('active'); });
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    }
+
+    links.forEach(function (link) {
+      var targetId = link.dataset.bg;
+      link.addEventListener('mouseenter', function () { showBg(targetId); });
+      link.addEventListener('focus', function () { showBg(targetId); });
+    });
+
+    if (nav) {
+      nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+      nav.addEventListener('focusout', function (e) {
+        if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+      });
+    }
+
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+  function getConsent() { try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+  function setConsent(value) { try { localStorage.setItem(KEY, value); } catch (e) {} }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function texts() {
+    var lang = 'es';
+    try { lang = (localStorage.getItem('oba_lang') || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    if (lang === 'en') {
+      return {
+        text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',
+        link: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject non-essential'
+      };
+    }
+    return {
+      text: 'Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra ',
+      link: 'Política de Cookies',
+      accept: 'Aceptar',
+      reject: 'Rechazar no esenciales'
+    };
+  }
+
+  function buildBanner() {
+    var t = texts();
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Aviso de cookies');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">' + t.text + '<a href="/politica-cookies/">' + t.link + '</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>

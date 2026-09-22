@@ -42,7 +42,6 @@ function obaApplyLang(lang) {
 }
 
 function obaInit() {
-  console.log('[oba] script cargado correctamente');
   let saved = 'es';
   try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
   obaApplyLang(saved);
@@ -59,8 +58,6 @@ function obaInit() {
       menuBtn.classList.toggle('active', isOpen);
       menuBtn.setAttribute('aria-expanded', String(isOpen));
     });
-  } else {
-    console.warn('[oba] no se encontró el botón de menú o #oba-inline-menu');
   }
 
   var links = document.querySelectorAll('.oba-page .oba-hero-link');
@@ -83,7 +80,6 @@ function obaInit() {
       if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
     });
   }
-  if (!links.length) console.warn('[oba] no se encontraron .oba-hero-link');
 
   // En móvil no hay hover: las fotos van rotando solas cada ~2s
   if (layers.length) {

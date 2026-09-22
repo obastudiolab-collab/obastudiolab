@@ -1,0 +1,750 @@
+<!-- ================================================================
+  PÁGINA: EVENTOS ESPECIALES — pegar todo esto en un único widget "HTML" de Elementor
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La Sección/Contenedor que contenga este widget debe estar en modo
+    "Full Width" (ancho completo) y con Margen/Relleno a 0 — si no, el
+    contenido queda encogido con huecos a los lados (visto ya en Restaurante).
+    La sección/columna que contenga este widget tampoco debe tener Motion
+    Effects (sticky, parallax...) porque rompe el position: fixed.
+    Las imágenes ya llevan la URL real de la Mediateca (wp-content/uploads/...).
+    Solo funciona si subes antes los archivos de /wp-uploads/ con ESE MISMO
+    nombre y SIN que WordPress las meta en subcarpetas de mes/año
+    (ver README.md de esta carpeta para el porqué).
+    OJO: el botón "MÁS INFORMACIÓN" de Oba x Ima sigue con href="#" —
+    en la web local tampoco está enlazado a nada todavía. Si ya tienes
+    un destino (página, PDF, formulario...) dime y lo actualizo.
+================================================================ -->
+<style>
+html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #0c0c0c !important;
+  color: #fff !important;
+}
+
+/* -------- Header, versión oscura (fondo con foto detrás, texto blanco) -------- */
+.oba-rs-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-rs-logo { display: block; width: 90px; margin: 0; }
+.oba-rs-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(255,255,255,0.55) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover,
+.oba-page .oba-lang-btn:focus { color: rgba(255,255,255,0.85) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #fff !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #fff !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(255,255,255,0.7) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover,
+.oba-page .oba-inline-menu a:focus-visible { color: #fff !important; }
+
+@media (max-width: 700px) {
+  .oba-rs-header { padding: 20px 24px; }
+  .oba-rs-logo { width: 64px; }
+}
+
+/* -------- Hero: foto completa de fondo (se repite, una por evento) -------- */
+.oba-rs-hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #0c0c0c;
+  background-size: cover;
+  background-position: center;
+  padding: 160px 24px 100px;
+}
+.oba-rs-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 40%, rgba(0,0,0,0.75) 100%);
+}
+.oba-rs-hero-content {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+  text-align: center;
+}
+.oba-rs-kicker {
+  font-size: 13px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.7) !important;
+  margin: 0 0 20px;
+}
+.oba-rs-hero-content h1 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: clamp(32px, 4.6vw, 52px) !important;
+  font-weight: 500 !important;
+  line-height: 1.15;
+  color: #fff !important;
+  margin: 0 0 24px;
+}
+.oba-rs-intro {
+  font-size: 15px !important;
+  line-height: 1.8;
+  color: rgba(255,255,255,0.8) !important;
+  margin: 0 0 36px;
+}
+
+.oba-rs-details {
+  list-style: none;
+  margin: 0 0 36px;
+  padding: 24px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.2);
+  display: inline-flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: left;
+}
+.oba-rs-details li {
+  font-size: 13px !important;
+  font-weight: 300 !important;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.65) !important;
+}
+.oba-rs-details li strong { color: #fff !important; font-weight: 500 !important; }
+
+.oba-rs-btn {
+  display: inline-block;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border: none !important;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.08) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-rs-btn:hover { background: rgba(255,255,255,0.18) !important; }
+
+@media (max-width: 700px) {
+  .oba-rs-hero { padding: 132px 24px 70px; }
+}
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+</style>
+
+<div class="oba-page">
+  <header class="oba-rs-header">
+    <a href="/" class="oba-rs-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
+        <a href="/nosotros/#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda/" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="oba-rs-hero" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-galeria-restaurante.jpg');">
+    <div class="oba-rs-overlay"></div>
+    <div class="oba-rs-hero-content">
+      <p class="oba-rs-kicker" data-i18n="ev1_kicker">01 — EVENTOS ESPECIALES</p>
+      <h1 data-i18n="ev1_title">Oba x Ima</h1>
+      <p class="oba-rs-intro" data-i18n="ev1_text">Dos veces al año, nuestros chefs y su cocina con estrella Michelin salen de Casas-Ibáñez para instalarse un día en Ima. Un menú y un maridaje pensados para esa mesa y esa fecha concretas.</p>
+
+      <ul class="oba-rs-details">
+        <li data-i18n="ev1_detail_1">Dos citas al año — por ejemplo, abril y septiembre</li>
+        <li data-i18n="ev1_detail_2">Menú: aprox. 130€ p.p., con maridaje</li>
+      </ul>
+
+      <div>
+        <a class="oba-rs-btn" href="#" data-i18n="ev1_btn">MÁS INFORMACIÓN</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="oba-rs-hero" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');">
+    <div class="oba-rs-overlay"></div>
+    <div class="oba-rs-hero-content">
+      <p class="oba-rs-kicker" data-i18n="ev2_kicker">02 — EVENTOS ESPECIALES</p>
+      <h1 data-i18n="ev2_title">Oba 360 Experiencia</h1>
+      <p class="oba-rs-intro" data-i18n="ev2_text">Un recorrido completo por Oba-, dentro y fuera de la cocina. Traslado en transporte privado hasta el huerto (20 min aprox.), recogida de vegetales, aperitivo de bienvenida y bebidas fermentadas, y vuelta al restaurante para completar la experiencia de Cuaderno Dos.</p>
+
+      <ul class="oba-rs-details">
+        <li data-i18n="ev2_detail_1">Traslado privado Oba- ↔ huerto (20 min aprox.)</li>
+        <li data-i18n="ev2_detail_2">Recogida de vegetales, aperitivo de bienvenida y fermentados</li>
+        <li data-i18n="ev2_detail_3">Alojamiento y desayuno: consultar</li>
+        <li data-i18n="ev2_detail_4">Solo con noche — semana del 3 al 6 de septiembre</li>
+      </ul>
+
+      <div>
+        <a class="oba-rs-btn" href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="ev2_btn">RESERVAR</a>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="oba-reveal-footer">
+  <a href="/" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-bar" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-nosotros.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/restaurante/" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="/entorno/" class="oba-reveal-link" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="/nosotros/" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+  </nav>
+  <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal/">Aviso Legal</a><span>·</span><a href="/politica-privacidad/">Privacidad</a><span>·</span><a href="/politica-cookies/">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
+// (solo con las claves de texto que usa esta página).
+// ============================================================
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+    ev1_kicker: "01 — EVENTOS ESPECIALES",
+    ev1_title: "Oba x Ima",
+    ev1_text: "Dos veces al año, nuestros chefs y su cocina con estrella Michelin salen de Casas-Ibáñez para instalarse un día en Ima. Un menú y un maridaje pensados para esa mesa y esa fecha concretas.",
+    ev1_detail_1: "Dos citas al año — por ejemplo, abril y septiembre",
+    ev1_detail_2: "Menú: aprox. 130€ p.p., con maridaje",
+    ev1_btn: "MÁS INFORMACIÓN",
+    ev2_kicker: "02 — EVENTOS ESPECIALES",
+    ev2_title: "Oba 360 Experiencia",
+    ev2_text: "Un recorrido completo por Oba-, dentro y fuera de la cocina. Traslado en transporte privado hasta el huerto (20 min aprox.), recogida de vegetales, aperitivo de bienvenida y bebidas fermentadas, y vuelta al restaurante para completar la experiencia de Cuaderno Dos.",
+    ev2_detail_1: "Traslado privado Oba- ↔ huerto (20 min aprox.)",
+    ev2_detail_2: "Recogida de vegetales, aperitivo de bienvenida y fermentados",
+    ev2_detail_3: "Alojamiento y desayuno: consultar",
+    ev2_detail_4: "Solo con noche — semana del 3 al 6 de septiembre",
+    ev2_btn: "RESERVAR"
+  },
+  en: {
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language",
+    ev1_kicker: "01 — SPECIAL EVENTS",
+    ev1_title: "Oba x Ima",
+    ev1_text: "Twice a year, our chefs and their Michelin-starred cuisine leave Casas-Ibáñez to set up for a day at Ima. A menu and a pairing designed for that specific table, on that specific date.",
+    ev1_detail_1: "Two dates a year — for example, April and September",
+    ev1_detail_2: "Menu: approx. €130 p.p., with pairing",
+    ev1_btn: "MORE INFORMATION",
+    ev2_kicker: "02 — SPECIAL EVENTS",
+    ev2_title: "Oba 360 Experience",
+    ev2_text: "A complete journey through Oba-, both inside and outside the kitchen. Private transport to the garden (approx. 20 min), vegetable picking, a welcome bite and fermented drinks, then back to the restaurant to complete the Cuaderno Dos experience.",
+    ev2_detail_1: "Private transfer Oba- ↔ garden (approx. 20 min)",
+    ev2_detail_2: "Vegetable picking, a welcome bite and fermented drinks",
+    ev2_detail_3: "Accommodation and breakfast: on request",
+    ev2_detail_4: "Overnight only — week of September 3–6",
+    ev2_btn: "BOOK"
+  }
+};
+
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
+
+function obaInit() {
+  let saved = 'es';
+  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  obaApplyLang(saved);
+
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
+
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+
+// ============================================================
+// REVEAL FOOTER — cruce de fondos al pasar el ratón por los links,
+// igual que en el hero de la Home.
+// ============================================================
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var links = document.querySelectorAll('.oba-reveal-link');
+    var layers = document.querySelectorAll('.oba-reveal-bg');
+    var nav = document.querySelector('.oba-reveal-nav');
+    var DEFAULT_BG = 'rv-bg-default';
+    if (!links.length || !layers.length) return;
+
+    function showBg(targetId) {
+      layers.forEach(function (layer) { layer.classList.remove('active'); });
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    }
+
+    links.forEach(function (link) {
+      var targetId = link.dataset.bg;
+      link.addEventListener('mouseenter', function () { showBg(targetId); });
+      link.addEventListener('focus', function () { showBg(targetId); });
+    });
+
+    if (nav) {
+      nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+      nav.addEventListener('focusout', function (e) {
+        if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+      });
+    }
+
+    // En móvil no hay hover: las fotos van rotando solas cada ~2s
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+
+  // Sustituir por el ID de medición real de Google Analytics (GA4),
+  // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function texts() {
+    var lang = 'es';
+    try { lang = (localStorage.getItem('oba_lang') || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    if (lang === 'en') {
+      return {
+        text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',
+        link: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject non-essential'
+      };
+    }
+    return {
+      text: 'Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra ',
+      link: 'Política de Cookies',
+      accept: 'Aceptar',
+      reject: 'Rechazar no esenciales'
+    };
+  }
+
+  function buildBanner() {
+    var t = texts();
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Aviso de cookies');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">' + t.text + '<a href="/politica-cookies/">' + t.link + '</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>

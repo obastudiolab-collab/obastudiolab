@@ -1,0 +1,810 @@
+<!-- ================================================================
+  PÁGINA: NOSOTROS — pegar todo esto en un único widget "HTML" de Elementor
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La Sección/Contenedor que contenga este widget debe estar en modo
+    "Full Width" (ancho completo) y con Margen/Relleno a 0 — si no, el
+    contenido queda encogido con huecos a los lados (visto ya en Restaurante).
+    La sección/columna que contenga este widget tampoco debe tener Motion
+    Effects (sticky, parallax...) porque rompe el position: fixed.
+    Las imágenes ya llevan la URL real de la Mediateca (wp-content/uploads/...).
+    Solo funciona si subes antes los archivos de /wp-uploads/ con ESE MISMO
+    nombre y SIN que WordPress las meta en subcarpetas de mes/año
+    (ver README.md de esta carpeta para el porqué).
+    El ancla de CONTACTO (#contacto) usada por el menú de todas las páginas
+    apunta a esta página: el slug de esta página debe ser "nosotros".
+================================================================ -->
+<style>
+html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #fae1c0 !important;
+  color: #1a1a1a !important;
+}
+
+/* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
+.oba-page .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(26,26,26,0.45) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-detail-header { padding: 20px 24px; }
+}
+
+/* -------- Bloque superior: descripción a la izquierda, prensa a la derecha -------- */
+.oba-page .oba-nosotros-top {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 90px;
+  align-items: start;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 180px 48px 100px;
+}
+
+/* -------- Intro: titular + texto + botones -------- */
+.oba-page .oba-nosotros-intro {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.oba-page .oba-nosotros-intro .oba-nosotros-eyebrow,
+.oba-page .oba-nosotros-press h2 {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.18em;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-nosotros-eyebrow { margin: 0 0 28px; }
+.oba-page .oba-nosotros-dash {
+  width: 28px;
+  height: 1px;
+  background: #1a1a1a;
+  opacity: 0.35;
+  margin: 0 auto 40px;
+}
+.oba-page .oba-nosotros-intro p {
+  font-size: 16px !important;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  color: #2a2a2a !important;
+}
+.oba-page .oba-nosotros-intro em { font-style: italic; color: #1a1a1a; }
+
+.oba-page .oba-nosotros-btn-row {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}
+.oba-page .oba-btn-outline {
+  display: inline-block;
+  border: 1px solid #9d7759;
+  color: #9d7759 !important;
+  background: transparent !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em;
+  padding: 16px 28px;
+  text-decoration: none !important;
+  text-align: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.oba-page .oba-btn-outline:hover { background: #9d7759 !important; color: #fff !important; }
+
+/* -------- Prensa -------- */
+.oba-page .oba-nosotros-press {
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 0;
+  text-align: center;
+}
+.oba-page .oba-nosotros-press h2 { margin: 0 0 48px; }
+.oba-page .oba-press-item {
+  display: block;
+  margin-bottom: 30px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.oba-page .oba-press-item:hover { opacity: 0.6; }
+.oba-page .oba-press-item:hover .oba-press-name { color: #9d7759 !important; }
+.oba-page .oba-press-name {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  margin: 0 0 6px;
+  color: #1a1a1a !important;
+  transition: color 0.2s ease;
+}
+.oba-page .oba-press-detail {
+  font-size: 13px !important;
+  font-style: italic;
+  color: rgba(26,26,26,0.5) !important;
+  margin: 0;
+}
+.oba-page .oba-press-extra {
+  display: block;
+  margin-top: 36px;
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+.oba-page .oba-press-extra:hover { opacity: 0.6; }
+.oba-page .oba-press-extra .oba-press-detail { font-size: 12px !important; }
+
+/* -------- Info -------- */
+.oba-page .oba-nosotros-info {
+  border-top: 1px solid rgba(26,26,26,0.12);
+  padding: 56px 24px 90px;
+  text-align: center;
+}
+.oba-page .oba-info-row { margin-bottom: 16px; font-size: 14px !important; }
+.oba-page .oba-info-row:last-child { margin-bottom: 0; }
+.oba-page .oba-info-label { font-weight: 600; color: #1a1a1a !important; }
+.oba-page .oba-info-value { color: #9d7759 !important; text-decoration: none; }
+.oba-page .oba-info-value:hover { text-decoration: underline; }
+
+@media (max-width: 980px) {
+  .oba-page .oba-nosotros-top {
+    grid-template-columns: 1fr;
+    gap: 72px;
+    padding: 150px 24px 80px;
+  }
+  .oba-page .oba-nosotros-press {
+    max-width: 520px;
+    padding-top: 60px;
+    border-top: 1px solid rgba(26,26,26,0.12);
+  }
+}
+
+@media (max-width: 700px) {
+  .oba-page .oba-nosotros-top { padding: 130px 24px 70px; }
+}
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+</style>
+
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="/" class="oba-detail-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo-dark.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <span class="oba-lang-sep">/</span>
+      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+    </div>
+
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
+        <a href="/nosotros/#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda/" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <div class="oba-nosotros-top">
+
+    <section class="oba-nosotros-intro">
+      <p class="oba-nosotros-eyebrow" data-i18n="h_nosotros_eyebrow">COCINA CON RAÍZ</p>
+      <div class="oba-nosotros-dash"></div>
+      <p><em>Oba-</em><span data-i18n="p_nosotros_0">, que en bonifaciano significa raíz, </span><span data-i18n="p_nosotros_1">es la cocina que Javier Sanz y Juan Sahuquillo sueñan con llevar al mundo desde Casas-Ibáñez, su pueblo natal.</span></p>
+      <p data-i18n="p_nosotros_2">Cañitas Maite, el negocio familiar que los vio crecer, es la raíz de la que nace Oba-: un espacio de solo cuatro mesas donde cada plato se cuenta a través de un cuaderno inspirado en las tradiciones y la técnica de nuestra tierra.</p>
+      <div class="oba-nosotros-btn-row">
+        <a class="oba-btn-outline" href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="btn_reservar_2">RESERVAR</a>
+        <a class="oba-btn-outline" href="https://hotelcanitasmaite.com/hotel/" target="_blank" rel="noopener" data-i18n="btn_eventos_oba">ALOJAMIENTO</a>
+      </div>
+    </section>
+
+    <section class="oba-nosotros-press">
+      <h2 data-i18n="h_prensa">PRENSA</h2>
+
+      <a class="oba-press-item" href="https://guide.michelin.com/es/es/castilla-la-mancha/casas-ibanez/restaurante/oba" target="_blank" rel="noopener">
+        <p class="oba-press-name" data-i18n="press_1_name">Guía MICHELIN</p>
+        <p class="oba-press-detail" data-i18n="press_1_detail">1 Estrella Michelin y Estrella Verde — Javier Sanz &amp; Juan Sahuquillo</p>
+      </a>
+      <a class="oba-press-item" href="https://www.guiarepsol.com/es/comer/nuestros-favoritos/restaurante-oba-albacete/" target="_blank" rel="noopener">
+        <p class="oba-press-name" data-i18n="press_2_name">Guía Repsol</p>
+        <p class="oba-press-detail" data-i18n="press_2_detail">2 Soles Repsol</p>
+      </a>
+      <a class="oba-press-item" href="https://www.elespanol.com/cocinillas/actualidad-gastronomica/20230607/espanol-seleccionado-segundo-mejor-nuevo-restaurante-europa/769673064_0.html" target="_blank" rel="noopener">
+        <p class="oba-press-name" data-i18n="press_3_name">OAD — Opinionated About Dining</p>
+        <p class="oba-press-detail" data-i18n="press_3_detail">2º Mejor Apertura de Restaurante Europeo</p>
+      </a>
+      <a class="oba-press-item" href="https://thebestchefawards.com/chefs/javier-sanz-juan-sahuquillo/" target="_blank" rel="noopener">
+        <p class="oba-press-name" data-i18n="press_4_name">The Best Chef Awards</p>
+        <p class="oba-press-detail" data-i18n="press_4_detail">Un Cuchillo — Javier Sanz &amp; Juan Sahuquillo</p>
+      </a>
+
+      <a class="oba-press-extra" href="https://www.elespanol.com/cocinillas/actualidad-gastronomica/20240301/restaurante-albacete-estrella-michelin-cocinado-rey-felipe-vi-madrid/836666677_0.html" target="_blank" rel="noopener">
+        <p class="oba-press-detail" data-i18n="press_extra_1">Casa Real de España — Menú servido a S.M. el Rey Felipe VI</p>
+      </a>
+    </section>
+
+  </div>
+
+
+  <section class="oba-nosotros-info" id="contacto">
+    <p class="oba-info-row"><span class="oba-info-label" data-i18n="info_label_info">Info:</span> <a class="oba-info-value" href="mailto:info.restauranteoba@gmail.com">info.restauranteoba@gmail.com</a></p>
+    <p class="oba-info-row"><span class="oba-info-label" data-i18n="info_label_reservas">Reservas:</span> <a class="oba-info-value" href="tel:+34604962117">+34 604 962 117</a></p>
+    <p class="oba-info-row"><span class="oba-info-label" data-i18n="info_label_prensa">Prensa:</span> <a class="oba-info-value" href="mailto:prensa@oba-restaurante.com">prensa@oba-restaurante.com</a></p>
+  </section>
+
+</div>
+
+<footer class="oba-reveal-footer">
+  <a href="/" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-bar" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-nosotros.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/restaurante/" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="/entorno/" class="oba-reveal-link" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="/nosotros/" class="oba-reveal-link active" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+  </nav>
+  <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal/">Aviso Legal</a><span>·</span><a href="/politica-privacidad/">Privacidad</a><span>·</span><a href="/politica-cookies/">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
+// (solo con las claves de texto que usa esta página).
+// ============================================================
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+    h_nosotros_eyebrow: "COCINA CON RAÍZ",
+    p_nosotros_0: ", que en bonifaciano significa raíz, ",
+    p_nosotros_1: "es la cocina que Javier Sanz y Juan Sahuquillo sueñan con llevar al mundo desde Casas-Ibáñez, su pueblo natal.",
+    p_nosotros_2: "Cañitas Maite, el negocio familiar que los vio crecer, es la raíz de la que nace Oba-: un espacio de solo cuatro mesas donde cada plato se cuenta a través de un cuaderno inspirado en las tradiciones y la técnica de nuestra tierra.",
+    btn_reservar_2: "RESERVAR",
+    btn_eventos_oba: "ALOJAMIENTO",
+    h_prensa: "PRENSA",
+    press_1_name: "Guía MICHELIN",
+    press_1_detail: "1 Estrella Michelin y Estrella Verde — Javier Sanz & Juan Sahuquillo",
+    press_2_name: "Guía Repsol",
+    press_2_detail: "2 Soles Repsol",
+    press_3_name: "OAD — Opinionated About Dining",
+    press_3_detail: "2º Mejor Apertura de Restaurante Europeo",
+    press_4_name: "The Best Chef Awards",
+    press_4_detail: "Un Cuchillo — Javier Sanz & Juan Sahuquillo",
+    press_extra_1: "Casa Real de España — Menú servido a S.M. el Rey Felipe VI",
+    info_label_info: "Info:",
+    info_label_reservas: "Reservas:",
+    info_label_prensa: "Prensa:"
+  },
+  en: {
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language",
+    h_nosotros_eyebrow: "CUISINE WITH ROOTS",
+    p_nosotros_0: ", which in bonifaciano means root, ",
+    p_nosotros_1: "is the cuisine that Javier Sanz and Juan Sahuquillo dream of bringing to the world from Casas-Ibáñez, their home town.",
+    p_nosotros_2: "Cañitas Maite, the family business that watched them grow up, is the root Oba- was born from: a space with just four tables where every dish is told through a notebook inspired by the traditions and technique of our land.",
+    btn_reservar_2: "BOOK NOW",
+    btn_eventos_oba: "ACCOMMODATION",
+    h_prensa: "PRESS",
+    press_1_name: "MICHELIN Guide",
+    press_1_detail: "1 Michelin Star and Green Star — Javier Sanz & Juan Sahuquillo",
+    press_2_name: "Repsol Guide",
+    press_2_detail: "2 Repsol Suns",
+    press_3_name: "OAD — Opinionated About Dining",
+    press_3_detail: "2nd Best European Restaurant Opening",
+    press_4_name: "The Best Chef Awards",
+    press_4_detail: "One Knife — Javier Sanz & Juan Sahuquillo",
+    press_extra_1: "Spanish Royal Household — Menu served to H.M. King Felipe VI",
+    info_label_info: "Info:",
+    info_label_reservas: "Reservations:",
+    info_label_prensa: "Press:"
+  }
+};
+
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
+
+function obaInit() {
+  let saved = 'es';
+  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  obaApplyLang(saved);
+
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
+
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+
+// ============================================================
+// REVEAL FOOTER — cruce de fondos al pasar el ratón por los links,
+// igual que en el hero de la Home.
+// ============================================================
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var links = document.querySelectorAll('.oba-reveal-link');
+    var layers = document.querySelectorAll('.oba-reveal-bg');
+    var nav = document.querySelector('.oba-reveal-nav');
+    var DEFAULT_BG = 'rv-bg-default';
+    if (!links.length || !layers.length) return;
+
+    function showBg(targetId) {
+      layers.forEach(function (layer) { layer.classList.remove('active'); });
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    }
+
+    links.forEach(function (link) {
+      var targetId = link.dataset.bg;
+      link.addEventListener('mouseenter', function () { showBg(targetId); });
+      link.addEventListener('focus', function () { showBg(targetId); });
+    });
+
+    if (nav) {
+      nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+      nav.addEventListener('focusout', function (e) {
+        if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+      });
+    }
+
+    // En móvil no hay hover: las fotos van rotando solas cada ~2s
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+
+  // Sustituir por el ID de medición real de Google Analytics (GA4),
+  // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function texts() {
+    var lang = 'es';
+    try { lang = (localStorage.getItem('oba_lang') || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    if (lang === 'en') {
+      return {
+        text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',
+        link: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject non-essential'
+      };
+    }
+    return {
+      text: 'Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra ',
+      link: 'Política de Cookies',
+      accept: 'Aceptar',
+      reject: 'Rechazar no esenciales'
+    };
+  }
+
+  function buildBanner() {
+    var t = texts();
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Aviso de cookies');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">' + t.text + '<a href="/politica-cookies/">' + t.link + '</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>

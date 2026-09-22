@@ -1,0 +1,22 @@
+{
+  "name": "oba-film",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "audio": "node make-audio.js",
+    "render": "remotion render src/index.ts Film out/oba-film-1080p.mp4 --codec h264 --crf 16",
+    "render4k": "remotion render src/index.ts Film out/oba-film-4k.mp4 --codec h264 --crf 16 --scale 2"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.526",
+    "@remotion/effects": "4.0.526",
+    "@remotion/google-fonts": "^4.0.526",
+    "@remotion/transitions": "4.0.526",
+    "@types/react": "^19.3.0",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "remotion": "^4.0.526",
+    "typescript": "^7.0.2"
+  }
+}

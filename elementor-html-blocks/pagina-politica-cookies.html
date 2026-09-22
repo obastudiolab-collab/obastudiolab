@@ -1,0 +1,529 @@
+<!-- ================================================================
+  PÁGINA: POLÍTICA DE COOKIES — pegar todo esto en un único widget "HTML" de Elementor
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La Sección/Contenedor que contenga este widget debe estar en modo
+    "Full Width" (ancho completo) y con Margen/Relleno a 0 — si no, el
+    contenido queda encogido con huecos a los lados (visto ya en Restaurante).
+    La sección/columna que contenga este widget tampoco debe tener Motion
+    Effects (sticky, parallax...) porque rompe el position: fixed.
+    Las imágenes ya llevan la URL real de la Mediateca (wp-content/uploads/...).
+    Solo funciona si subes antes los archivos de /wp-uploads/ con ESE MISMO
+    nombre y SIN que WordPress las meta en subcarpetas de mes/año
+    (ver README.md de esta carpeta para el porqué).
+    Esta página (y las otras 2 legales) no tienen selector de idioma ES/EN
+    como el resto del sitio — solo existen en español, igual que en la web
+    local. Revisión legal recomendada: estos textos no sustituyen el
+    asesoramiento de un abogado.
+================================================================ -->
+<style>
+html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #fae1c0 !important;
+  color: #1a1a1a !important;
+}
+
+/* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
+.oba-page .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  color: #1a1a1a !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-detail-header { padding: 20px 24px; }
+}
+
+/* -------- Páginas legales: artículo de lectura sobre fondo crema -------- */
+.oba-page .oba-legal-content {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 170px 24px 120px;
+}
+.oba-page .oba-legal-content h1 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: clamp(28px, 3.4vw, 40px) !important;
+  font-weight: 600 !important;
+  margin: 0 0 12px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-legal-updated {
+  font-size: 13px !important;
+  color: rgba(26,26,26,0.5) !important;
+  margin: 0 0 56px;
+}
+.oba-page .oba-legal-content h2 {
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+  margin: 48px 0 16px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-legal-content p,
+.oba-page .oba-legal-content li {
+  font-size: 15px !important;
+  line-height: 1.75;
+  color: #2a2a2a !important;
+  margin: 0 0 16px;
+}
+.oba-page .oba-legal-content ul,
+.oba-page .oba-legal-content ol {
+  margin: 0 0 20px;
+  padding-left: 22px;
+}
+.oba-page .oba-legal-content a { color: #9d7759 !important; }
+.oba-page .oba-legal-content strong { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-legal-content { padding: 132px 20px 90px; }
+}
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+</style>
+
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="/" class="oba-detail-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo-dark.png" alt="oba-">
+    </a>
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma">
+      <span class="oba-lang-btn active">ES</span>
+    </div>
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener">RESERVA</a>
+        <a href="/nosotros/#contacto">CONTACTO</a>
+        <a href="/tienda/">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <article class="oba-legal-content">
+    <h1>Política de Cookies</h1>
+    <p class="oba-legal-updated">Última actualización: 18 de septiembre de 2026</p>
+
+    <h2>1. Qué son las cookies</h2>
+    <p>Las cookies y tecnologías similares (como el almacenamiento local del navegador o <em>localStorage</em>) son pequeños archivos que un sitio web guarda en tu dispositivo para recordar información sobre tu visita, como tus preferencias o si ya has visto un determinado aviso.</p>
+
+    <h2>2. Cookies técnicas (siempre activas)</h2>
+    <p>Son necesarias para el funcionamiento básico del Sitio Web y están exentas de consentimiento conforme al artículo 22.2 de la LSSI-CE:</p>
+    <ul>
+      <li><strong>Idioma (<code>oba_lang</code>):</strong> guarda si prefieres ver el Sitio Web en español o en inglés, para no preguntártelo en cada página.</li>
+      <li><strong>Consentimiento de cookies (<code>oba_cookie_consent</code>):</strong> guarda si has aceptado o rechazado las cookies no esenciales, para no mostrarte de nuevo el aviso en cada visita.</li>
+    </ul>
+    <p>Al cargar tipografías desde Google Fonts, tu navegador establece una conexión directa con los servidores de Google, que puede implicar el tratamiento de tu dirección IP por parte de Google conforme a su propia política; esto no constituye una cookie propia de oba-, pero se informa por transparencia.</p>
+
+    <h2>3. Cookies de analítica (solo con tu consentimiento)</h2>
+    <p>Si pulsas "Aceptar" en el aviso de cookies, activamos <strong>Google Analytics</strong> (Google Ireland Limited) para conocer de forma agregada cómo se usa el Sitio Web (páginas más visitadas, procedencia de las visitas, tipo de dispositivo). Si pulsas "Rechazar no esenciales", estas cookies no se instalan. Las principales cookies de Google Analytics son:</p>
+    <ul>
+      <li><strong><code>_ga</code>:</strong> distingue a los usuarios de forma anónima. Duración: 2 años.</li>
+      <li><strong><code>_ga_&lt;container-id&gt;</code>:</strong> mantiene el estado de la sesión de análisis. Duración: 2 años.</li>
+      <li><strong><code>_gid</code>:</strong> distingue a los usuarios durante 24 horas.</li>
+    </ul>
+    <p>Puedes consultar más información sobre estas cookies en la <a href="https://policies.google.com/technologies/cookies" target="_blank" rel="noopener">política de cookies de Google</a>, y desactivar la analítica de Google en cualquier sitio web instalando el <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">complemento de inhabilitación para navegadores de Google Analytics</a>.</p>
+    <p>El Sitio Web no utiliza cookies de publicidad ni de redes sociales en la actualidad. Si se incorporan en el futuro, esta política se actualizará y se ampliará el aviso de consentimiento.</p>
+
+    <h2>4. Panel de consentimiento</h2>
+    <p>La primera vez que visitas el Sitio Web te mostramos un aviso en el que puedes <strong>aceptar</strong> o <strong>rechazar</strong> el uso de cookies no esenciales (analítica). Mientras no des una respuesta, o si rechazas, Google Analytics permanece desactivado. Tu decisión se guarda para no volver a preguntarte en próximas visitas. Puedes cambiar de opinión en cualquier momento borrando los datos de navegación de tu navegador para este sitio, lo que hará que el aviso vuelva a aparecer.</p>
+
+    <h2>5. Cómo gestionar o eliminar las cookies desde tu navegador</h2>
+    <p>Además del panel de consentimiento, puedes permitir, bloquear o eliminar las cookies instaladas en tu equipo mediante la configuración de tu navegador:</p>
+    <ul>
+      <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+      <li><a href="https://support.mozilla.org/es/kb/proteccion-mejorada-contra-el-rastreo-firefox-escritorio" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+      <li><a href="https://support.apple.com/es-es/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+      <li><a href="https://support.microsoft.com/es-es/microsoft-edge" target="_blank" rel="noopener">Microsoft Edge</a></li>
+    </ul>
+  </article>
+</div>
+
+<footer class="oba-reveal-footer">
+  <a href="/" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/restaurante/" class="oba-reveal-link">RESTAURANTE</a>
+    <a href="/entorno/" class="oba-reveal-link">ENTORNO</a>
+    <a href="/nosotros/" class="oba-reveal-link">NOSOTROS</a>
+  </nav>
+  <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve">RESERVAR</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal/">Aviso Legal</a><span>·</span><a href="/politica-privacidad/">Privacidad</a><span>·</span><a href="/politica-cookies/">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MENÚ HAMBURGUESA — esta página no lleva motor de traducción
+// (las páginas legales solo existen en español).
+// ============================================================
+(function () {
+  var btn = document.querySelector('.oba-menu-btn');
+  var menu = document.getElementById('oba-inline-menu');
+  if (!btn || !menu) return;
+  btn.addEventListener('click', function () {
+    var isOpen = menu.classList.toggle('open');
+    btn.classList.toggle('active', isOpen);
+    btn.setAttribute('aria-expanded', String(isOpen));
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+
+  // Sustituir por el ID de medición real de Google Analytics (GA4),
+  // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
+  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function buildBanner() {
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Aviso de cookies');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra <a href="/politica-cookies/">Política de Cookies</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">Rechazar no esenciales</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">Aceptar</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>

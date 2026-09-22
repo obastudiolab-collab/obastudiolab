@@ -1,1 +1,5 @@
 .DS_Store
+
+# oba-film (video project): don't commit dependencies or rendered output
+oba-film/node_modules/
+oba-film/out/
