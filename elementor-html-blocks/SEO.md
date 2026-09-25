@@ -76,3 +76,11 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 5. Publicar Novedades cada 2–3 semanas con enlace a la web.
 6. Revisar que "Para llevar" y "A domicilio" figuren como no disponibles.
 7. No cambiar el nombre ("OBA-").
+
+## Visibilidad en IA y Bing (25/09/2026)
+
+- Rastreadores de IA comprobados con acceso (200): bingbot, OAI-SearchBot, GPTBot, ChatGPT-User, PerplexityBot, ClaudeBot, Google-Extended. No bloquearlos en Wordfence ni en robots.txt.
+- `llms.txt` activo (Rank Math → Ajustes generales → Editar llms.txt): lista automática de páginas desactivada; resumen y "Contenido adicional" escritos a mano con datos clave y las 12 páginas principales. **Si cambia el horario, el teléfono o una página, actualizarlo también ahí.**
+- Bing Webmaster Tools: propiedad importada desde Search Console (cuenta marketingcanitasmaite@gmail.com); sitemap `sitemap_index.xml` leído sin errores.
+- IndexNow (Rank Math → Indexado instantáneo): activo; enviadas las 16 URLs.
+- Wikidata: ver [WIKIDATA.md](WIKIDATA.md).
