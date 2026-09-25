@@ -54,3 +54,10 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 
 - 25/09/2026: enviado `sitemap_index.xml` en la propiedad `https://obarestaurante.es/` y solicitada la indexación de la home.
 - Pack Noche tenía una errata publicada (`position: absol;` en `.oba-reveal-logo`), corregida al publicar el bloque nuevo.
+
+## Google Analytics (consentimiento previo)
+
+- 25/09/2026: Site Kit ya **no** inserta el código de Analytics (Site Kit → Ajustes → Analytics → "Coloca el código de Google Analytics" desactivado). Los informes de Site Kit/Analytics siguen funcionando.
+- Los 16 bloques llevan el ID real `G-4M7QS4D472` y cargan Analytics **solo** tras pulsar "Aceptar" en el banner de cookies. Si se rechaza o se ignora, no se carga nada.
+- No se carga para usuarios con sesión iniciada en WordPress (clase `logged-in` en `<body>`), igual que hacía Site Kit.
+- No volver a activar el código en Site Kit: se cargaría antes del consentimiento y se duplicarían las visitas.

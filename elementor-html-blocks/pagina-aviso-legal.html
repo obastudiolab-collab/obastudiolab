@@ -479,7 +479,7 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
 
   // Sustituir por el ID de medición real de Google Analytics (GA4),
   // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
-  var GA_MEASUREMENT_ID = 'G-XXXXXXXXXX';
+  var GA_MEASUREMENT_ID = 'G-4M7QS4D472';
 
   function getConsent() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
@@ -490,6 +490,8 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
 
   function loadAnalytics() {
     if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    // Sin Analytics para usuarios conectados a WordPress (como hacía Site Kit)
+    if (document.body && document.body.classList.contains('logged-in')) return;
     if (window.__obaGaLoaded) return;
     window.__obaGaLoaded = true;
     window.dataLayer = window.dataLayer || [];
