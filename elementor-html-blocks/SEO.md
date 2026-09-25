@@ -1,6 +1,6 @@
 # SEO en WordPress — qué poner en cada página
 
-Los bloques de Elementor ya llevan H1, datos estructurados (JSON-LD), enlaces internos sin redirección y carga diferida de imágenes.
+**Publicados en Elementor el 25/09/2026** (las 16 páginas). Los bloques de Elementor llevan H1, datos estructurados (JSON-LD), enlaces internos sin redirección y carga diferida de imágenes.
 Lo que **no** puede ir dentro de un widget HTML (título, meta description, imagen para redes, canonical) se configura en el plugin de SEO de WordPress, página por página, con estos valores.
 
 ## Título, descripción e imagen para redes (aplicado en Rank Math el 25/09/2026)
@@ -49,3 +49,8 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 - `robots.txt` lo genera Rank Math (su editor está bloqueado por la protección de archivos del hosting); el del repo es copia de referencia y ya es correcto.
 - `sitemap.xml` (raíz del repo) es la lista de referencia: el sitemap real (`/sitemap_index.xml`, generado por Rank Math) debe contener estas 16 URLs y ninguna más. Una vez retiradas las páginas antiguas, enviar el sitemap en Google Search Console.
 - La página de cookies en producción es `/cookies` (no `/politica-cookies`, que daba 404): los bloques ya enlazan ahí.
+
+## Search Console
+
+- 25/09/2026: enviado `sitemap_index.xml` en la propiedad `https://obarestaurante.es/` y solicitada la indexación de la home.
+- Pack Noche tenía una errata publicada (`position: absol;` en `.oba-reveal-logo`), corregida al publicar el bloque nuevo.
