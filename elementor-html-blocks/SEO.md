@@ -84,3 +84,11 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 - Bing Webmaster Tools: propiedad importada desde Search Console (cuenta marketingcanitasmaite@gmail.com); sitemap `sitemap_index.xml` leído sin errores.
 - IndexNow (Rank Math → Indexado instantáneo): activo; enviadas las 16 URLs.
 - Wikidata: ver [WIKIDATA.md](WIKIDATA.md).
+
+## Caché de página (W3 Total Cache) — activada el 25/09/2026
+
+- Rendimiento → Ajustes generales → Caché de página: **activada**, motor Disk: Enhanced. Minificación, caché de BD y de objetos siguen desactivadas a propósito (la minificación puede romper los scripts de los widgets HTML de Elementor).
+- Tiempo de respuesta (TTFB) medido desde fuera: **~0,55 s → ~0,25 s** en las 16 páginas (el mínimo de este hosting para un archivo estático es ~0,16 s).
+- Excluidos de la caché ("Nunca cachear las siguientes páginas"): `sitemap(_index)?\.xml`, `[a-z0-9_-]+-sitemap([0-9]+)?\.xml`, `main-sitemap\.xsl`, `llms\.txt` (además de los de serie). Comprobado: responden "Requested URI is rejected".
+- No se cachea para usuarios conectados, ni páginas 404, ni URLs con parámetros. La caché de una página se vacía sola al actualizarla en Elementor; para vaciar todo: barra superior → Rendimiento → "Borrar todas las cachés".
+- Probado tras activarla: títulos/descripciones/canonical/JSON-LD intactos, redirecciones 301, 404, `noindex` de /carminauseros, banner de cookies (aceptar/rechazar), Analytics solo con consentimiento, idioma ES/EN, menú, efecto de fondos de la home, tienda (añadir a la cesta) y vista móvil.
