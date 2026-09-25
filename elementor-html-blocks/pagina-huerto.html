@@ -11,6 +11,26 @@
     nombre y SIN que WordPress las meta en subcarpetas de mes/año
     (ver README.md de esta carpeta para el porqué).
 ================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "oba-",
+      "item": "https://obarestaurante.es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Huerto",
+      "item": "https://obarestaurante.es/huerto"
+    }
+  ]
+}
+</script>
 <style>
 html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
 
@@ -479,8 +499,8 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
     <div class="oba-header-right" style="position:relative;">
       <nav class="oba-inline-menu" id="oba-inline-menu">
         <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
-        <a href="/nosotros/#contacto" data-i18n="menu_contacto">CONTACTO</a>
-        <a href="/tienda/" data-i18n="menu_tienda">TIENDA</a>
+        <a href="/nosotros#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda" data-i18n="menu_tienda">TIENDA</a>
       </nav>
       <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
         <span></span><span></span><span></span>
@@ -541,13 +561,13 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
   <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-nosotros.jpg');"></div>
   <div class="oba-reveal-overlay"></div>
   <nav class="oba-reveal-nav">
-    <a href="/restaurante/" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
-    <a href="/entorno/" class="oba-reveal-link active" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
-    <a href="/nosotros/" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+    <a href="/restaurante" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="/entorno" class="oba-reveal-link active" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="/nosotros" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
   </nav>
   <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
   <div class="oba-legal-links">
-    <a href="/aviso-legal/">Aviso Legal</a><span>·</span><a href="/politica-privacidad/">Privacidad</a><span>·</span><a href="/politica-cookies/">Cookies</a>
+    <a href="/aviso-legal">Aviso Legal</a><span>·</span><a href="/politica-privacidad">Privacidad</a><span>·</span><a href="/cookies">Cookies</a>
   </div>
 </footer>
 
@@ -765,7 +785,7 @@ if (document.readyState === 'loading') {
     wrap.setAttribute('role', 'region');
     wrap.setAttribute('aria-label', 'Aviso de cookies');
     wrap.innerHTML =
-      '<p class="oba-cookie-text">' + t.text + '<a href="/politica-cookies/">' + t.link + '</a>.</p>' +
+      '<p class="oba-cookie-text">' + t.text + '<a href="/cookies">' + t.link + '</a>.</p>' +
       '<div class="oba-cookie-actions">' +
         '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
         '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +

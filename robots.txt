@@ -1,5 +1,9 @@
-User-agent: *
-Allow: /
-Disallow: /dashboard.html
+# robots.txt — obarestaurante.es
+# En producción lo genera Rank Math (el editor de robots.txt está bloqueado por la
+# protección de edición de archivos del hosting). Este es su contenido actual, como referencia.
 
-Sitemap: https://obarestaurante.es/sitemap.xml
+User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+
+Sitemap: https://obarestaurante.es/sitemap_index.xml

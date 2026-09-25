@@ -8,6 +8,74 @@
     nombre y SIN que WordPress las meta en subcarpetas de mes/año
     (ver README.md de esta carpeta para el porqué).
 ================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://obarestaurante.es/#website",
+      "url": "https://obarestaurante.es/",
+      "name": "oba-",
+      "inLanguage": "es-ES",
+      "publisher": {
+        "@id": "https://obarestaurante.es/#restaurant"
+      }
+    },
+    {
+      "@type": "Restaurant",
+      "@id": "https://obarestaurante.es/#restaurant",
+      "name": "oba-",
+      "alternateName": "Restaurante oba-",
+      "description": "Restaurante con una Estrella Michelin y una Estrella Verde de Javier Sanz y Juan Sahuquillo en Casas-Ibáñez, Albacete. Cocina de raíz manchega a través del menú degustación Cuaderno Dos.",
+      "url": "https://obarestaurante.es/",
+      "logo": "https://obarestaurante.es/wp-content/uploads/oba-logo.png",
+      "image": [
+        "https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg",
+        "https://obarestaurante.es/wp-content/uploads/oba-galeria-restaurante.jpg"
+      ],
+      "telephone": "+34604962117",
+      "email": "info.restauranteoba@gmail.com",
+      "priceRange": "€€€€",
+      "servesCuisine": [
+        "Cocina de autor",
+        "Cocina manchega",
+        "Cocina creativa"
+      ],
+      "award": [
+        "Estrella Michelin — Guía MICHELIN",
+        "Estrella Verde Michelin — Guía MICHELIN"
+      ],
+      "hasMenu": "https://obarestaurante.es/menu",
+      "acceptsReservations": "https://www.thefork.es/restaurante/oba-r721580",
+      "founder": [
+        {
+          "@type": "Person",
+          "name": "Javier Sanz",
+          "jobTitle": "Chef"
+        },
+        {
+          "@type": "Person",
+          "name": "Juan Sahuquillo",
+          "jobTitle": "Chef"
+        }
+      ],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Calle Tomás Pérez Úbeda, 6",
+        "addressLocality": "Casas-Ibáñez",
+        "addressRegion": "Albacete",
+        "postalCode": "02200",
+        "addressCountry": "ES"
+      },
+      "sameAs": [
+        "https://guide.michelin.com/es/es/castilla-la-mancha/casas-ibanez/restaurante/oba",
+        "https://www.thefork.es/restaurante/oba-r721580"
+      ]
+    }
+  ]
+}
+</script>
 <style>
 .oba-page, .oba-page * {
   box-sizing: border-box;
@@ -327,6 +395,17 @@ html, body { height: 100% !important; overflow: hidden !important; margin: 0 !im
   .oba-cookie-actions { width: 100%; }
   .oba-cookie-btn { flex: 1; text-align: center; }
 }
+
+/* H1 solo para buscadores y lectores de pantalla (SEO) */
+.oba-sr-only {
+  position: absolute !important;
+  width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
 </style>
 
 <div class="oba-page">
@@ -348,8 +427,8 @@ html, body { height: 100% !important; overflow: hidden !important; margin: 0 !im
     <div class="oba-header-right">
       <nav class="oba-inline-menu" id="oba-inline-menu">
         <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">RESERVA</a>
-        <a href="/nosotros/#contacto" data-i18n="menu_contacto">CONTACTO</a>
-        <a href="/tienda/" data-i18n="menu_tienda">TIENDA</a>
+        <a href="/nosotros#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda" data-i18n="menu_tienda">TIENDA</a>
       </nav>
 
       <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
@@ -357,6 +436,8 @@ html, body { height: 100% !important; overflow: hidden !important; margin: 0 !im
       </button>
     </div>
   </header>
+
+  <h1 class="oba-sr-only" data-i18n="h1_seo">oba-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez, Albacete</h1>
 
   <div class="oba-bg-layer active" id="bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
   <div class="oba-bg-layer" id="bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
@@ -366,9 +447,9 @@ html, body { height: 100% !important; overflow: hidden !important; margin: 0 !im
 
   <main class="oba-hero">
     <nav class="oba-hero-nav">
-      <a href="/restaurante/" class="oba-hero-link" data-bg="bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
-      <a href="/entorno/" class="oba-hero-link" data-bg="bg-bar" data-i18n="nav_entorno">ENTORNO</a>
-      <a href="/nosotros/" class="oba-hero-link" data-bg="bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+      <a href="/restaurante" class="oba-hero-link" data-bg="bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+      <a href="/entorno" class="oba-hero-link" data-bg="bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+      <a href="/nosotros" class="oba-hero-link" data-bg="bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
     </nav>
   </main>
 
@@ -382,12 +463,14 @@ html, body { height: 100% !important; overflow: hidden !important; margin: 0 !im
 // ============================================================
 window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   es: {
+    h1_seo: "oba-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez, Albacete",
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
     nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
     btn_reservar: "RESERVAR",
     aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
   },
   en: {
+    h1_seo: "oba-, Michelin-starred and Green Star restaurant in Casas-Ibáñez, Albacete",
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
     nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
     btn_reservar: "BOOK NOW",
@@ -546,7 +629,7 @@ if (document.readyState === 'loading') {
     wrap.setAttribute('role', 'region');
     wrap.setAttribute('aria-label', 'Aviso de cookies');
     wrap.innerHTML =
-      '<p class="oba-cookie-text">' + t.text + '<a href="/politica-cookies/">' + t.link + '</a>.</p>' +
+      '<p class="oba-cookie-text">' + t.text + '<a href="/cookies">' + t.link + '</a>.</p>' +
       '<div class="oba-cookie-actions">' +
         '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
         '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +

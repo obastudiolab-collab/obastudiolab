@@ -7,15 +7,17 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
     nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
     btn_reservar: "RESERVAR",
-    title_home: "oba-",
-    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma"
+    title_home: "oba- · Restaurante con Estrella Michelin en Casas-Ibáñez, Albacete",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+    h1_index_seo: "oba-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez, Albacete"
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
     nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
     btn_reservar: "BOOK NOW",
-    title_home: "oba-",
-    aria_menu: "Open menu", aria_lang: "Select language"
+    title_home: "oba- · Michelin-starred restaurant in Casas-Ibáñez, Albacete",
+    aria_menu: "Open menu", aria_lang: "Select language",
+    h1_index_seo: "oba-, Michelin-starred and Green Star restaurant in Casas-Ibáñez, Albacete"
   }
 };
 

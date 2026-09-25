@@ -139,7 +139,8 @@ html, body { margin: 0; padding: 0; background: #0c0c0c; }
   color: rgba(255,255,255,0.7) !important;
   margin: 0 0 20px;
 }
-.oba-rs-hero-content h1 {
+.oba-rs-hero-content h1,
+.oba-rs-hero-content h2 {
   font-family: 'Archivo', sans-serif !important;
   font-size: clamp(32px, 4.6vw, 52px) !important;
   font-weight: 500 !important;
@@ -326,7 +327,8 @@ body.oba-rawseason-page .oba-inline-menu a:focus-visible { color: #1a1a1a !impor
 body.oba-rawseason-page .oba-rs-hero { background-color: #fae1c0; }
 body.oba-rawseason-page .oba-rs-overlay { display: none; }
 body.oba-rawseason-page .oba-rs-kicker { color: rgba(26,26,26,0.55) !important; }
-body.oba-rawseason-page .oba-rs-hero-content h1 { color: #1a1a1a !important; }
+body.oba-rawseason-page .oba-rs-hero-content h1,
+body.oba-rawseason-page .oba-rs-hero-content h2 { color: #1a1a1a !important; }
 body.oba-rawseason-page .oba-rs-intro { color: rgba(26,26,26,0.7) !important; }
 
 body.oba-rawseason-page .oba-rs-details { border-top: 1px solid rgba(26,26,26,0.2); }

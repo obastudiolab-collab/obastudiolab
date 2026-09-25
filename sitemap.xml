@@ -1,93 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Sitemap de referencia con las URLs reales de producción (WordPress, sin barra final).
+     En producción lo genera WordPress en /wp-sitemap.xml (o el plugin de SEO): este archivo
+     sirve para comprobar que el sitemap real contiene exactamente estas páginas y ninguna más. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://obarestaurante.es/</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/restaurante.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://obarestaurante.es/restaurante</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/menu.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://obarestaurante.es/menu</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/entorno.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://obarestaurante.es/tienda</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/nosotros.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://obarestaurante.es/entorno</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/huerto.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://obarestaurante.es/nosotros</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/parajes.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://obarestaurante.es/rawseason</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/rawseason.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://obarestaurante.es/pack-noche</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/eventos.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
+    <loc>https://obarestaurante.es/eventos</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/pack-noche.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <loc>https://obarestaurante.es/huerto</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/maridaje-natura.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <loc>https://obarestaurante.es/parajes</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/maridaje-matices-olvidados.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.4</priority>
+    <loc>https://obarestaurante.es/maridaje-natura</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/aviso-legal.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
+    <loc>https://obarestaurante.es/maridaje-matices-olvidados</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/politica-privacidad.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
+    <loc>https://obarestaurante.es/aviso-legal</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
   <url>
-    <loc>https://obarestaurante.es/politica-cookies.html</loc>
-    <lastmod>2026-09-18</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.1</priority>
+    <loc>https://obarestaurante.es/politica-privacidad</loc>
+    <lastmod>2026-09-25</lastmod>
+  </url>
+  <url>
+    <loc>https://obarestaurante.es/cookies</loc>
+    <lastmod>2026-09-25</lastmod>
   </url>
 </urlset>
