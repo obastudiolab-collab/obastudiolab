@@ -83,7 +83,7 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 - `llms.txt` activo (Rank Math → Ajustes generales → Editar llms.txt): lista automática de páginas desactivada; resumen y "Contenido adicional" escritos a mano con datos clave y las 12 páginas principales. **Si cambia el horario, el teléfono o una página, actualizarlo también ahí.**
 - Bing Webmaster Tools: propiedad importada desde Search Console (cuenta marketingcanitasmaite@gmail.com); sitemap `sitemap_index.xml` leído sin errores.
 - IndexNow (Rank Math → Indexado instantáneo): activo; enviadas las 16 URLs.
-- Wikidata: ver [WIKIDATA.md](WIKIDATA.md).
+- Wikidata: elemento **Q141556014** creado y enlazado desde el `sameAs` de la home. Ver [WIKIDATA.md](WIKIDATA.md).
 
 ## Caché de página (W3 Total Cache) — activada el 25/09/2026
 

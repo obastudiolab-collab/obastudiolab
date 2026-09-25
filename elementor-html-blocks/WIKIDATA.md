@@ -1,4 +1,12 @@
-# Wikidata — entrada de oba- (lista para crear)
+# Wikidata — entrada de oba-
+
+**Creada el 25/09/2026: [Q141556014](https://www.wikidata.org/wiki/Q141556014)** con la cuenta "Pablo Garrido (oba-)" (conflicto de interés declarado en su página de usuario). Enlazada desde el `sameAs` de la ficha del restaurante en la home.
+
+Notas de la creación: el filtro antispam de Wikidata para cuentas nuevas bloquea ediciones con muchos enlaces externos, así que se creó en varias ediciones y solo los premios (P166) llevan referencia (Guía MICHELIN). Cuando la cuenta tenga más antigüedad se pueden añadir referencias también a P625, P6375 y P856.
+
+---
+
+Guía original usada:
 
 Wikidata es la base de datos abierta que usan Google, ChatGPT, Gemini y otros asistentes como fuente de "hechos". oba- no tiene entrada todavía (comprobado el 25/09/2026). La tiene que crear una persona del equipo con su propia cuenta de Wikidata.
 
