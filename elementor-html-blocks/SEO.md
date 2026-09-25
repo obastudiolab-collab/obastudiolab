@@ -61,3 +61,18 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 - Los 16 bloques llevan el ID real `G-4M7QS4D472` y cargan Analytics **solo** tras pulsar "Aceptar" en el banner de cookies. Si se rechaza o se ignora, no se carga nada.
 - No se carga para usuarios con sesión iniciada en WordPress (clase `logged-in` en `<body>`), igual que hacía Site Kit.
 - No volver a activar el código en Site Kit: se cargaría antes del consentimiento y se duplicarían las visitas.
+
+## Ficha del restaurante (JSON-LD de la home) sincronizada con Google Maps
+
+- 25/09/2026: añadidos `geo` (39.2873379, -1.4694749), `hasMap` (https://www.google.com/maps?cid=10886303023832780323) y horario (jueves a domingo, 13:00–17:00 y 20:00–23:30), copiados de la ficha pública de Google.
+- **Si cambia el horario, hay que actualizarlo en Google Business Profile y en el bloque de la home a la vez.**
+
+## Google Business Profile — pendiente (sin acceso todavía)
+
+1. Enlace "Carta": cambiar `obarestaurante.es/carta` → `https://obarestaurante.es/menu`.
+2. Añadir descripción del negocio (máx. 750 caracteres).
+3. Categorías secundarias (p. ej. "Restaurante español", "Restaurante de cocina moderna").
+4. Productos: Cuaderno Dos (`/menu`), Pack Noche (`/pack-noche`), Bonos regalo (`/tienda`).
+5. Publicar Novedades cada 2–3 semanas con enlace a la web.
+6. Revisar que "Para llevar" y "A domicilio" figuren como no disponibles.
+7. No cambiar el nombre ("OBA-").
