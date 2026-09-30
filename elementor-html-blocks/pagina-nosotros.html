@@ -524,6 +524,17 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
   white-space: nowrap !important;
   border: 0 !important;
 }
+
+/* seo-build: selector de idioma con enlaces y fotos como <img> */
+.oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
+.oba-page .oba-has-bg-img { isolation: isolate; }
+.oba-page img.oba-bg-img {
+  position: absolute !important; inset: 0; z-index: -1;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; object-fit: cover; object-position: center;
+}
+.oba-page img.oba-bg-layer { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; object-position: center; }
+/* /seo-build */
 </style>
 
 <div class="oba-page">
@@ -533,9 +544,9 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
     </a>
 
     <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
-      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <a class="oba-lang-btn active" data-lang="es" href="/nosotros" hreflang="es" lang="es" aria-current="page">ES</a>
       <span class="oba-lang-sep">/</span>
-      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+      <a class="oba-lang-btn" data-lang="en" href="/en/about-us" hreflang="en" lang="en">EN</a>
     </div>
 
     <div class="oba-header-right" style="position:relative;">
@@ -626,6 +637,7 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
 // MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
 // (solo con las claves de texto que usa esta página).
 // ============================================================
+window.OBA_PAGE_LANG = 'es';
 window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   es: {
     h1_seo: "Nosotros: Javier Sanz y Juan Sahuquillo, chefs de oba-",
@@ -703,7 +715,7 @@ function obaApplyLang(lang) {
 
 function obaInit() {
   let saved = 'es';
-  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  saved = window.OBA_PAGE_LANG || 'es';
   obaApplyLang(saved);
 
   document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
@@ -825,7 +837,7 @@ if (document.readyState === 'loading') {
 
   function texts() {
     var lang = 'es';
-    try { lang = (localStorage.getItem('oba_lang') || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    try { lang = (window.OBA_PAGE_LANG || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
     if (lang === 'en') {
       return {
         text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',

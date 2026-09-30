@@ -487,6 +487,17 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
   .oba-cookie-actions { width: 100%; }
   .oba-cookie-btn { flex: 1; text-align: center; }
 }
+
+/* seo-build: selector de idioma con enlaces y fotos como <img> */
+.oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
+.oba-page .oba-has-bg-img { isolation: isolate; }
+.oba-page img.oba-bg-img {
+  position: absolute !important; inset: 0; z-index: -1;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; object-fit: cover; object-position: center;
+}
+.oba-page img.oba-bg-layer { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; object-position: center; }
+/* /seo-build */
 </style>
 
 <div class="oba-page">
@@ -496,9 +507,9 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
     </a>
 
     <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
-      <button type="button" class="oba-lang-btn active" data-lang="es">ES</button>
+      <a class="oba-lang-btn active" data-lang="es" href="/rawseason" hreflang="es" lang="es" aria-current="page">ES</a>
       <span class="oba-lang-sep">/</span>
-      <button type="button" class="oba-lang-btn" data-lang="en">EN</button>
+      <a class="oba-lang-btn" data-lang="en" href="/en/raw-season" hreflang="en" lang="en">EN</a>
     </div>
 
     <div class="oba-header-right" style="position:relative;">
@@ -534,22 +545,26 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
   </section>
 
   <section class="oba-rs-cards">
-    <article class="oba-rs-card" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-rawseason-fluvial.jpg');">
+    <article class="oba-rs-card oba-has-bg-img">
+      <img class="oba-bg-img" src="https://obarestaurante.es/wp-content/uploads/oba-rawseason-fluvial.jpg" alt="Crujientes de la cena Raw Season Fluvial, dedicada al pescado de río" loading="lazy">
       <p class="oba-rs-card-month" data-i18n="rs_card4_month">MARZO</p>
       <h2 data-i18n="rs_card4_title">FLUVIAL</h2>
       <p data-i18n="rs_card4_text">El río antes que nadie. Pescado y fauna de agua dulce del Júcar y el Cabriel, recién llegados a la cocina.</p>
     </article>
-    <article class="oba-rs-card" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-rawseason-flores.jpg');">
+    <article class="oba-rs-card oba-has-bg-img">
+      <img class="oba-bg-img" src="https://obarestaurante.es/wp-content/uploads/oba-rawseason-flores.jpg" alt="Bocado cubierto de pétalos de la cena Raw Season Flores" loading="lazy">
       <p class="oba-rs-card-month" data-i18n="rs_card1_month">MAYO</p>
       <h2 data-i18n="rs_card1_title">FLORES</h2>
       <p data-i18n="rs_card1_text">El jardín se abre a la mesa. Un menú construido sobre pétalos, brotes y aromas de temporada, en el momento justo de la floración.</p>
     </article>
-    <article class="oba-rs-card" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-rawseason-vegetal.jpg');">
+    <article class="oba-rs-card oba-has-bg-img">
+      <img class="oba-bg-img" src="https://obarestaurante.es/wp-content/uploads/oba-rawseason-vegetal.jpg" alt="Guisantes sobre hoja verde en la cena Raw Season Vegetal" loading="lazy">
       <p class="oba-rs-card-month" data-i18n="rs_card2_month">JULIO</p>
       <h2 data-i18n="rs_card2_title">VEGETAL</h2>
       <p data-i18n="rs_card2_text">El huerto en su punto más generoso. Verduras, hortalizas y hierbas como únicos protagonistas del plato, sin distracciones.</p>
     </article>
-    <article class="oba-rs-card" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-rawseason-caza.jpg');">
+    <article class="oba-rs-card oba-has-bg-img">
+      <img class="oba-bg-img" src="https://obarestaurante.es/wp-content/uploads/oba-rawseason-caza.jpg" alt="Bocados de la cena Raw Season Caza servidos en cuencos de madera" loading="lazy">
       <p class="oba-rs-card-month" data-i18n="rs_card3_month">OCTUBRE</p>
       <h2 data-i18n="rs_card3_title">CAZA</h2>
       <p data-i18n="rs_card3_text">El monte y sus piezas. Una cena que rinde homenaje a la caza mayor y menor de nuestro entorno, con técnicas de siempre.</p>
@@ -583,6 +598,7 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
 // MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
 // (solo con las claves de texto que usa esta página).
 // ============================================================
+window.OBA_PAGE_LANG = 'es';
 window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
   es: {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
@@ -662,7 +678,7 @@ function obaApplyLang(lang) {
 
 function obaInit() {
   let saved = 'es';
-  try { saved = localStorage.getItem('oba_lang') || 'es'; } catch (e) {}
+  saved = window.OBA_PAGE_LANG || 'es';
   obaApplyLang(saved);
 
   document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
@@ -784,7 +800,7 @@ if (document.readyState === 'loading') {
 
   function texts() {
     var lang = 'es';
-    try { lang = (localStorage.getItem('oba_lang') || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    try { lang = (window.OBA_PAGE_LANG || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
     if (lang === 'en') {
       return {
         text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',

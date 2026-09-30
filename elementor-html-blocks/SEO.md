@@ -26,6 +26,8 @@ Lo que **no** puede ir dentro de un widget HTML (título, meta description, imag
 
 Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco molestan.
 
+**30/09/2026 — /huerto:** compartía el logo porque Rank Math guardaba el ID de un adjunto borrado (2924). Reseleccionada `oba-huerto.jpg` (ID 3085) en Rank Math → Social. **Si se borra y se vuelve a subir una imagen, hay que volver a elegirla en Rank Math**: la URL puede seguir igual, pero el ID cambia.
+
 ## Páginas antiguas: redirecciones 301
 
 **Hecho el 25/09/2026.** Estas páginas del WordPress anterior están en borrador, excluidas del sitemap (Rank Math → Mapa del sitio → Excluir entradas: `336,334,2260,340,2309,1249,2855,2565,599,2777`) y con redirección 301 en **Rank Math → Redirecciones**:
@@ -92,3 +94,16 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 - Excluidos de la caché ("Nunca cachear las siguientes páginas"): `sitemap(_index)?\.xml`, `[a-z0-9_-]+-sitemap([0-9]+)?\.xml`, `main-sitemap\.xsl`, `llms\.txt` (además de los de serie). Comprobado: responden "Requested URI is rejected".
 - No se cachea para usuarios conectados, ni páginas 404, ni URLs con parámetros. La caché de una página se vacía sola al actualizarla en Elementor; para vaciar todo: barra superior → Rendimiento → "Borrar todas las cachés".
 - Probado tras activarla: títulos/descripciones/canonical/JSON-LD intactos, redirecciones 301, 404, `noindex` de /carminauseros, banner de cookies (aceptar/rechazar), Analytics solo con consentimiento, idioma ES/EN, menú, efecto de fondos de la home, tienda (añadir a la cesta) y vista móvil.
+
+## Versión en inglés y SEO invisible — publicado el 30/09/2026
+
+Generado con `build-seo.py` (ver README.md). Publicado vía API de WordPress (widget HTML de Elementor de cada página).
+
+- **13 páginas inglesas** (IDs 3195–3207), hijas de `/en` (EN · Home, ID 3195). Mismo diseño, texto en inglés escrito en la página. Títulos/descripciones en Rank Math según `en/rankmath-meta.json`; imagen para redes = la de su página española. Incluidas en `page-sitemap.xml`.
+- La portada inglesa es **`/en`** (sin barra final; `/en/` redirige con 301).
+- **13 páginas españolas** actualizadas: fotos de fondo → `<img>` indexables (portada, Huerto, Pack Noche, Eventos, Raw Season), textos alternativos descriptivos, botón ES/EN como enlace a la otra versión, datos estructurados extra (Menú: menús con precio y platos · Tienda: 7 bonos como productos · Parajes: 7 lugares turísticos · Portada: acción de reserva).
+- **Rank Math, descripciones españolas nuevas** (enfoque costa/escapada): portada ("a 1h30 de Valencia") y Pack Noche (título "Escapada gastronómica con Estrella Michelin · Pack Noche oba-").
+- **llms.txt**: añadidas las secciones "Cómo llegar" (Valencia 117 km/1h30, Alicante 168 km/2h, AVE Madrid–Requena-Utiel 1h30) e "In English".
+- Caché vaciada, IndexNow: 26 URLs enviadas. Comprobado sin sesión: 26 páginas 200, idioma, título, canonical e imagen para redes correctos.
+- **hreflang (WPCode, fragmento ID 3248 "SEO · hreflang ES/EN + idioma de las páginas /en", activo)**: etiquetas es / en / x-default en cada par, `<html lang="en">` y `og:locale en_GB` en las páginas inglesas. Wordfence bloqueaba el guardado (falso positivo por contener PHP): el administrador lo permitió el 30/09/2026 con "Allowlist This Action". Si se añade una página traducida: regenerar con `build-seo.py` y pegar de nuevo el contenido de `wpcode-hreflang.php` (sin la línea `<?php`).
+- **Más adelante (aprobación de los chefs)**: bloque "Información práctica" en el pie y desplegable "Antes de venir" (FAQ) en Restaurante.

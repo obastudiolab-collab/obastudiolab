@@ -78,9 +78,9 @@ Paso cuatro: la pagina debe estar configurada como "Elementor Canvas" (Configura
 
 Todas las clases CSS llevan el prefijo `oba-` a proposito, para evitar colisiones con clases del tema activo (por ejemplo, Hello Elementor usa su propia `.site-header` con `max-width`, que chocaba con la nuestra).
 
-Cada pagina incluye su propia copia del motor de traduccion ES/EN (diccionario `OBA_TRANSLATIONS` mas la funcion `obaApplyLang`). Guarda el idioma elegido en `localStorage`, asi que se mantiene al navegar entre paginas.
+Cada pagina incluye su propia copia del diccionario ES/EN (`OBA_TRANSLATIONS`). Desde el 30/09/2026 ya no se traduce en el navegador: cada idioma tiene su propia pagina (la inglesa en `/en/...`, generada con `build-seo.py`) y los botones ES / EN son enlaces entre ambas. El idioma de cada pagina lo fija `window.OBA_PAGE_LANG`.
 
-Para anadir texto nuevo en cualquier pagina: marcalo con `data-i18n="clave"` (o `data-i18n-attr="atributo:clave"` para atributos como `aria-label`) y anade esa clave con su texto ES/EN en el diccionario `OBA_TRANSLATIONS` de esa misma pagina.
+Para anadir texto nuevo en cualquier pagina: marcalo con `data-i18n="clave"` (o `data-i18n-attr="atributo:clave"` para atributos como `aria-label`), anade esa clave con su texto ES/EN en el diccionario `OBA_TRANSLATIONS` de esa misma pagina y ejecuta `python3 build-seo.py` para regenerar la version inglesa.
 
 Durante el desarrollo se usaron versiones con las imagenes embebidas en base64, solo para pruebas visuales rapidas sin depender de la Mediateca. Esas versiones no se han subido al repo por su peso; estos archivos con URLs de Mediateca ya escritas son la version limpia recomendada para produccion.
 
@@ -93,3 +93,35 @@ Esta pagina es distinta al resto: en vez de contenido estatico, monta el catalog
 - Las fotos de producto se cargan del CDN de Shopify (`cdn.shopify.com/...`), no de la Mediateca — no hace falta subir nada a `wp-uploads/` para esta pagina.
 - El catalogo (titulo, foto, precio, id de variante) esta escrito a mano en el array `OBA_PRODUCTS` dentro del `<script>` de `pagina-tienda.html`. Si se anade, retira o cambia de precio un producto en Shopify, hay que actualizar ese array a mano (y tambien `tienda.js` en la raiz del repo, que es la version usada por la web estatica de pruebas) — no se sincroniza solo.
 - "FINALIZAR COMPRA" no usa la Storefront API (no hay token configurado): arma la URL "carrito permalink" de Shopify (`regalaoba.myshopify.com/cart/<variante>:<cantidad>,...`) y redirige ahi directamente al checkout real, con la cesta ya cargada. Si en el futuro se quiere que el catalogo se sincronice solo con Shopify (sin tocar este archivo a mano cada vez), hace falta crear una app personalizada en Shopify con acceso a la Storefront API y pasar a usar esa API en vez del array fijo.
+
+## Version en ingles y SEO invisible (`build-seo.py`)
+
+`python3 build-seo.py` (necesita Python 3 y Node) hace, cada vez que se ejecuta:
+
+1. **Bloques en espanol** (`pagina-*.html`, se reescriben en su sitio; ejecutarlo dos veces no cambia nada):
+   - Las fotos que eran fondos CSS (hero de Huerto, Pack Noche, Eventos, tarjetas de Raw Season y capas de la portada) pasan a ser `<img>` con texto alternativo, para que Google Imagenes las indexe. Se ven exactamente igual.
+   - Textos alternativos descriptivos en todas las fotos: se editan en el diccionario `ALT` del script (espanol e ingles).
+   - Botones ES / EN convertidos en enlaces a la pagina equivalente del otro idioma.
+   - Datos estructurados extra entre `<!-- seo-extra -->` y `<!-- /seo-extra -->` (menus con precio, bonos regalo como productos, lugares de la Manchuela, accion de reserva). **No editar a mano ese bloque**: se regenera.
+2. **Version inglesa** en `en/pagina-*.html`: mismo diseno, con el texto ya escrito en ingles (sale del diccionario de cada pagina), enlaces internos a `/en/...`, JSON-LD traducido e idioma `en`. **No editar a mano**: se cambia el bloque espanol y se vuelve a ejecutar el script.
+3. `en/hreflang-map.json` y `wpcode-hreflang.php`: el fragmento de WPCode que imprime las etiquetas `hreflang` y pone `lang="en"` en las paginas inglesas.
+
+Paginas inglesas (hijas de la pagina `en` en WordPress, plantilla Elementor Canvas, un unico widget HTML):
+
+| Espanol | Ingles |
+|---|---|
+| `/` | `/en/` |
+| `/restaurante` | `/en/restaurant` |
+| `/menu` | `/en/tasting-menu` |
+| `/entorno` | `/en/surroundings` |
+| `/nosotros` | `/en/about-us` |
+| `/huerto` | `/en/kitchen-garden` |
+| `/parajes` | `/en/manchuela` |
+| `/rawseason` | `/en/raw-season` |
+| `/pack-noche` | `/en/dinner-and-stay` |
+| `/eventos` | `/en/events` |
+| `/maridaje-natura` | `/en/natura-pairing` |
+| `/maridaje-matices-olvidados` | `/en/matices-olvidados-pairing` |
+| `/tienda` | `/en/gift-vouchers` |
+
+Las paginas legales solo existen en espanol; las inglesas enlazan a ellas.

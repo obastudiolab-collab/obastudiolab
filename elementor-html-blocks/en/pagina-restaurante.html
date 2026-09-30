@@ -1,0 +1,930 @@
+<!-- ================================================================
+  ENGLISH VERSION — generado por build-seo.py a partir de ../pagina-restaurante.html
+  NO editar a mano: cambiar el bloque español (y su diccionario) y volver a
+  ejecutar  python3 build-seo.py
+  Página WordPress: https://obarestaurante.es/en/restaurant  (Elementor Canvas, un único widget HTML)
+================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "oba-",
+      "item": "https://obarestaurante.es/en"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Restaurant",
+      "item": "https://obarestaurante.es/en/restaurant"
+    }
+  ]
+}
+</script>
+<style>
+html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #fae1c0 !important;
+  color: #1a1a1a !important;
+}
+
+/* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
+.oba-page .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(26,26,26,0.45) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-detail-header { padding: 20px 24px; }
+}
+
+/* -------- Contenido de la página de detalle -------- */
+.oba-page .oba-detail-page {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 72px;
+  min-height: 100vh;
+  padding: 110px 48px 0 120px;
+}
+
+.oba-page .oba-detail-media {
+  position: sticky;
+  top: 32px;
+  height: calc(100vh - 64px);
+  aspect-ratio: 9 / 16;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #111;
+}
+.oba-page .oba-detail-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.oba-page .oba-detail-content { flex: 1; max-width: 780px; padding: 0 64px 100px 0; }
+
+.oba-page .oba-detail-section h2,
+.oba-page .oba-detail-kicker {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-detail-section p {
+  font-size: 15px !important;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 500px;
+  color: #2a2a2a !important;
+}
+.oba-page .oba-detail-divider {
+  border: none;
+  border-top: 1px solid rgba(0,0,0,0.12);
+  margin: 56px 0;
+}
+.oba-page .oba-btn-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+.oba-page .oba-btn {
+  display: inline-block;
+  background: #9d7759 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em;
+  padding: 17px 30px;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+.oba-page .oba-btn:hover { background: #806148 !important; }
+
+/* --- MARIDAJES: pestañas --- */
+.oba-page .oba-maridajes { margin-top: 4px; }
+
+.oba-page .oba-maridajes-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  border-bottom: 1px solid rgba(0,0,0,0.12);
+  margin-bottom: 26px;
+}
+.oba-page .oba-maridaje-tab {
+  position: relative;
+  background: none !important;
+  border: 0 !important;
+  padding: 0 0 14px;
+  margin: 0;
+  cursor: pointer;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  color: #6a6a62 !important;
+  transition: color 0.2s ease;
+}
+.oba-page .oba-maridaje-tab::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 2px;
+  width: 100%;
+  background: #1a1a1a;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+.oba-page .oba-maridaje-tab:hover { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo { color: #1a1a1a !important; }
+.oba-page .oba-maridaje-tab.activo::after { transform: scaleX(1); }
+.oba-page .oba-maridaje-tab:focus-visible { outline: 2px solid #9d7759; outline-offset: 3px; }
+
+.oba-page .oba-maridaje-panel { display: none; }
+.oba-page .oba-maridaje-panel.activo { display: block; }
+.oba-page .oba-maridaje-panel p {
+  font-size: 15px !important;
+  margin-bottom: 20px;
+  max-width: none;
+  text-align: justify;
+  text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+.oba-page .oba-maridaje-panel .oba-maridaje-sub {
+  font-size: 13px !important;
+  font-style: italic;
+  margin: 0 0 14px;
+  color: #6a6a62 !important;
+  text-align: left;
+  -webkit-hyphens: none;
+  hyphens: none;
+}
+.oba-page .oba-maridaje-panel .oba-btn {
+  display: inline-block;
+  padding: 14px 22px;
+  font-size: 11px !important;
+}
+
+@media (max-width: 900px) {
+  .oba-page .oba-maridajes-tabs { gap: 20px; }
+  .oba-page .oba-maridaje-tab { font-size: 13px !important; }
+}
+
+@media (max-width: 900px) {
+  .oba-page .oba-detail-page { flex-direction: column; gap: 32px; padding: 132px 24px 0; }
+  .oba-page .oba-detail-media { position: relative; top: 0; width: 100%; height: 60vh; aspect-ratio: auto; }
+  .oba-page .oba-detail-content { width: 100%; max-width: none; padding: 0 0 80px; }
+  .oba-page .oba-detail-divider { margin: 48px 0; }
+}
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+
+/* H1 solo para buscadores y lectores de pantalla (SEO) */
+.oba-sr-only {
+  position: absolute !important;
+  width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* seo-build: selector de idioma con enlaces y fotos como <img> */
+.oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
+.oba-page .oba-has-bg-img { isolation: isolate; }
+.oba-page img.oba-bg-img {
+  position: absolute !important; inset: 0; z-index: -1;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; object-fit: cover; object-position: center;
+}
+.oba-page img.oba-bg-layer { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; object-position: center; }
+/* /seo-build */
+</style>
+
+<div class="oba-page">
+  <header class="oba-detail-header">
+    <a href="/en" class="oba-detail-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo-dark.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Select language" data-i18n-attr="aria-label:aria_lang">
+      <a class="oba-lang-btn" data-lang="es" href="/restaurante" hreflang="es" lang="es">ES</a>
+      <span class="oba-lang-sep">/</span>
+      <a class="oba-lang-btn active" data-lang="en" href="/en/restaurant" hreflang="en" lang="en" aria-current="page">EN</a>
+    </div>
+
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="menu_reserva">BOOK</a>
+        <a href="/en/about-us#contacto" data-i18n="menu_contacto">CONTACT</a>
+        <a href="/en/gift-vouchers" data-i18n="menu_tienda">SHOP</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Open menu" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <h1 class="oba-sr-only" data-i18n="h1_seo">oba- Restaurant: Cuaderno Dos tasting menu</h1>
+
+  <div class="oba-detail-page">
+    <div class="oba-detail-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-galeria-restaurante.jpg" alt="oba- dish with roe on stone and a green leaf, Cuaderno Dos tasting menu">
+    </div>
+
+    <div class="oba-detail-content">
+
+      <section class="oba-detail-section">
+        <p class="oba-detail-kicker" data-i18n="kicker">00 — CUADERNO DOS</p>
+        <p data-i18n="p1">Cuaderno Dos is a journey through the landscapes, the stories and the culinary memory of our land. Inspired by Las 1000 recetas de la cocina de Albacete, published by Carmina Useros in 1971, we reinterpret the traditional recipe book from a contemporary perspective. The menu unfolds through different landscapes, where each course brings together small preparations that coexist with one another, proposing a new way to travel through a tasting menu.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="/en/tasting-menu" data-i18n="btn_menu_actual">CURRENT MENU</a>
+          <a class="oba-btn" href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" data-i18n="btn_reservar_2">BOOK NOW</a>
+          <a class="oba-btn" href="/en/gift-vouchers" data-i18n="btn_regala">GIFT OBA-</a>
+        </div>
+      </section>
+
+      <hr class="oba-detail-divider">
+
+      <section class="oba-detail-section">
+        <h2 data-i18n="h2_maridajes">PAIRINGS</h2>
+
+        <div class="oba-maridajes">
+
+          <div class="oba-maridajes-tabs" role="tablist" aria-label="Pairings">
+            <button type="button" class="oba-maridaje-tab activo" role="tab" id="tab-maridaje-1"
+                    aria-controls="panel-maridaje-1" aria-selected="true" data-maridaje="1"
+                    data-i18n="maridaje_1_titulo">NATURA</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-2"
+                    aria-controls="panel-maridaje-2" aria-selected="false" tabindex="-1" data-maridaje="2"
+                    data-i18n="maridaje_2_titulo">MATICES OLVIDADOS</button>
+            <button type="button" class="oba-maridaje-tab" role="tab" id="tab-maridaje-3"
+                    aria-controls="panel-maridaje-3" aria-selected="false" tabindex="-1" data-maridaje="3"
+                    data-i18n="maridaje_3_titulo">CONTRASTES</button>
+          </div>
+
+          <div class="oba-maridaje-panel activo" role="tabpanel" id="panel-maridaje-1"
+               aria-labelledby="tab-maridaje-1" data-maridaje="1">
+            <p class="oba-maridaje-sub" data-i18n="maridaje_1_sub">(NO/LOW ALCOHOL PAIRING)</p>
+            <p data-i18n="maridaje_1_texto">A living pairing that expresses our philosophy through fermentation. Every drink is born from a constant process of research and experimentation, where ingredients from our surroundings are transformed using wild yeasts, selected microorganisms and our own fermentation techniques. The result is a collection of unique drinks, created to accompany the menu and reveal a new dimension in every dish.</p>
+            <a class="oba-btn" href="/en/natura-pairing" data-i18n="btn_ver_maridaje">SEE PAIRING</a>
+          </div>
+
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-2"
+               aria-labelledby="tab-maridaje-2" data-maridaje="2" hidden>
+            <p data-i18n="maridaje_2_texto">A journey through ancestral and lesser-known grape varieties from across Spain. A selection of wines with character, made by small producers who preserve a unique winegrowing heritage.</p>
+            <a class="oba-btn" href="/en/matices-olvidados-pairing" data-i18n="btn_ver_maridaje">SEE PAIRING</a>
+          </div>
+
+          <div class="oba-maridaje-panel" role="tabpanel" id="panel-maridaje-3"
+               aria-labelledby="tab-maridaje-3" data-maridaje="3" hidden>
+            <p data-i18n="maridaje_3_texto">A journey through the great wines that have shaped history. A selection of iconic regions and wineries that capture the essence of the most influential styles in the world of wine.</p>
+            <a class="oba-btn" href="#" data-i18n="btn_ver_maridaje">SEE PAIRING</a>
+          </div>
+
+        </div>
+      </section>
+
+      <hr class="oba-detail-divider">
+
+      <section class="oba-detail-section">
+        <h2 data-i18n="h2_eventos">SPECIALS</h2>
+        <p data-i18n="p_eventos">We bring the Oba experience wherever you imagine it, or reserve our space exclusively for you. Celebrations, private gatherings or corporate events designed to measure, where every detail adapts to your occasion.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="/en/raw-season" data-i18n="btn_raw_season">RAW SEASON</a>
+          <a class="oba-btn" href="mailto:info.restauranteoba@gmail.com" data-i18n="btn_consulta">PRIVATE EVENTS</a>
+        </div>
+      </section>
+
+      <hr class="oba-detail-divider">
+
+      <section class="oba-detail-section">
+        <h2 data-i18n="h2_packnoche">NIGHT PACK</h2>
+        <p data-i18n="p_packnoche">A night to stay for: the Cuaderno Medio experience at our table and a stay at Cañitas Maite Gastronómico, with breakfast included and a special discount on the room.</p>
+        <div class="oba-btn-row">
+          <a class="oba-btn" href="/en/dinner-and-stay" data-i18n="btn_packnoche">DISCOVER THE PACK</a>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<footer class="oba-reveal-footer">
+  <a href="/en" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg active" id="rv-bg-default" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-bar" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-nosotros.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/en/restaurant" class="oba-reveal-link active" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANT</a>
+    <a href="/en/surroundings" class="oba-reveal-link" data-bg="rv-bg-bar" data-i18n="nav_entorno">SURROUNDINGS</a>
+    <a href="/en/about-us" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">ABOUT US</a>
+  </nav>
+  <a href="https://www.thefork.es/restaurante/oba-r721580" target="_blank" rel="noopener" class="oba-reveal-reserve" data-i18n="btn_reservar">BOOK NOW</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal">Legal notice</a><span>·</span><a href="/politica-privacidad">Privacy</a><span>·</span><a href="/cookies">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
+// (solo con las claves de texto que usa esta página).
+// ============================================================
+window.OBA_PAGE_LANG = 'en';
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    h1_seo: "Restaurante oba-: menú degustación Cuaderno Dos",
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+    kicker: "00 — CUADERNO DOS",
+    p1: "Cuaderno Dos es un viaje por los paisajes, las historias y la memoria gastronómica de nuestra tierra. Inspirado en Las 1000 recetas de la cocina de Albacete, publicado por Carmina Useros en 1971, reinterpretamos el recetario tradicional desde una mirada contemporánea. El menú se desarrolla a través de diferentes parajes, donde cada pase reúne pequeñas elaboraciones que conviven entre sí, proponiendo una nueva forma de recorrer un menú degustación.",
+    btn_menu_actual: "MENÚ ACTUAL",
+    btn_reservar_2: "RESERVAR",
+    btn_regala: "REGALA OBA-",
+    h2_maridajes: "MARIDAJES",
+    maridaje_1_titulo: "NATURA",
+    maridaje_1_sub: "(MARIDAJE NO/LO)",
+    maridaje_1_texto: "Maridaje vivo que expresa nuestra filosofía a través de la fermentación. Cada bebida nace de un constante proceso de investigación y experimentación, donde ingredientes de nuestro entorno se transforman mediante levaduras salvajes, microorganismos seleccionados y técnicas fermentativas propias. El resultado es una colección de bebidas únicas, creadas para acompañar el menú y descubrir una nueva dimensión de cada plato.",
+    maridaje_2_titulo: "MATICES OLVIDADOS",
+    maridaje_2_texto: "Recorrido por variedades ancestrales y minoritarias del territorio nacional. Una selección de vinos con identidad, elaborados por pequeños productores que preservan un patrimonio vitivinícola único.",
+    maridaje_3_titulo: "CONTRASTES",
+    maridaje_3_texto: "Recorrido por los grandes vinos que han definido la historia. Una selección de regiones y bodegas icónicas que representan la esencia de los estilos más influyentes del mundo del vino.",
+    btn_ver_maridaje: "VER MARIDAJE",
+    h2_eventos: "ESPECIALES",
+    p_eventos: "Llevamos la experiencia Oba allí donde la imagines o reservamos nuestro espacio en exclusiva para ti. Celebraciones, encuentros privados o eventos corporativos diseñados a medida, donde cada detalle se adapta a tu ocasión.",
+    btn_raw_season: "RAW SEASON",
+    btn_consulta: "EVENTOS PRIVADOS",
+    h2_packnoche: "PACK NOCHE",
+    p_packnoche: "Una noche para quedarte: la experiencia Cuaderno Medio en nuestra mesa y alojamiento en Cañitas Maite Gastronómico, con desayuno incluido y un descuento especial en la habitación.",
+    btn_packnoche: "DESCUBRE EL PACK"
+  },
+  en: {
+    h1_seo: "oba- Restaurant: Cuaderno Dos tasting menu",
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language",
+    kicker: "00 — CUADERNO DOS",
+    p1: "Cuaderno Dos is a journey through the landscapes, the stories and the culinary memory of our land. Inspired by Las 1000 recetas de la cocina de Albacete, published by Carmina Useros in 1971, we reinterpret the traditional recipe book from a contemporary perspective. The menu unfolds through different landscapes, where each course brings together small preparations that coexist with one another, proposing a new way to travel through a tasting menu.",
+    btn_menu_actual: "CURRENT MENU",
+    btn_reservar_2: "BOOK NOW",
+    btn_regala: "GIFT OBA-",
+    h2_maridajes: "PAIRINGS",
+    maridaje_1_titulo: "NATURA",
+    maridaje_1_sub: "(NO/LOW ALCOHOL PAIRING)",
+    maridaje_1_texto: "A living pairing that expresses our philosophy through fermentation. Every drink is born from a constant process of research and experimentation, where ingredients from our surroundings are transformed using wild yeasts, selected microorganisms and our own fermentation techniques. The result is a collection of unique drinks, created to accompany the menu and reveal a new dimension in every dish.",
+    maridaje_2_titulo: "MATICES OLVIDADOS",
+    maridaje_2_texto: "A journey through ancestral and lesser-known grape varieties from across Spain. A selection of wines with character, made by small producers who preserve a unique winegrowing heritage.",
+    maridaje_3_titulo: "CONTRASTES",
+    maridaje_3_texto: "A journey through the great wines that have shaped history. A selection of iconic regions and wineries that capture the essence of the most influential styles in the world of wine.",
+    btn_ver_maridaje: "SEE PAIRING",
+    h2_eventos: "SPECIALS",
+    p_eventos: "We bring the Oba experience wherever you imagine it, or reserve our space exclusively for you. Celebrations, private gatherings or corporate events designed to measure, where every detail adapts to your occasion.",
+    btn_raw_season: "RAW SEASON",
+    btn_consulta: "PRIVATE EVENTS",
+    h2_packnoche: "NIGHT PACK",
+    p_packnoche: "A night to stay for: the Cuaderno Medio experience at our table and a stay at Cañitas Maite Gastronómico, with breakfast included and a special discount on the room.",
+    btn_packnoche: "DISCOVER THE PACK"
+  }
+};
+
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
+
+function obaInit() {
+  let saved = 'es';
+  saved = window.OBA_PAGE_LANG || 'es';
+  obaApplyLang(saved);
+
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
+
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+
+  obaInitMaridajes();
+}
+
+// Pestañas de la sección Maridajes
+function obaInitMaridajes() {
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('.oba-maridaje-tab'));
+  var paneles = Array.prototype.slice.call(document.querySelectorAll('.oba-maridaje-panel'));
+  if (!tabs.length) return;
+
+  function mostrar(id, mover) {
+    tabs.forEach(function (t) {
+      var on = t.dataset.maridaje === id;
+      t.classList.toggle('activo', on);
+      t.setAttribute('aria-selected', String(on));
+      t.tabIndex = on ? 0 : -1;
+      if (on && mover) t.focus();
+    });
+    paneles.forEach(function (p) {
+      var on = p.dataset.maridaje === id;
+      p.classList.toggle('activo', on);
+      p.hidden = !on;
+    });
+  }
+
+  tabs.forEach(function (tab, i) {
+    tab.addEventListener('click', function () { mostrar(tab.dataset.maridaje, false); });
+    tab.addEventListener('keydown', function (e) {
+      var salto = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (!salto) return;
+      e.preventDefault();
+      var siguiente = tabs[(i + salto + tabs.length) % tabs.length];
+      mostrar(siguiente.dataset.maridaje, true);
+    });
+  });
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+
+// ============================================================
+// REVEAL FOOTER — cruce de fondos al pasar el ratón por los links,
+// igual que en el hero de la Home.
+// ============================================================
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var links = document.querySelectorAll('.oba-reveal-link');
+    var layers = document.querySelectorAll('.oba-reveal-bg');
+    var nav = document.querySelector('.oba-reveal-nav');
+    var DEFAULT_BG = 'rv-bg-default';
+    if (!links.length || !layers.length) return;
+
+    function showBg(targetId) {
+      layers.forEach(function (layer) { layer.classList.remove('active'); });
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    }
+
+    links.forEach(function (link) {
+      var targetId = link.dataset.bg;
+      link.addEventListener('mouseenter', function () { showBg(targetId); });
+      link.addEventListener('focus', function () { showBg(targetId); });
+    });
+
+    if (nav) {
+      nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+      nav.addEventListener('focusout', function (e) {
+        if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+      });
+    }
+
+    // En móvil no hay hover: las fotos van rotando solas cada ~2s
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+
+  // Sustituir por el ID de medición real de Google Analytics (GA4),
+  // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
+  var GA_MEASUREMENT_ID = 'G-4M7QS4D472';
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    // Sin Analytics para usuarios conectados a WordPress (como hacía Site Kit)
+    if (document.body && document.body.classList.contains('logged-in')) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function texts() {
+    var lang = 'es';
+    try { lang = (window.OBA_PAGE_LANG || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    if (lang === 'en') {
+      return {
+        text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',
+        link: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject non-essential'
+      };
+    }
+    return {
+      text: 'Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra ',
+      link: 'Política de Cookies',
+      accept: 'Aceptar',
+      reject: 'Rechazar no esenciales'
+    };
+  }
+
+  function buildBanner() {
+    var t = texts();
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Cookie notice');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">' + t.text + '<a href="/cookies">' + t.link + '</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>
