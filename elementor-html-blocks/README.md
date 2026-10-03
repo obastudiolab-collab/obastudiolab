@@ -105,6 +105,7 @@ Esta pagina es distinta al resto: en vez de contenido estatico, monta el catalog
    - Datos estructurados extra entre `<!-- seo-extra -->` y `<!-- /seo-extra -->` (menus con precio, bonos regalo como productos, lugares de la Manchuela, accion de reserva). **No editar a mano ese bloque**: se regenera.
 2. **Version inglesa** en `en/pagina-*.html`: mismo diseno, con el texto ya escrito en ingles (sale del diccionario de cada pagina), enlaces internos a `/en/...`, JSON-LD traducido e idioma `en`. **No editar a mano**: se cambia el bloque espanol y se vuelve a ejecutar el script.
 3. `en/hreflang-map.json` y `wpcode-hreflang.php`: el fragmento de WPCode que imprime las etiquetas `hreflang` y pone `lang="en"` en las paginas inglesas.
+4. `python3 build-seo.py --check` (solo lee la web): compara cada pagina publicada con la ultima version guardada en git y avisa si alguien la cambio directamente en WordPress. Ejecutarlo siempre antes de pegar bloques nuevos en Elementor, para no pisar ese cambio. Los precios de los menus del JSON-LD salen de las claves `menu_opt_dos` / `menu_opt_medio` de `pagina-menu.html`. Checklist completo de "si cambia X, tocar en Y" en SEO.md.
 
 Paginas inglesas (hijas de la pagina `en` en WordPress, plantilla Elementor Canvas, un unico widget HTML):
 

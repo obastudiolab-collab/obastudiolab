@@ -210,6 +210,14 @@ def get_dict(s):
     return js_eval(m.group(1)) if m else {'es': {}, 'en': {}}
 
 
+def menu_option(d, key):
+    """'CUADERNO DOS · 8 PARAJES · 195€' -> ('8', '195'). Falla si el texto de la carta cambia de forma."""
+    m = re.search(r'(\d+)\s*PARAJES\s*·\s*(\d+(?:[.,]\d+)?)\s*€', d['es'].get(key, ''))
+    if not m:
+        sys.exit(f'menu: no encuentro nº de parajes y precio en {key} = {d["es"].get(key)!r}')
+    return m.group(1), m.group(2).replace(',', '.')
+
+
 def to_en_path(path):
     """'/nosotros#contacto' -> '/en/about-us#contacto'. None si no tiene versión inglesa."""
     base, sep, frag = path.partition('#')
@@ -340,13 +348,16 @@ def extra_jsonld(key, lang, s, d):
             elif t.get(f'menu_{slug}_note'):
                 sec['description'] = t[f'menu_{slug}_note']
             sections.append(sec)
+        # precio y nº de pases salen de los botones de la carta (menu_opt_dos / menu_opt_medio)
+        n_dos, p_dos = menu_option(d, 'menu_opt_dos')
+        n_medio, p_medio = menu_option(d, 'menu_opt_medio')
         dos = {'@type': 'Menu', '@id': url + '#cuaderno-dos', 'name': 'Cuaderno Dos',
                'description': t['menu_intro_summary'], 'inLanguage': lang,
-               'offers': {'@type': 'Offer', 'price': '195', 'priceCurrency': 'EUR'},
+               'offers': {'@type': 'Offer', 'price': p_dos, 'priceCurrency': 'EUR'},
                'hasMenuSection': sections}
         medio = {'@type': 'Menu', '@id': url + '#cuaderno-medio', 'name': 'Cuaderno Medio', 'inLanguage': lang,
-                 'description': '6 parajes del menú Cuaderno Dos' if lang == 'es' else '6 courses from the Cuaderno Dos menu',
-                 'offers': {'@type': 'Offer', 'price': '155', 'priceCurrency': 'EUR'}}
+                 'description': f'{n_medio} parajes del menú Cuaderno Dos' if lang == 'es' else f'{n_medio} courses from the Cuaderno Dos menu',
+                 'offers': {'@type': 'Offer', 'price': p_medio, 'priceCurrency': 'EUR'}}
         nodes += [dos, medio, {'@type': 'Restaurant', '@id': SITE + '/#restaurant', 'hasMenu': [{'@id': dos['@id']}, {'@id': medio['@id']}]}]
     elif key == 'tienda':
         m = re.search(r'var OBA_PRODUCTS = (\[.*?\n\]);', s, re.S)
@@ -503,6 +514,14 @@ def main():
         en, warn = to_english(en, key, d)
         (OUT_EN / f'pagina-{key}.html').write_text(en, encoding='utf-8')
 
+        if key == 'menu':
+            # la descripción de Google (Rank Math) menciona los precios: avisar si se quedan atrás
+            prices = [menu_option(d, k)[1] for k in ('menu_opt_dos', 'menu_opt_medio')]
+            for lang, (_, desc) in META['menu'].items():
+                missing = [p for p in prices if p not in desc]
+                if missing:
+                    warn.append(f'META menu/{lang}: la descripción no menciona el precio actual {", ".join(missing)} € — actualízala aquí y en Rank Math')
+
         leftover = re.findall(r"background-image:url\('[^']*(?:DJI|DSC|rawseason|pack-noche|galeria)", es)
         print(f'{key:28} ES {"modificado" if es != src else "sin cambios"} | EN {PAGES[key][1]}'
               + (f' | fondos sin convertir: {len(leftover)}' if leftover else ''))
@@ -523,6 +542,45 @@ def main():
     php_pairs = ',\n'.join(f"        '{es}' => '{en}'" for es, en, _ in PAGES.values())
     (HERE / 'wpcode-hreflang.php').write_text(WPCODE.replace('%PAIRS%', php_pairs), encoding='utf-8')
     print(f'\nhreflang: {len(pairs)} pares · avisos: {total_warn}')
+    print('Antes de pegar los bloques en WordPress: python3 build-seo.py --check')
+
+
+def check_live():
+    """--check: compara lo publicado en WordPress con la última versión guardada
+    en git (HEAD). Si una página no coincide, es que alguien la editó directamente
+    en Elementor: hay que traer ese cambio al bloque antes de pegar uno nuevo
+    encima, o se perdería. Solo lee la web; no escribe nada."""
+    import time
+    import urllib.request
+
+    def norm(s):
+        # atributos que WordPress añade por su cuenta a las imágenes, y espacios
+        s = re.sub(r'\s(?:decoding="async"|loading="lazy"|fetchpriority="high")', '', s)
+        return re.sub(r'\s+', ' ', s).strip()
+
+    bust = int(time.time())  # con parámetros W3 Total Cache no sirve la copia en caché
+    differ = []
+    for key, (es_path, en_path, _) in PAGES.items():
+        for path, rel in ((es_path, f'pagina-{key}.html'), (en_path, f'en/pagina-{key}.html')):
+            ref = subprocess.run(['git', 'show', f'HEAD:./{rel}'], cwd=HERE, capture_output=True, text=True)
+            source = 'git' if ref.returncode == 0 else 'archivo local (no está en git)'
+            block = ref.stdout if ref.returncode == 0 else (HERE / rel).read_text(encoding='utf-8')
+            req = urllib.request.Request(f'{SITE}{path}?nocache={bust}', headers={'User-Agent': 'Mozilla/5.0 build-seo-check'})
+            try:
+                live = urllib.request.urlopen(req, timeout=30).read().decode('utf-8')
+            except Exception as e:
+                print(f'{path:32} ERROR al descargar: {e}')
+                differ.append(path)
+                continue
+            ok = norm(block) in norm(live)
+            print(f'{path:32} {"coincide" if ok else "DISTINTO"}{"" if source == "git" else f"  ({source})"}')
+            if not ok:
+                differ.append(path)
+    if differ:
+        print(f'\n{len(differ)} página(s) publicadas no coinciden con git: alguien las cambió en WordPress.')
+        print('Antes de pegar encima, copia ese cambio al bloque del repositorio (o pídeselo a Claude).')
+        sys.exit(1)
+    print('\nTodo lo publicado coincide con git: se pueden pegar los bloques nuevos sin perder nada.')
 
 
 WPCODE = r"""<?php
@@ -574,4 +632,7 @@ if ( ! function_exists( 'oba_hreflang_pairs' ) ) {
 """
 
 if __name__ == '__main__':
-    main()
+    if '--check' in sys.argv:
+        check_live()
+    else:
+        main()

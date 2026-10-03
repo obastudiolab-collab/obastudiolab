@@ -107,3 +107,23 @@ Generado con `build-seo.py` (ver README.md). Publicado vía API de WordPress (wi
 - Caché vaciada, IndexNow: 26 URLs enviadas. Comprobado sin sesión: 26 páginas 200, idioma, título, canonical e imagen para redes correctos.
 - **hreflang (WPCode, fragmento ID 3248 "SEO · hreflang ES/EN + idioma de las páginas /en", activo)**: etiquetas es / en / x-default en cada par, `<html lang="en">` y `og:locale en_GB` en las páginas inglesas. Wordfence bloqueaba el guardado (falso positivo por contener PHP): el administrador lo permitió el 30/09/2026 con "Allowlist This Action". Si se añade una página traducida: regenerar con `build-seo.py` y pegar de nuevo el contenido de `wpcode-hreflang.php` (sin la línea `<?php`).
 - **Más adelante (aprobación de los chefs)**: bloque "Información práctica" en el pie y desplegable "Antes de venir" (FAQ) en Restaurante.
+
+## Si cambia X, tocar en Y (checklist de mantenimiento)
+
+Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), ejecutar `python3 build-seo.py` (regenera las 13 páginas inglesas de `en/`, que **nunca se editan a mano**) y antes de pegar en Elementor ejecutar `python3 build-seo.py --check`: compara lo publicado con la última versión de git y avisa si alguien cambió una página directamente en WordPress (en ese caso, traer primero ese cambio al bloque, o se perdería). Después de pegar: vaciar caché (Rendimiento → Borrar todas las cachés) y hacer commit.
+
+| Si cambia… | Dónde hay que cambiarlo |
+|---|---|
+| **Horario** | Google Business Profile · `pagina-inicio.html` (JSON-LD `openingHoursSpecification`) · llms.txt (Rank Math → Editar llms.txt: "Datos clave", "Cómo llegar" e "In English") · este SEO.md · en `build-seo.py` la lista `JSONLD_KEEP` (horas) para que no salga aviso |
+| **Teléfono** | Google Business Profile · `pagina-inicio.html` (JSON-LD) · `pagina-nosotros.html` · `pagina-aviso-legal.html` · llms.txt · Wikidata (P1329) · `JSONLD_KEEP` en `build-seo.py` |
+| **Email** (info.restauranteoba@gmail.com) | `pagina-inicio.html` (JSON-LD) · `pagina-nosotros.html` · `pagina-restaurante.html` (botón eventos privados) · `pagina-aviso-legal.html` · `pagina-politica-privacidad.html` · llms.txt · `JSONLD_KEEP` |
+| **Dirección** | Google Business Profile · `pagina-inicio.html` (JSON-LD) · `pagina-aviso-legal.html` · `pagina-politica-privacidad.html` · llms.txt · Wikidata (P6375) |
+| **Precio o nº de pases de un menú** | `pagina-menu.html`: claves `menu_opt_dos` / `menu_opt_medio` del diccionario (es **y** en). Los datos para Google (JSON-LD del menú) salen de ahí solos al regenerar. `build-seo.py` avisa si la descripción de Google (`META['menu']`, y Rank Math de `/en/tasting-menu`) no menciona el precio nuevo. También llms.txt ("In English") |
+| **Precio o producto de un bono** | Shopify (regalaoba.myshopify.com) · array `OBA_PRODUCTS` de `pagina-tienda.html` · `tienda.js` (raíz del repo, web estática de pruebas). Los datos para Google de la tienda salen del array al regenerar |
+| **Enlace de reservas (TheFork)** | Los 13 bloques españoles + aviso legal/cookies/privacidad (está en cabecera y pie de cada uno; las inglesas se regeneran) · `pagina-inicio.html` (JSON-LD `acceptsReservations`, `sameAs`) · constante `FORK` de `build-seo.py` · llms.txt |
+| **ID de Google Analytics** | Constante `GA_MEASUREMENT_ID` de los 16 bloques españoles (las inglesas se regeneran). No activarlo en Site Kit |
+| **Texto del aviso de cookies** | Función `texts()` del script de cookies en los 16 bloques españoles (es y en) · página `/cookies` |
+| **Una foto** (mismo uso, otra imagen) | Subir a la Mediateca **con el nombre exacto** que ya usa el bloque (README.md → Imágenes). Si es un archivo nuevo: añadir su texto alternativo es/en al diccionario `ALT` de `build-seo.py`. Si se borra y se vuelve a subir la imagen para redes de una página, volver a elegirla en Rank Math (el ID cambia) |
+| **Un texto de una página** | El bloque español: el texto en el HTML **y** su clave en el diccionario `OBA_TRANSLATIONS` (es y en) |
+| **Página nueva con versión inglesa** | Bloque español con selector de idioma y diccionario · `PAGES`, `META` (y `ALT` si tiene fotos nuevas) en `build-seo.py` · crear en WordPress la española y la inglesa (hija de `/en`, Elementor Canvas, un widget HTML) · Rank Math (título, descripción, imagen) · pegar de nuevo `wpcode-hreflang.php` en WPCode (fragmento 3248) · llms.txt · IndexNow |
+| **Página nueva solo en español** | Que su botón EN apunte a `/en` (portada inglesa) · Rank Math · llms.txt · IndexNow |
