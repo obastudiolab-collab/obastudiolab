@@ -124,5 +124,6 @@ Paginas inglesas (hijas de la pagina `en` en WordPress, plantilla Elementor Canv
 | `/maridaje-natura` | `/en/natura-pairing` |
 | `/maridaje-matices-olvidados` | `/en/matices-olvidados-pairing` |
 | `/tienda` | `/en/gift-vouchers` |
+| `/reservar` | `/en/book` |
 
 Las paginas legales solo existen en espanol; las inglesas enlazan a ellas.

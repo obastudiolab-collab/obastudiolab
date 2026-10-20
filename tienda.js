@@ -12,7 +12,7 @@ var OBA_PRODUCTS = [
   {
     handle: 'bono-regalo-oba-cuaderno-dos',
     category: 'bono',
-    image: 'https://cdn.shopify.com/s/files/1/1034/7354/5563/files/oba-052_90b3d6bb-b617-4843-ac9f-334e06c158cd.jpg?v=1788768734',
+    image: 'https://obarestaurante.es/wp-content/uploads/oba-galeria-restaurante.jpg',
     es: {
       title: 'Bono Regalo · Cuaderno Dos',
       desc: 'Menú Cuaderno Dos, 8 parajes de nuestra cocina con Estrella Michelin y Estrella Verde.',

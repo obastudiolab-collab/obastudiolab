@@ -20,7 +20,8 @@ if ( ! function_exists( 'oba_hreflang_pairs' ) ) {
         '/eventos' => '/en/events',
         '/maridaje-natura' => '/en/natura-pairing',
         '/maridaje-matices-olvidados' => '/en/matices-olvidados-pairing',
-        '/tienda' => '/en/gift-vouchers'
+        '/tienda' => '/en/gift-vouchers',
+        '/reservar' => '/en/book'
         );
     }
     function oba_current_path() {

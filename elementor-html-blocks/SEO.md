@@ -120,10 +120,20 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 | **Dirección** | Google Business Profile · `pagina-inicio.html` (JSON-LD) · `pagina-aviso-legal.html` · `pagina-politica-privacidad.html` · llms.txt · Wikidata (P6375) |
 | **Precio o nº de pases de un menú** | `pagina-menu.html`: claves `menu_opt_dos` / `menu_opt_medio` del diccionario (es **y** en). Los datos para Google (JSON-LD del menú) salen de ahí solos al regenerar. `build-seo.py` avisa si la descripción de Google (`META['menu']`, y Rank Math de `/en/tasting-menu`) no menciona el precio nuevo. También llms.txt ("In English") |
 | **Precio o producto de un bono** | Shopify (regalaoba.myshopify.com) · array `OBA_PRODUCTS` de `pagina-tienda.html` · `tienda.js` (raíz del repo, web estática de pruebas). Los datos para Google de la tienda salen del array al regenerar |
-| **Enlace de reservas (TheFork)** | Los 13 bloques españoles + aviso legal/cookies/privacidad (está en cabecera y pie de cada uno; las inglesas se regeneran) · `pagina-inicio.html` (JSON-LD `acceptsReservations`, `sameAs`) · constante `FORK` de `build-seo.py` · llms.txt |
+| **Reservas (TheFork)** | Desde el 20/10/2026 todos los botones de reserva llevan a la página propia `/reservar` (ID 599; inglés `/en/book`, ID 3254), que lleva dentro el widget de TheFork: `https://widget.thefork.com/es/a232639e-a80f-4cd3-8ece-2396f92f33e1` (UID del restaurante; la inglesa usa `/en/`). Si cambia el widget: solo `pagina-reservar.html` (y regenerar). El perfil de TheFork sigue en el JSON-LD `sameAs` de `pagina-inicio.html` |
 | **ID de Google Analytics** | Constante `GA_MEASUREMENT_ID` de los 16 bloques españoles (las inglesas se regeneran). No activarlo en Site Kit |
 | **Texto del aviso de cookies** | Función `texts()` del script de cookies en los 16 bloques españoles (es y en) · página `/cookies` |
 | **Una foto** (mismo uso, otra imagen) | Subir a la Mediateca **con el nombre exacto** que ya usa el bloque (README.md → Imágenes). Si es un archivo nuevo: añadir su texto alternativo es/en al diccionario `ALT` de `build-seo.py`. Si se borra y se vuelve a subir la imagen para redes de una página, volver a elegirla en Rank Math (el ID cambia) |
 | **Un texto de una página** | El bloque español: el texto en el HTML **y** su clave en el diccionario `OBA_TRANSLATIONS` (es y en) |
 | **Página nueva con versión inglesa** | Bloque español con selector de idioma y diccionario · `PAGES`, `META` (y `ALT` si tiene fotos nuevas) en `build-seo.py` · crear en WordPress la española y la inglesa (hija de `/en`, Elementor Canvas, un widget HTML) · Rank Math (título, descripción, imagen) · pegar de nuevo `wpcode-hreflang.php` en WPCode (fragmento 3248) · llms.txt · IndexNow |
 | **Página nueva solo en español** | Que su botón EN apunte a `/en` (portada inglesa) · Rank Math · llms.txt · IndexNow |
+
+## Cambios de contenido — publicados el 20/10/2026
+
+- **Portada:** NOSOTROS muestra la foto de Javier Sanz y Juan Sahuquillo (`oba-chefs.jpg`, ID 3251), también en el fondo del pie de todas las páginas (antes `oba-nosotros.jpg`, que sigue siendo la imagen para redes de /nosotros).
+- **Restaurante:** foto nueva `oba-restaurante-plato.jpg` (ID 3252); fuera el botón "Regala oba-" de Cuaderno Dos y la pestaña Contrastes de Maridajes; apartado **Especiales oculto** (queda comentado en `pagina-restaurante.html`, se recupera quitando el comentario); "Pack Noche" → **Oferta Pack Noche**; nuevo apartado final **Regala oba-** con botón a /tienda.
+- **Reservas dentro de la web:** página nueva `/reservar` + `/en/book` con el widget de TheFork. Se borró la redirección 301 `/reservar` → `/restaurante` de Rank Math (tenía 298 visitas) y el ID 599 salió de la lista de excluidos del sitemap. JSON-LD (`acceptsReservations`, `ReserveAction`) apunta a /reservar. llms.txt actualizado.
+- **Parajes** y apartado Parajes de **Entorno:** quitado el botón RESERVAR.
+- **Pack Noche:** renombrado a "Oferta Pack Noche" (página y Rank Math). **Pendiente:** precio original tachado delante de los 215 € cuando se tenga.
+- **Tienda:** bono Cuaderno Dos con foto `oba-galeria-restaurante.jpg` (solo en la web; en Shopify sigue la anterior).
+- WPCode (fragmento 3248) actualizado con el par /reservar ↔ /en/book; caché vaciada; IndexNow: 14 URLs.

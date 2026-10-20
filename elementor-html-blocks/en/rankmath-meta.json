@@ -36,11 +36,11 @@
     "description": "Raw Season: four one-off dinners, one per season, at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete (Spain)."
   },
   "https://obarestaurante.es/en/dinner-and-stay": {
-    "title": "Michelin-star dinner & overnight stay in Spain · oba-",
+    "title": "Night Pack Offer: Michelin-star dinner & stay · oba-",
     "description": "A food getaway to La Manchuela: Cuaderno Medio dinner at oba- (Michelin Star) and a night at Cañitas Maite with breakfast. 1h30 from Valencia, 2h from Alicante."
   },
   "https://obarestaurante.es/pack-noche": {
-    "title": "Escapada gastronómica con Estrella Michelin · Pack Noche oba-",
+    "title": "Oferta Pack Noche · Escapada con Estrella Michelin · oba-",
     "description": "Escapada gastronómica a la Manchuela: cena Cuaderno Medio en oba- (Estrella Michelin) y noche en Cañitas Maite con desayuno, a 1h30 de Valencia."
   },
   "https://obarestaurante.es/en/events": {
@@ -54,6 +54,14 @@
   "https://obarestaurante.es/en/matices-olvidados-pairing": {
     "title": "Matices Olvidados · Forgotten Spanish grapes wine pairing",
     "description": "Matices Olvidados: oba-'s wine pairing of ancestral, lesser-known Spanish grape varieties, made by small producers who preserve a unique heritage."
+  },
+  "https://obarestaurante.es/reservar": {
+    "title": "Reservar mesa · oba-, restaurante Estrella Michelin en Albacete",
+    "description": "Reserva tu mesa en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): elige día, personas y hora para Cuaderno Dos o Cuaderno Medio."
+  },
+  "https://obarestaurante.es/en/book": {
+    "title": "Book a table · oba-, Michelin-starred restaurant in Spain",
+    "description": "Book your table at oba-, Michelin Star and Green Star restaurant in Casas-Ibáñez (Albacete), 1h30 from Valencia: choose day, guests and time."
   },
   "https://obarestaurante.es/en/gift-vouchers": {
     "title": "Gift vouchers · Michelin-star restaurant experience · oba-",

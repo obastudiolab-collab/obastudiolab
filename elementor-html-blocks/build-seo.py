@@ -33,7 +33,8 @@ HERE = Path(__file__).resolve().parent
 OUT_EN = HERE / 'en'
 SITE = 'https://obarestaurante.es'
 UP = SITE + '/wp-content/uploads/'
-FORK = 'https://www.thefork.es/restaurante/oba-r721580'
+# Reservas: página propia con el widget de TheFork (antes se enlazaba a thefork.es)
+RESERVE = {'es': SITE + '/reservar', 'en': SITE + '/en/book'}
 
 # clave de archivo -> (ruta ES, ruta EN, nombre EN para migas de pan)
 PAGES = {
@@ -50,6 +51,7 @@ PAGES = {
     'maridaje-natura':            ('/maridaje-natura', '/en/natura-pairing', 'Natura pairing'),
     'maridaje-matices-olvidados': ('/maridaje-matices-olvidados', '/en/matices-olvidados-pairing', 'Matices Olvidados pairing'),
     'tienda':                     ('/tienda', '/en/gift-vouchers', 'Gift vouchers'),
+    'reservar':                   ('/reservar', '/en/book', 'Book a table'),
 }
 ES2EN = {es: en for es, en, _ in PAGES.values()}
 
@@ -79,9 +81,9 @@ META = {
     'rawseason': {'en': ('Raw Season · Seasonal dinners at oba-, Casas-Ibáñez',
                          'Raw Season: four one-off dinners, one per season, at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete (Spain).')},
     'pack-noche': {
-        'en': ('Michelin-star dinner & overnight stay in Spain · oba-',
+        'en': ('Night Pack Offer: Michelin-star dinner & stay · oba-',
                'A food getaway to La Manchuela: Cuaderno Medio dinner at oba- (Michelin Star) and a night at Cañitas Maite with breakfast. 1h30 from Valencia, 2h from Alicante.'),
-        'es': ('Escapada gastronómica con Estrella Michelin · Pack Noche oba-',
+        'es': ('Oferta Pack Noche · Escapada con Estrella Michelin · oba-',
                'Escapada gastronómica a la Manchuela: cena Cuaderno Medio en oba- (Estrella Michelin) y noche en Cañitas Maite con desayuno, a 1h30 de Valencia.'),
     },
     'eventos': {'en': ('Special events · Oba x Ima and Oba 360 · oba-',
@@ -90,6 +92,12 @@ META = {
                                "Natura, oba-'s no/low-alcohol pairing: drinks fermented with wild yeasts to accompany the tasting menu at our Michelin-starred restaurant.")},
     'maridaje-matices-olvidados': {'en': ('Matices Olvidados · Forgotten Spanish grapes wine pairing',
                                           "Matices Olvidados: oba-'s wine pairing of ancestral, lesser-known Spanish grape varieties, made by small producers who preserve a unique heritage.")},
+    'reservar': {
+        'es': ('Reservar mesa · oba-, restaurante Estrella Michelin en Albacete',
+               'Reserva tu mesa en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): elige día, personas y hora para Cuaderno Dos o Cuaderno Medio.'),
+        'en': ('Book a table · oba-, Michelin-starred restaurant in Spain',
+               'Book your table at oba-, Michelin Star and Green Star restaurant in Casas-Ibáñez (Albacete), 1h30 from Valencia: choose day, guests and time.'),
+    },
     'tienda': {'en': ('Gift vouchers · Michelin-star restaurant experience · oba-',
                       'Digital gift vouchers for oba-, a Michelin Star and Green Star restaurant in Casas-Ibáñez, Spain: Cuaderno Dos, Cuaderno Medio and dinner-and-stay packages.')},
 }
@@ -98,6 +106,10 @@ META = {
 ALT = {
     'oba-logo.png': ('oba-', 'oba-'),
     'oba-logo-dark.png': ('oba-', 'oba-'),
+    'oba-chefs.jpg': ('Los chefs Javier Sanz y Juan Sahuquillo, de oba-, sentados entre la vegetación',
+                      'Chefs Javier Sanz and Juan Sahuquillo of oba-, sitting among the greenery'),
+    'oba-restaurante-plato.jpg': ('Pase de verduras con flor de calabacín y pimiento sobre plato blanco, menú degustación de oba-',
+                                  'Vegetable course with courgette flower and pepper on a white plate, oba- tasting menu'),
     'oba-premios.png': ('Estrella Michelin y Estrella Verde Michelin', 'Michelin Star and Green Michelin Star'),
     'oba-fondo-principal.jpg': ('Comedor de oba- con paredes de madera y lámparas colgantes, restaurante con Estrella Michelin en Casas-Ibáñez (Albacete)',
                                 'Dining room at oba-, with wooden walls and pendant lamps: Michelin-starred restaurant in Casas-Ibáñez, Albacete'),
@@ -173,6 +185,7 @@ PLAIN_EN = {
     'aria-label="Cerrar"': 'aria-label="Close"',
     'aria-label="Cesta"': 'aria-label="Basket"',
     "wrap.setAttribute('aria-label', 'Aviso de cookies');": "wrap.setAttribute('aria-label', 'Cookie notice');",
+    'widget.thefork.com/es/': 'widget.thefork.com/en/',
 }
 
 EXTRA_CSS = """
@@ -330,7 +343,7 @@ def extra_jsonld(key, lang, s, d):
         nodes.append({
             '@type': 'Restaurant', '@id': SITE + '/#restaurant',
             'potentialAction': {'@type': 'ReserveAction',
-                                'target': {'@type': 'EntryPoint', 'urlTemplate': FORK},
+                                'target': {'@type': 'EntryPoint', 'urlTemplate': RESERVE[lang]},
                                 'result': {'@type': 'FoodEstablishmentReservation', 'name': 'Reserva en oba-' if lang == 'es' else 'Table at oba-'}},
         })
     elif key == 'menu':
@@ -411,7 +424,7 @@ def translate_jsonld(obj, warn):
         for k, v in obj.items():
             if k in ('@id', '@type', '@context'):
                 out[k] = v
-            elif k in ('url', 'item', 'hasMenu') and isinstance(v, str):
+            elif k in ('url', 'item', 'hasMenu', 'acceptsReservations') and isinstance(v, str):
                 out[k] = to_en_url(v)
             elif k == 'inLanguage':
                 out[k] = 'en'
