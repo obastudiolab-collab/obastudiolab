@@ -424,6 +424,22 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
   .oba-page .oba-reservar-widget iframe { min-height: 820px; }
 }
 
+/* Antes de venir: desplegable discreto bajo el widget */
+.oba-page .oba-faq { max-width: 560px; margin: 44px auto 0; text-align: left; }
+.oba-page .oba-faq > summary {
+  list-style: none; cursor: pointer; text-align: center;
+  font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.15em;
+  color: rgba(26,26,26,0.6) !important; padding: 10px 0; user-select: none;
+}
+.oba-page .oba-faq > summary::-webkit-details-marker { display: none; }
+.oba-page .oba-faq > summary::after { content: " +"; }
+.oba-page .oba-faq[open] > summary::after { content: " –"; }
+.oba-page .oba-faq > summary:hover { color: #1a1a1a !important; }
+.oba-page .oba-faq dl { margin: 14px 0 0; border-top: 1px solid rgba(26,26,26,0.12); }
+.oba-page .oba-faq dt { font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.12em; color: #1a1a1a !important; margin: 18px 0 6px; }
+.oba-page .oba-faq dd { margin: 0; font-size: 14px !important; line-height: 1.6; color: #2a2a2a !important; }
+.oba-page .oba-faq dd a { color: #9d7759 !important; }
+
 /* seo-build: selector de idioma con enlaces y fotos como <img> */
 .oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
 .oba-page .oba-has-bg-img { isolation: isolate; }
@@ -468,6 +484,23 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
     <div class="oba-reservar-widget">
       <iframe src="https://widget.thefork.com/es/a232639e-a80f-4cd3-8ece-2396f92f33e1" title="Reserva en oba- con TheFork" data-i18n-attr="title:iframe_title" allow="payment"></iframe>
     </div>
+    <details class="oba-faq">
+      <summary data-i18n="faq_summary">ANTES DE VENIR</summary>
+      <dl>
+        <dt data-i18n="faq_q_llegar">CÓMO LLEGAR</dt>
+        <dd data-i18n="faq_a_llegar">Estamos en Casas-Ibáñez (Albacete): a unos 45 minutos de Albacete, 1h30 de Valencia, 2h de Alicante y Murcia y 2h30 de Madrid.</dd>
+        <dt data-i18n="faq_q_horario">CUÁNDO ABRIMOS</dt>
+        <dd data-i18n="faq_a_horario">De jueves a domingo, a mediodía (13:00–17:00) y por la noche (20:00–23:30).</dd>
+        <dt data-i18n="faq_q_menu">QUÉ SE COME</dt>
+        <dd><span data-i18n="faq_a_menu">Dos menús degustación: Cuaderno Dos (8 parajes) y Cuaderno Medio (6 parajes), con maridaje opcional.</span> <a href="/menu" data-i18n="faq_link_menu">Ver menú</a></dd>
+        <dt data-i18n="faq_q_dormir">DÓNDE DORMIR</dt>
+        <dd><span data-i18n="faq_a_dormir">En el mismo edificio, en el Hotel Cañitas Maite Gastronómico.</span> <a href="/pack-noche" data-i18n="faq_link_dormir">Oferta Pack Noche</a></dd>
+        <dt data-i18n="faq_q_aparcar">DÓNDE APARCAR</dt>
+        <dd data-i18n="faq_a_aparcar">Aparcamiento gratuito justo enfrente del restaurante.</dd>
+        <dt data-i18n="faq_q_alergias">ALERGIAS E INTOLERANCIAS</dt>
+        <dd data-i18n="faq_a_alergias">Avísanos al hacer la reserva.</dd>
+      </dl>
+    </details>
   </section>
 </div>
 
@@ -506,7 +539,14 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
     kicker_reservar: "RESERVA",
     p_reservar: "Elige día, número de personas y hora. Para grupos o eventos privados, escríbenos a info.restauranteoba@gmail.com.",
-    iframe_title: "Reserva en oba- con TheFork"
+    iframe_title: "Reserva en oba- con TheFork",
+    faq_summary: "ANTES DE VENIR",
+    faq_q_llegar: "CÓMO LLEGAR", faq_a_llegar: "Estamos en Casas-Ibáñez (Albacete): a unos 45 minutos de Albacete, 1h30 de Valencia, 2h de Alicante y Murcia y 2h30 de Madrid.",
+    faq_q_horario: "CUÁNDO ABRIMOS", faq_a_horario: "De jueves a domingo, a mediodía (13:00–17:00) y por la noche (20:00–23:30).",
+    faq_q_menu: "QUÉ SE COME", faq_a_menu: "Dos menús degustación: Cuaderno Dos (8 parajes) y Cuaderno Medio (6 parajes), con maridaje opcional.", faq_link_menu: "Ver menú",
+    faq_q_dormir: "DÓNDE DORMIR", faq_a_dormir: "En el mismo edificio, en el Hotel Cañitas Maite Gastronómico.", faq_link_dormir: "Oferta Pack Noche",
+    faq_q_aparcar: "DÓNDE APARCAR", faq_a_aparcar: "Aparcamiento gratuito justo enfrente del restaurante.",
+    faq_q_alergias: "ALERGIAS E INTOLERANCIAS", faq_a_alergias: "Avísanos al hacer la reserva."
   },
   en: {
     h1_seo: "Book a table at oba-, Michelin-starred restaurant in Casas-Ibáñez",
@@ -516,7 +556,14 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     aria_menu: "Open menu", aria_lang: "Select language",
     kicker_reservar: "BOOK A TABLE",
     p_reservar: "Choose the day, number of guests and time. For groups or private events, email us at info.restauranteoba@gmail.com.",
-    iframe_title: "Book a table at oba- with TheFork"
+    iframe_title: "Book a table at oba- with TheFork",
+    faq_summary: "BEFORE YOU COME",
+    faq_q_llegar: "GETTING HERE", faq_a_llegar: "We are in Casas-Ibáñez (Albacete, Spain): about 45 minutes from Albacete, 1h30 from Valencia, 2h from Alicante and Murcia, and 2h30 from Madrid.",
+    faq_q_horario: "OPENING HOURS", faq_a_horario: "Thursday to Sunday, lunch (1pm–5pm) and dinner (8pm–11:30pm).",
+    faq_q_menu: "WHAT WE SERVE", faq_a_menu: "Two tasting menus: Cuaderno Dos (8 landscapes) and Cuaderno Medio (6 landscapes), with optional pairing.", faq_link_menu: "See the menu",
+    faq_q_dormir: "WHERE TO STAY", faq_a_dormir: "In the same building, at Hotel Cañitas Maite Gastronómico.", faq_link_dormir: "Night Pack Offer",
+    faq_q_aparcar: "PARKING", faq_a_aparcar: "Free parking right across the street.",
+    faq_q_alergias: "ALLERGIES AND INTOLERANCES", faq_a_alergias: "Please let us know when you book."
   }
 };
 
