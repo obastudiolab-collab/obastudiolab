@@ -56,6 +56,11 @@ Se recomienda añadir la misma referencia a P625, P6375 y P856. Sin referencias,
 
 Cuando exista el elemento (número Q…), añadir su URL `https://www.wikidata.org/wiki/Q…` al `sameAs` de la ficha del restaurante en el bloque de la home. Así Google une la web, Maps, Michelin y Wikidata como la misma entidad.
 
-## Chefs (más adelante)
+## Chefs — creados el 30/10/2026
+
+- **Javier Sanz: [Q141928036](https://www.wikidata.org/wiki/Q141928036)** (alias Javi Sanz) · **Juan Sahuquillo: [Q141928037](https://www.wikidata.org/wiki/Q141928037)**. P31 ser humano, P106 chef (referencia: El Español, 01/03/2024). En oba- (Q141556014) añadido P112 fundado por → los dos.
+- Enlazados desde la web: `sameAs` de las fichas Person de `pagina-nosotros.html` y de `founder` en `pagina-inicio.html` (y sus versiones en inglés).
+
+### Guía original (chefs)
 
 Crear elementos para Javier Sanz y Juan Sahuquillo solo si hay fuentes de prensa que hablen de ellos con nombre propio (p. ej. el artículo de El Español enlazado en /nosotros). Si se crean: P31 = Q5 (ser humano), P106 ocupación = Q3499072 (chef), y en oba- añadir P112 fundado por → los dos elementos.
