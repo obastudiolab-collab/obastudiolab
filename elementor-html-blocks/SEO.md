@@ -150,3 +150,9 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 | /prensa | /nosotros |
 | /nochevieja | /eventos |
 | /natura | /maridaje-natura (WordPress la mandaba a /en/natura-pairing) |
+
+## Enlaces desde la web del hotel (hotelcanitasmaite.com) — 30/10/2026
+
+- `/paquetes/` (página 3840): tarjeta nueva **"Oferta Pack Noche OBA-"** (elemento Elementor `361e9c3`, copia del diseño de "HITS + Hotel") con Cuaderno Medio, alojamiento con 35–40 % de descuento, desayuno, 215 € por persona y botón "Ver el pack" → `https://obarestaurante.es/pack-noche`. Si cambia el precio o las condiciones del Pack Noche, cambiarlo también ahí.
+- `/canitas-maite-gastronomico/` (página 28): en el texto "En la planta baja del Hotel Gastronómico…", "OBA-" enlaza a `/pack-noche`.
+- Tras editar: Elementor → Herramientas → "Vaciar archivos y datos" y LiteSpeed → "Purgar todo".
