@@ -64,42 +64,74 @@ META = {
         'en': ('oba- · Michelin-starred restaurant near Valencia, Spain',
                'oba-, one Michelin Star and a Green Star in Casas-Ibáñez (Albacete), 1h30 from Valencia. Cooking rooted in La Mancha by chefs Javier Sanz and Juan Sahuquillo.'),
         'es': ('oba- · Restaurante Estrella Michelin en Albacete, Castilla-La Mancha',
-               'oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), a 1h30 de Valencia. Cocina de raíz manchega de Javier Sanz y Juan Sahuquillo.'),
+               'oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), a 1h30 de Valencia y 2h de Alicante y Murcia. Cocina de Javier Sanz y Juan Sahuquillo.'),
     },
-    'restaurante': {'en': ('oba- Restaurant · Michelin-starred tasting menu near Valencia',
-                           "Cuaderno Dos, oba-'s Michelin-starred tasting menu in Casas-Ibáñez: the landscapes and culinary memory of La Manchuela, an easy trip from Valencia.")},
-    'menu': {'en': ('Cuaderno Dos · Tasting menu at oba-, Michelin Star in Spain',
-                    "Cuaderno Dos (€195, 8 courses) and Cuaderno Medio (€155, 6 courses): oba-'s tasting menus, inspired by Carmina Useros' 1971 Albacete recipe book.")},
-    'entorno': {'en': ('Surroundings · La Manchuela, the landscape behind oba-',
-                       'The gorges, rivers and kitchen gardens of La Manchuela that inspire every dish at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete.')},
-    'nosotros': {'en': ('About us · Chefs Javier Sanz and Juan Sahuquillo · oba-',
-                        'Javier Sanz and Juan Sahuquillo, the chefs behind oba-: cooking with roots, born in Casas-Ibáñez (Albacete) and in Cañitas Maite, their family business.')},
-    'huerto': {'en': ("Kitchen garden · oba-'s garden in the Júcar valley",
-                      "oba-'s kitchen garden in the Júcar valley, near Jorquera: where the cooking of this Michelin Green Star restaurant in Casas-Ibáñez begins.")},
-    'parajes': {'en': ('Things to do in La Manchuela: Alcalá del Júcar & more · oba-',
-                       'Alcalá del Júcar, the Cabriel gorges, Jorquera and Las Chorreras: what to see around oba- in La Manchuela, a day trip from Valencia or Alicante.')},
-    'rawseason': {'en': ('Raw Season · Seasonal dinners at oba-, Casas-Ibáñez',
-                         'Raw Season: four one-off dinners, one per season, at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete (Spain).')},
+    'restaurante': {
+        'en': ('oba- Restaurant · Michelin-starred tasting menu near Valencia',
+               "Cuaderno Dos, oba-'s Michelin-starred tasting menu in Casas-Ibáñez: the landscapes and culinary memory of La Manchuela, an easy trip from Valencia."),
+        'es': ('Restaurante oba- · Estrella Michelin en la Manchuela, Albacete',
+               'Cuaderno Dos, el menú degustación con Estrella Michelin de oba- en Casas-Ibáñez (Albacete), a 1h30 de Valencia: la memoria gastronómica de la Manchuela.'),
+    },
+    'menu': {
+        'en': ('Cuaderno Dos · Tasting menu at oba-, Michelin Star in Spain',
+               "Cuaderno Dos (€195, 8 courses) and Cuaderno Medio (€155, 6 courses): oba-'s tasting menus, inspired by Carmina Useros' 1971 Albacete recipe book."),
+        'es': ('Menú degustación Estrella Michelin en Albacete · oba-',
+               'Cuaderno Dos (195 €, 8 parajes) y Cuaderno Medio (155 €, 6 parajes): los menús degustación de oba-, inspirados en el recetario de Albacete de Carmina Useros.'),
+    },
+    'entorno': {
+        'en': ('Surroundings · La Manchuela, the landscape behind oba-',
+               'The gorges, rivers and kitchen gardens of La Manchuela that inspire every dish at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete.'),
+    },
+    'nosotros': {
+        'en': ('About us · Chefs Javier Sanz and Juan Sahuquillo · oba-',
+               'Javier Sanz and Juan Sahuquillo, the chefs behind oba-: cooking with roots, born in Casas-Ibáñez (Albacete) and in Cañitas Maite, their family business.'),
+        'es': ('Nosotros · Javier Sanz y Juan Sahuquillo, chefs de oba-',
+               'Javier Sanz y Juan Sahuquillo, chefs de oba- (Estrella Michelin): una cocina con raíz nacida en Casas-Ibáñez (Albacete) y en Cañitas Maite, su casa familiar.'),
+    },
+    'huerto': {
+        'en': ("Kitchen garden · oba-'s garden in the Júcar valley",
+               "oba-'s kitchen garden in the Júcar valley, near Jorquera: where the cooking of this Michelin Green Star restaurant in Casas-Ibáñez begins."),
+    },
+    'parajes': {
+        'en': ('Things to do in La Manchuela: Alcalá del Júcar & more · oba-',
+               'Alcalá del Júcar, the Cabriel gorges, Jorquera and Las Chorreras: what to see around oba- in La Manchuela, a day trip from Valencia or Alicante.'),
+        'es': ('Qué ver en la Manchuela: Alcalá del Júcar y alrededores · oba-',
+               'Alcalá del Júcar, la Cueva de los Ángeles, Jorquera o Las Chorreras: qué ver en la Manchuela (Albacete), a 1h30 de Valencia, junto al restaurante oba-.'),
+    },
+    'rawseason': {
+        'en': ('Raw Season · Seasonal dinners at oba-, Casas-Ibáñez',
+               'Raw Season: four one-off dinners, one per season, at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete (Spain).'),
+    },
     'pack-noche': {
-        'en': ('Night Pack Offer: Michelin-star dinner & stay · oba-',
-               'A food getaway to La Manchuela: Cuaderno Medio dinner at oba- (Michelin Star) and a night at Cañitas Maite with breakfast. 1h30 from Valencia, 2h from Alicante.'),
-        'es': ('Oferta Pack Noche · Escapada con Estrella Michelin · oba-',
-               'Escapada gastronómica a la Manchuela: cena Cuaderno Medio en oba- (Estrella Michelin) y noche en Cañitas Maite con desayuno, a 1h30 de Valencia.'),
+        'en': ('Night Pack Offer: Michelin-star food getaway & hotel · oba-',
+               'Cuaderno Medio dinner at oba- (Michelin Star) and a hotel night with breakfast in Casas-Ibáñez, Spain: 1h30 from Valencia, 2h from Alicante or Murcia.'),
+        'es': ('Oferta Pack Noche · Escapada gastronómica con Estrella Michelin',
+               'Cena Cuaderno Medio en oba- (Estrella Michelin) y noche de hotel con desayuno en Casas-Ibáñez: escapada a 1h30 de Valencia y 2h de Alicante o Murcia.'),
     },
-    'eventos': {'en': ('Special events · Oba x Ima and Oba 360 · oba-',
-                       'Oba x Ima and Oba 360 Experience: special events and private dining at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Spain.')},
-    'maridaje-natura': {'en': ('Natura pairing · Wild-fermented drinks · oba-',
-                               "Natura, oba-'s no/low-alcohol pairing: drinks fermented with wild yeasts to accompany the tasting menu at our Michelin-starred restaurant.")},
-    'maridaje-matices-olvidados': {'en': ('Matices Olvidados · Forgotten Spanish grapes wine pairing',
-                                          "Matices Olvidados: oba-'s wine pairing of ancestral, lesser-known Spanish grape varieties, made by small producers who preserve a unique heritage.")},
+    'eventos': {
+        'en': ('Special events · Oba x Ima and Oba 360 · oba-',
+               'Oba x Ima and Oba 360 Experience: special events and private dining at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Spain.'),
+    },
+    'maridaje-natura': {
+        'en': ('Natura pairing · Wild-fermented drinks · oba-',
+               "Natura, oba-'s no/low-alcohol pairing: drinks fermented with wild yeasts to accompany the tasting menu at our Michelin-starred restaurant."),
+    },
+    'maridaje-matices-olvidados': {
+        'en': ('Matices Olvidados · Forgotten Spanish grapes wine pairing',
+               "Matices Olvidados: oba-'s wine pairing of ancestral, lesser-known Spanish grape varieties, made by small producers who preserve a unique heritage."),
+    },
     'reservar': {
         'es': ('Reservar mesa · oba-, restaurante Estrella Michelin en Albacete',
-               'Reserva tu mesa en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): elige día, personas y hora para Cuaderno Dos o Cuaderno Medio.'),
+               'Reserva en oba-, Estrella Michelin en Casas-Ibáñez (Albacete), a 1h30 de Valencia y 2h de Alicante y Murcia. Aparcamiento gratuito y hotel en el mismo edificio.'),
         'en': ('Book a table · oba-, Michelin-starred restaurant in Spain',
                'Book your table at oba-, Michelin Star and Green Star restaurant in Casas-Ibáñez (Albacete), 1h30 from Valencia: choose day, guests and time.'),
     },
-    'tienda': {'en': ('Gift vouchers · Michelin-star restaurant experience · oba-',
-                      'Digital gift vouchers for oba-, a Michelin Star and Green Star restaurant in Casas-Ibáñez, Spain: Cuaderno Dos, Cuaderno Medio and dinner-and-stay packages.')},
+    'tienda': {
+        'en': ('Gift vouchers · Michelin-star restaurant experience · oba-',
+               'Digital gift vouchers for oba-, a Michelin Star and Green Star restaurant in Casas-Ibáñez, Spain: Cuaderno Dos, Cuaderno Medio and dinner-and-stay packages.'),
+        'es': ('Bonos regalo · Cena en restaurante Estrella Michelin · oba-',
+               'Regala una cena en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): bonos digitales de Cuaderno Dos, Cuaderno Medio y noche de hotel.'),
+    },
 }
 
 # Texto alternativo por archivo de imagen: (español, inglés)
@@ -173,7 +205,7 @@ JSONLD_EN = {
     'Chef y cofundador de oba-, restaurante con Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete, Castilla-La Mancha).':
         'Chef and co-founder of oba-, the Michelin Star and Green Star restaurant in Casas-Ibáñez (Albacete, Castilla-La Mancha, Spain).',
 }
-JSONLD_KEEP = {'oba-', 'Chef', 'Javier Sanz', 'Juan Sahuquillo', 'Casas-Ibáñez', 'Albacete', 'ES', '02200',
+JSONLD_KEEP = {'oba-', 'Chef', 'Javier Sanz', 'Javi Sanz', 'Juan Sahuquillo', 'Casas-Ibáñez', 'Albacete', 'ES', '02200',
                'Calle Tomás Pérez Úbeda, 6', 'Casas-Ibáñez, Albacete', '€€€€', '13:00', '17:00', '20:00', '23:30',
                'Thursday', 'Friday', 'Saturday', 'Sunday', 'info.restauranteoba@gmail.com', '+34604962117'}
 
@@ -396,6 +428,12 @@ def extra_jsonld(key, lang, s, d):
         if len(items) != 7:
             sys.exit(f'parajes: se esperaban 7 lugares, hay {len(items)}')
         nodes.append({'@type': 'ItemList', 'name': t['h1_seo'], 'itemListElement': items})
+    # desplegable "Antes de venir" (claves faq_q_X / faq_a_X del diccionario): FAQPage
+    faq = [k[len('faq_q_'):] for k in t if k.startswith('faq_q_') and t.get('faq_a_' + k[len('faq_q_'):])]
+    if faq:
+        nodes.append({'@type': 'FAQPage', '@id': url + '#antes-de-venir', 'inLanguage': lang,
+                      'mainEntity': [{'@type': 'Question', 'name': t['faq_q_' + k].capitalize(),
+                                      'acceptedAnswer': {'@type': 'Answer', 'text': t['faq_a_' + k]}} for k in faq]})
     if not nodes:
         return ''
     data = {'@context': 'https://schema.org', '@graph': nodes}

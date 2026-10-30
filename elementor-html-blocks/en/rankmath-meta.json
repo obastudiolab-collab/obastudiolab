@@ -5,15 +5,23 @@
   },
   "https://obarestaurante.es/": {
     "title": "oba- · Restaurante Estrella Michelin en Albacete, Castilla-La Mancha",
-    "description": "oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), a 1h30 de Valencia. Cocina de raíz manchega de Javier Sanz y Juan Sahuquillo."
+    "description": "oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete), a 1h30 de Valencia y 2h de Alicante y Murcia. Cocina de Javier Sanz y Juan Sahuquillo."
   },
   "https://obarestaurante.es/en/restaurant": {
     "title": "oba- Restaurant · Michelin-starred tasting menu near Valencia",
     "description": "Cuaderno Dos, oba-'s Michelin-starred tasting menu in Casas-Ibáñez: the landscapes and culinary memory of La Manchuela, an easy trip from Valencia."
   },
+  "https://obarestaurante.es/restaurante": {
+    "title": "Restaurante oba- · Estrella Michelin en la Manchuela, Albacete",
+    "description": "Cuaderno Dos, el menú degustación con Estrella Michelin de oba- en Casas-Ibáñez (Albacete), a 1h30 de Valencia: la memoria gastronómica de la Manchuela."
+  },
   "https://obarestaurante.es/en/tasting-menu": {
     "title": "Cuaderno Dos · Tasting menu at oba-, Michelin Star in Spain",
     "description": "Cuaderno Dos (€195, 8 courses) and Cuaderno Medio (€155, 6 courses): oba-'s tasting menus, inspired by Carmina Useros' 1971 Albacete recipe book."
+  },
+  "https://obarestaurante.es/menu": {
+    "title": "Menú degustación Estrella Michelin en Albacete · oba-",
+    "description": "Cuaderno Dos (195 €, 8 parajes) y Cuaderno Medio (155 €, 6 parajes): los menús degustación de oba-, inspirados en el recetario de Albacete de Carmina Useros."
   },
   "https://obarestaurante.es/en/surroundings": {
     "title": "Surroundings · La Manchuela, the landscape behind oba-",
@@ -23,6 +31,10 @@
     "title": "About us · Chefs Javier Sanz and Juan Sahuquillo · oba-",
     "description": "Javier Sanz and Juan Sahuquillo, the chefs behind oba-: cooking with roots, born in Casas-Ibáñez (Albacete) and in Cañitas Maite, their family business."
   },
+  "https://obarestaurante.es/nosotros": {
+    "title": "Nosotros · Javier Sanz y Juan Sahuquillo, chefs de oba-",
+    "description": "Javier Sanz y Juan Sahuquillo, chefs de oba- (Estrella Michelin): una cocina con raíz nacida en Casas-Ibáñez (Albacete) y en Cañitas Maite, su casa familiar."
+  },
   "https://obarestaurante.es/en/kitchen-garden": {
     "title": "Kitchen garden · oba-'s garden in the Júcar valley",
     "description": "oba-'s kitchen garden in the Júcar valley, near Jorquera: where the cooking of this Michelin Green Star restaurant in Casas-Ibáñez begins."
@@ -31,17 +43,21 @@
     "title": "Things to do in La Manchuela: Alcalá del Júcar & more · oba-",
     "description": "Alcalá del Júcar, the Cabriel gorges, Jorquera and Las Chorreras: what to see around oba- in La Manchuela, a day trip from Valencia or Alicante."
   },
+  "https://obarestaurante.es/parajes": {
+    "title": "Qué ver en la Manchuela: Alcalá del Júcar y alrededores · oba-",
+    "description": "Alcalá del Júcar, la Cueva de los Ángeles, Jorquera o Las Chorreras: qué ver en la Manchuela (Albacete), a 1h30 de Valencia, junto al restaurante oba-."
+  },
   "https://obarestaurante.es/en/raw-season": {
     "title": "Raw Season · Seasonal dinners at oba-, Casas-Ibáñez",
     "description": "Raw Season: four one-off dinners, one per season, at oba-, a Michelin-starred restaurant in Casas-Ibáñez, Albacete (Spain)."
   },
   "https://obarestaurante.es/en/dinner-and-stay": {
-    "title": "Night Pack Offer: Michelin-star dinner & stay · oba-",
-    "description": "A food getaway to La Manchuela: Cuaderno Medio dinner at oba- (Michelin Star) and a night at Cañitas Maite with breakfast. 1h30 from Valencia, 2h from Alicante."
+    "title": "Night Pack Offer: Michelin-star food getaway & hotel · oba-",
+    "description": "Cuaderno Medio dinner at oba- (Michelin Star) and a hotel night with breakfast in Casas-Ibáñez, Spain: 1h30 from Valencia, 2h from Alicante or Murcia."
   },
   "https://obarestaurante.es/pack-noche": {
-    "title": "Oferta Pack Noche · Escapada con Estrella Michelin · oba-",
-    "description": "Escapada gastronómica a la Manchuela: cena Cuaderno Medio en oba- (Estrella Michelin) y noche en Cañitas Maite con desayuno, a 1h30 de Valencia."
+    "title": "Oferta Pack Noche · Escapada gastronómica con Estrella Michelin",
+    "description": "Cena Cuaderno Medio en oba- (Estrella Michelin) y noche de hotel con desayuno en Casas-Ibáñez: escapada a 1h30 de Valencia y 2h de Alicante o Murcia."
   },
   "https://obarestaurante.es/en/events": {
     "title": "Special events · Oba x Ima and Oba 360 · oba-",
@@ -57,7 +73,7 @@
   },
   "https://obarestaurante.es/reservar": {
     "title": "Reservar mesa · oba-, restaurante Estrella Michelin en Albacete",
-    "description": "Reserva tu mesa en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): elige día, personas y hora para Cuaderno Dos o Cuaderno Medio."
+    "description": "Reserva en oba-, Estrella Michelin en Casas-Ibáñez (Albacete), a 1h30 de Valencia y 2h de Alicante y Murcia. Aparcamiento gratuito y hotel en el mismo edificio."
   },
   "https://obarestaurante.es/en/book": {
     "title": "Book a table · oba-, Michelin-starred restaurant in Spain",
@@ -66,5 +82,9 @@
   "https://obarestaurante.es/en/gift-vouchers": {
     "title": "Gift vouchers · Michelin-star restaurant experience · oba-",
     "description": "Digital gift vouchers for oba-, a Michelin Star and Green Star restaurant in Casas-Ibáñez, Spain: Cuaderno Dos, Cuaderno Medio and dinner-and-stay packages."
+  },
+  "https://obarestaurante.es/tienda": {
+    "title": "Bonos regalo · Cena en restaurante Estrella Michelin · oba-",
+    "description": "Regala una cena en oba-, Estrella Michelin y Estrella Verde en Casas-Ibáñez (Albacete): bonos digitales de Cuaderno Dos, Cuaderno Medio y noche de hotel."
   }
 }

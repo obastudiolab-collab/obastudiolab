@@ -125,6 +125,7 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 | **Precio o producto de un bono** | Shopify (regalaoba.myshopify.com) · array `OBA_PRODUCTS` de `pagina-tienda.html` · `tienda.js` (raíz del repo, web estática de pruebas). Los datos para Google de la tienda salen del array al regenerar |
 | **Reservas (TheFork)** | Desde el 20/10/2026 todos los botones de reserva llevan a la página propia `/reservar` (ID 599; inglés `/en/book`, ID 3254), que lleva dentro el widget de TheFork: `https://widget.thefork.com/es/a232639e-a80f-4cd3-8ece-2396f92f33e1` (UID del restaurante; la inglesa usa `/en/`). Si cambia el widget: solo `pagina-reservar.html` (y regenerar). El perfil de TheFork sigue en el JSON-LD `sameAs` de `pagina-inicio.html` |
 | **ID de Google Analytics** | Constante `GA_MEASUREMENT_ID` de los 16 bloques españoles (las inglesas se regeneran). No activarlo en Site Kit |
+| **Distancias, aparcamiento, alergias (desplegable "Antes de venir")** | Diccionario de `pagina-reservar.html` (`faq_*`, es y en) y regenerar · llms.txt (Rank Math → llms.txt) · descripciones de `META` en `build-seo.py` que mencionan "1h30 de Valencia" |
 | **Texto del aviso de cookies** | Función `texts()` del script de cookies en los 16 bloques españoles (es y en) · página `/cookies` |
 | **Una foto** (mismo uso, otra imagen) | Subir a la Mediateca **con el nombre exacto** que ya usa el bloque (README.md → Imágenes). Si es un archivo nuevo: añadir su texto alternativo es/en al diccionario `ALT` de `build-seo.py`. Si se borra y se vuelve a subir la imagen para redes de una página, volver a elegirla en Rank Math (el ID cambia) |
 | **Un texto de una página** | El bloque español: el texto en el HTML **y** su clave en el diccionario `OBA_TRANSLATIONS` (es y en) |
@@ -156,3 +157,10 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 - `/paquetes/` (página 3840): tarjeta nueva **"Oferta Pack Noche OBA-"** (elemento Elementor `361e9c3`, copia del diseño de "HITS + Hotel") con Cuaderno Medio, alojamiento con 35–40 % de descuento, desayuno, 215 € por persona y botón "Ver el pack" → `https://obarestaurante.es/pack-noche`. Si cambia el precio o las condiciones del Pack Noche, cambiarlo también ahí.
 - `/canitas-maite-gastronomico/` (página 28): en el texto "En la planta baja del Hotel Gastronómico…", "OBA-" enlaza a `/pack-noche`.
 - Tras editar: Elementor → Herramientas → "Vaciar archivos y datos" y LiteSpeed → "Purgar todo".
+
+## SEO de zona y alrededores — publicado el 30/10/2026
+
+- **Desplegable "Antes de venir"** en `/reservar` y `/en/book` (`<details class="oba-faq">` bajo el widget de TheFork). Textos en el diccionario de `pagina-reservar.html` (claves `faq_q_*` / `faq_a_*`, es y en). Tiempos de Google Maps redondeados a la baja (Albacete 49 min → 45 min, Valencia 1h38 → 1h30, Alicante 2h07 → 2h, Murcia 2h → 2h, Madrid 2h56 → 2h30). Aparcamiento gratuito enfrente; alergias: avisar al reservar.
+- `build-seo.py` genera solo un **FAQPage** (JSON-LD) en cualquier página que tenga claves `faq_q_X` + `faq_a_X` en su diccionario: si se añade el desplegable a otra página, basta con usar esas claves.
+- **Títulos y descripciones** (Rank Math, desde `META` de `build-seo.py`): inicio, restaurante, menú, nosotros, parajes, pack-noche, tienda y reservar en español, y `/en/dinner-and-stay`. Mencionan Albacete, la Manchuela, Valencia, Alicante y Murcia.
+- **llms.txt**: añadidos Albacete (45 min), Murcia (2h), Madrid en coche (menos de 3h), aparcamiento, alergias y que el hotel está en el mismo edificio.
