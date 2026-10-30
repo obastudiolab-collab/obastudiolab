@@ -24,6 +24,70 @@
   ]
 }
 </script>
+<!-- seo-extra (generado por build-seo.py) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "@id": "https://obarestaurante.es/en/dinner-and-stay#antes-de-venir",
+      "inLanguage": "en",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Getting here",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We are in Casas-Ibáñez (Albacete, Spain): about 35 minutes from Albacete, 1h30 from Valencia, 2h from Alicante and Murcia, and 2h30 from Madrid."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "The hotel",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Cañitas Maite Gastronómico is in the same building as the restaurant: you walk downstairs to dinner. Check-in from 2pm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Breakfast",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "At Restaurante Cañitas Maite, on the ground floor: Monday to Friday 9:00–10:30, buffet at weekends."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Parking",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Free parking right across the street."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Allergies and intolerances",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Please let us know when you book."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "The next day",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alcalá del Júcar is 15 minutes away, with Jorquera and the Cabriel gorges close by."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- /seo-extra -->
 <style>
 html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !important; }
 
@@ -469,6 +533,22 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
   .oba-cookie-btn { flex: 1; text-align: center; }
 }
 
+/* Antes de tu escapada: desplegable discreto bajo el botón (texto claro sobre la foto) */
+.oba-rs-faq { max-width: 520px; margin: 36px auto 0; text-align: left; }
+.oba-rs-faq > summary {
+  list-style: none; cursor: pointer; text-align: center;
+  font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.6) !important; padding: 8px 0; user-select: none;
+}
+.oba-rs-faq > summary::-webkit-details-marker { display: none; }
+.oba-rs-faq > summary::after { content: " +"; }
+.oba-rs-faq[open] > summary::after { content: " –"; }
+.oba-rs-faq > summary:hover { color: #fff !important; }
+.oba-rs-faq dl { margin: 12px 0 0; padding: 4px 24px 22px; background: rgba(0,0,0,0.42); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.14); border-radius: 4px; }
+.oba-rs-faq dt { font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.14em; color: #fff !important; margin: 18px 0 6px; }
+.oba-rs-faq dd { margin: 0; font-size: 13px !important; font-weight: 300 !important; line-height: 1.6; color: rgba(255,255,255,0.8) !important; }
+.oba-rs-faq dd a { color: #fff !important; text-decoration: underline !important; }
+
 /* seo-build: selector de idioma con enlaces y fotos como <img> */
 .oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
 .oba-page .oba-has-bg-img { isolation: isolate; }
@@ -524,6 +604,24 @@ html, body { margin: 0 !important; padding: 0 !important; background: #0c0c0c !i
       <div>
         <a class="oba-rs-btn oba-rs-btn--shine" href="/en/book" data-i18n="pack_btn">BOOK YOUR PACK</a>
       </div>
+
+      <details class="oba-rs-faq">
+        <summary data-i18n="faq_summary">BEFORE YOUR GETAWAY</summary>
+        <dl>
+          <dt data-i18n="faq_q_llegar">GETTING HERE</dt>
+          <dd data-i18n="faq_a_llegar">We are in Casas-Ibáñez (Albacete, Spain): about 35 minutes from Albacete, 1h30 from Valencia, 2h from Alicante and Murcia, and 2h30 from Madrid.</dd>
+          <dt data-i18n="faq_q_hotel">THE HOTEL</dt>
+          <dd data-i18n="faq_a_hotel">Cañitas Maite Gastronómico is in the same building as the restaurant: you walk downstairs to dinner. Check-in from 2pm.</dd>
+          <dt data-i18n="faq_q_desayuno">BREAKFAST</dt>
+          <dd data-i18n="faq_a_desayuno">At Restaurante Cañitas Maite, on the ground floor: Monday to Friday 9:00–10:30, buffet at weekends.</dd>
+          <dt data-i18n="faq_q_aparcar">PARKING</dt>
+          <dd data-i18n="faq_a_aparcar">Free parking right across the street.</dd>
+          <dt data-i18n="faq_q_alergias">ALLERGIES AND INTOLERANCES</dt>
+          <dd data-i18n="faq_a_alergias">Please let us know when you book.</dd>
+          <dt data-i18n="faq_q_manana">THE NEXT DAY</dt>
+          <dd><span data-i18n="faq_a_manana">Alcalá del Júcar is 15 minutes away, with Jorquera and the Cabriel gorges close by.</span> <a href="/en/manchuela" data-i18n="faq_link_manana">Things to see in La Manchuela</a></dd>
+        </dl>
+      </details>
     </div>
   </section>
 
@@ -569,7 +667,15 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     pack_detail_3: "Desayuno incluido",
     pack_detail_4: "215€ por persona",
     pack_detail_5: "La habitación se confirma en 24–48h tras la reserva",
-    pack_btn: "RESERVA TU PACK"
+    pack_btn: "RESERVA TU PACK",
+    faq_summary: "ANTES DE TU ESCAPADA",
+    faq_q_llegar: "CÓMO LLEGAR", faq_a_llegar: "Estamos en Casas-Ibáñez (Albacete): a unos 35 minutos de Albacete, 1h30 de Valencia, 2h de Alicante y Murcia y 2h30 de Madrid.",
+    faq_q_hotel: "EL HOTEL", faq_a_hotel: "Cañitas Maite Gastronómico está en el mismo edificio que el restaurante: bajas a cenar sin coger el coche. Entrada a partir de las 14:00.",
+    faq_q_desayuno: "EL DESAYUNO", faq_a_desayuno: "En el Restaurante Cañitas Maite, en la planta baja: de lunes a viernes de 9:00 a 10:30 y buffet los fines de semana.",
+    faq_q_aparcar: "DÓNDE APARCAR", faq_a_aparcar: "Aparcamiento gratuito justo enfrente del hotel.",
+    faq_q_alergias: "ALERGIAS E INTOLERANCIAS", faq_a_alergias: "Avísanos al hacer la reserva.",
+    faq_q_manana: "AL DÍA SIGUIENTE", faq_a_manana: "Alcalá del Júcar está a 15 minutos, y muy cerca tienes Jorquera y las Hoces del Cabriel.",
+    faq_link_manana: "Qué ver en la Manchuela"
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
@@ -584,7 +690,15 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     pack_detail_3: "Breakfast included",
     pack_detail_4: "€215 per person",
     pack_detail_5: "The room is confirmed within 24–48h after booking",
-    pack_btn: "BOOK YOUR PACK"
+    pack_btn: "BOOK YOUR PACK",
+    faq_summary: "BEFORE YOUR GETAWAY",
+    faq_q_llegar: "GETTING HERE", faq_a_llegar: "We are in Casas-Ibáñez (Albacete, Spain): about 35 minutes from Albacete, 1h30 from Valencia, 2h from Alicante and Murcia, and 2h30 from Madrid.",
+    faq_q_hotel: "THE HOTEL", faq_a_hotel: "Cañitas Maite Gastronómico is in the same building as the restaurant: you walk downstairs to dinner. Check-in from 2pm.",
+    faq_q_desayuno: "BREAKFAST", faq_a_desayuno: "At Restaurante Cañitas Maite, on the ground floor: Monday to Friday 9:00–10:30, buffet at weekends.",
+    faq_q_aparcar: "PARKING", faq_a_aparcar: "Free parking right across the street.",
+    faq_q_alergias: "ALLERGIES AND INTOLERANCES", faq_a_alergias: "Please let us know when you book.",
+    faq_q_manana: "THE NEXT DAY", faq_a_manana: "Alcalá del Júcar is 15 minutes away, with Jorquera and the Cabriel gorges close by.",
+    faq_link_manana: "Things to see in La Manchuela"
   }
 };
 
