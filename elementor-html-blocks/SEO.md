@@ -59,8 +59,11 @@ Las páginas legales pueden quedarse indexadas; no aportan tráfico pero tampoco
 
 ## Google Analytics (consentimiento previo)
 
-- 25/09/2026: Site Kit ya **no** inserta el código de Analytics (Site Kit → Ajustes → Analytics → "Coloca el código de Google Analytics" desactivado). Los informes de Site Kit/Analytics siguen funcionando.
-- Los 16 bloques llevan el ID real `G-4M7QS4D472` y cargan Analytics **solo** tras pulsar "Aceptar" en el banner de cookies. Si se rechaza o se ignora, no se carga nada.
+- 25/09/2026: Site Kit ya **no** inserta el código de Analytics (Site Kit → Ajustes → Analytics → "Coloca el código de Google Analytics" desactivado). Site Kit sigue conectado a la propiedad antigua solo para informes (sin acceso); no reactivar su fragmento.
+- 30/10/2026: **propiedad nueva**. La antigua (`G-4M7QS4D472`, propiedad 298367032 en la cuenta de Analytics 63511628, creada en 2022 por una persona que ya no trabaja con nosotros) no era accesible desde ninguna cuenta nuestra. Se creó la cuenta de Analytics **"oba-"** con **marketingcanitasmaite** (authuser=2): cuenta 414172109 → propiedad **"obarestaurante.es"** 561646976 (Madrid, EUR), flujo web 16236105831, ID **`G-569C4M80ZY`**. Los datos empiezan el 30/10/2026; el histórico anterior se queda en la propiedad antigua.
+- Los bloques (16 españoles + legales; las inglesas se regeneran) llevan el ID `G-569C4M80ZY` y cargan Analytics **solo** tras pulsar "Aceptar" en el banner de cookies. Si se rechaza o se ignora, no se carga nada.
+- Evento clave **`reserva_visita`**: `page_view` cuya URL coincide con `obarestaurante\.es/(reservar|en/book)`, contado una vez por sesión (Administrar → Eventos). Mide cuánta gente llega a la página de reservas; la reserva en sí ocurre dentro del widget de TheFork y no se ve desde Analytics.
+- Publicado y comprobado el 30/10/2026: las 31 páginas sirven `G-569C4M80ZY` y la visita de prueba aparece en Tiempo real.
 - No se carga para usuarios con sesión iniciada en WordPress (clase `logged-in` en `<body>`), igual que hacía Site Kit.
 - No volver a activar el código en Site Kit: se cargaría antes del consentimiento y se duplicarían las visitas.
 
