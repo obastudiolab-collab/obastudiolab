@@ -303,6 +303,21 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
 }
 .oba-page .oba-maridaje-back:hover { color: #1a1a1a !important; }
 .oba-page .oba-maridaje-card--grande { max-width: 100%; width: 100%; }
+/* Precios del maridaje: mismos botones que los precios de los menús en /menu */
+.oba-page .oba-maridaje-options { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
+.oba-page .oba-btn {
+  display: inline-block;
+  background: #9d7759 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em;
+  padding: 17px 30px;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+.oba-page .oba-btn:hover { background: #806148 !important; }
 
 @media (max-width: 700px) {
   .oba-page .oba-maridaje-standalone { padding: 132px 24px 80px; gap: 24px; }
@@ -641,6 +656,11 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
         </div>
       </div>
     </article>
+
+    <div class="oba-maridaje-options">
+      <a class="oba-btn" href="/reservar" data-i18n="maridaje_opt_dos">CON CUADERNO DOS · 110€</a>
+      <a class="oba-btn" href="/reservar" data-i18n="maridaje_opt_medio">CON CUADERNO MEDIO · 80€</a>
+    </div>
   </div>
 </div>
 
@@ -676,6 +696,7 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
     nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
     btn_reservar: "RESERVAR",
+    maridaje_opt_dos: "CON CUADERNO DOS · 110€", maridaje_opt_medio: "CON CUADERNO MEDIO · 80€",
     aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
     btn_volver: "← VOLVER",
     maridaje_matices_ficha_titulo: "001 — Matices Olvidados",
@@ -701,6 +722,7 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
     nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
     btn_reservar: "BOOK NOW",
+    maridaje_opt_dos: "WITH CUADERNO DOS · €110", maridaje_opt_medio: "WITH CUADERNO MEDIO · €80",
     aria_menu: "Open menu", aria_lang: "Select language",
     btn_volver: "← BACK",
     maridaje_matices_ficha_titulo: "001 — Matices Olvidados",
