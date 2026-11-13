@@ -21,7 +21,8 @@ if ( ! function_exists( 'oba_hreflang_pairs' ) ) {
         '/maridaje-natura' => '/en/natura-pairing',
         '/maridaje-matices-olvidados' => '/en/matices-olvidados-pairing',
         '/tienda' => '/en/gift-vouchers',
-        '/reservar' => '/en/book'
+        '/reservar' => '/en/book',
+        '/escapada-gastronomica' => '/en/food-trip'
         );
     }
     function oba_current_path() {

@@ -127,6 +127,7 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 | **Reservas (TheFork)** | Desde el 20/10/2026 todos los botones de reserva llevan a la página propia `/reservar` (ID 599; inglés `/en/book`, ID 3254), que lleva dentro el widget de TheFork: `https://widget.thefork.com/es/a232639e-a80f-4cd3-8ece-2396f92f33e1` (UID del restaurante; la inglesa usa `/en/`). Si cambia el widget: solo `pagina-reservar.html` (y regenerar). El perfil de TheFork sigue en el JSON-LD `sameAs` de `pagina-inicio.html` |
 | **ID de Google Analytics** | Constante `GA_MEASUREMENT_ID` de los 16 bloques españoles (las inglesas se regeneran). No activarlo en Site Kit |
 | **Distancias, aparcamiento, alergias (desplegable "Antes de venir")** | Diccionario de `pagina-reservar.html` (`faq_*`, es y en) y regenerar · llms.txt (Rank Math → llms.txt) · descripciones de `META` en `build-seo.py` que mencionan "1h30 de Valencia" |
+| **Precio o contenido del Pack Noche** | `pagina-pack-noche.html` · `pagina-escapada-gastronomica.html` (claves `plan_noche_texto` y `faq_a_dormir`, es y en) · llms.txt |
 | **Texto del aviso de cookies** | Función `texts()` del script de cookies en los 16 bloques españoles (es y en) · página `/cookies` |
 | **Una foto** (mismo uso, otra imagen) | Subir a la Mediateca **con el nombre exacto** que ya usa el bloque (README.md → Imágenes). Si es un archivo nuevo: añadir su texto alternativo es/en al diccionario `ALT` de `build-seo.py`. Si se borra y se vuelve a subir la imagen para redes de una página, volver a elegirla en Rank Math (el ID cambia) |
 | **Un texto de una página** | El bloque español: el texto en el HTML **y** su clave en el diccionario `OBA_TRANSLATIONS` (es y en) |
@@ -170,3 +171,13 @@ Regla general: **editar el bloque español del repositorio** (`pagina-*.html`), 
 ## Precios de los maridajes — publicado el 11/11/2026
 
 - Natura y Matices Olvidados: **110 € con Cuaderno Dos y 80 € con Cuaderno Medio** (mismo precio los dos). Botones bajo la ilustración de cada maridaje, con el mismo estilo que los precios de los menús en `/menu`, que llevan a `/reservar` (`/en/book` en inglés). Añadido también a llms.txt.
+
+## Página "Escapada gastronómica" — publicada el 13/11/2026
+
+- **`/escapada-gastronomica`** (ID 3338) y **`/en/food-trip`** (ID 3339, hija de `/en`). Bloque `pagina-escapada-gastronomica.html`.
+- Para captar búsquedas de escapada desde la zona (en Search Console no había ni una impresión con "escapada" ni con Valencia). Una sola página con una sección por ciudad, no una página por ciudad: Google penaliza las páginas casi iguales que solo cambian el nombre de la ciudad. Si Valencia trae mucho tráfico, se le puede dar página propia.
+- Contenido: portada con Las Chorreras · tarjetas con foto de cada ciudad y tiempo (Valencia 1h30, Alicante 2h, Murcia 2h, Albacete 35 min, Madrid 2h30) · una sección por ciudad con ruta, plan, parada del camino y botón **"Cómo llegar desde…"** (Google Maps con origen la ciudad y destino el restaurante) · "Elige tu plan" (comida de día → `/reservar`; Pack Noche → `/pack-noche`) · desplegable de preguntas frecuentes (FAQPage).
+- **Inglés pensado para turistas extranjeros**, no traducido tal cual: "From Alicante and the Costa Blanca", la comida como comida principal en España, aeropuertos de Valencia y Alicante, AVE a Requena-Utiel o Albacete.
+- **Fotos de las ciudades**: Wikimedia Commons con licencia libre (CC BY / CC BY-SA), subidas a la Mediateca como `oba-escapada-{valencia,alicante,murcia,albacete,madrid}.jpg` (copia en `wp-uploads/`). La licencia **obliga a citar al autor**: línea de créditos al final de la página. Si se cambian por fotos propias, se puede quitar.
+- Rank Math: título "Escapada gastronómica desde Valencia, Alicante o Madrid · oba-" / "Michelin-star day trip from Valencia or Alicante · oba-"; imagen para redes: Las Chorreras (ID 2938).
+- Enlazada desde los desplegables de `/reservar` y `/pack-noche` ("Cómo llegar desde tu ciudad"), en llms.txt (ES y EN) y en el hreflang de WPCode (fragmento 3248). Indexación pedida en Search Console.

@@ -52,6 +52,7 @@ PAGES = {
     'maridaje-matices-olvidados': ('/maridaje-matices-olvidados', '/en/matices-olvidados-pairing', 'Matices Olvidados pairing'),
     'tienda':                     ('/tienda', '/en/gift-vouchers', 'Gift vouchers'),
     'reservar':                   ('/reservar', '/en/book', 'Book a table'),
+    'escapada-gastronomica':      ('/escapada-gastronomica', '/en/food-trip', 'Food trip'),
 }
 ES2EN = {es: en for es, en, _ in PAGES.values()}
 
@@ -126,6 +127,12 @@ META = {
         'en': ('Book a table · oba-, Michelin-starred restaurant in Spain',
                'Book your table at oba-, Michelin Star and Green Star restaurant in Casas-Ibáñez (Albacete), 1h30 from Valencia: choose day, guests and time.'),
     },
+    'escapada-gastronomica': {
+        'es': ('Escapada gastronómica desde Valencia, Alicante o Madrid · oba-',
+               'Escapada a la Manchuela con Estrella Michelin: cómo llegar a oba- desde Valencia (1h30), Alicante, Murcia, Albacete o Madrid, qué ver y dónde dormir.'),
+        'en': ('Michelin-star day trip from Valencia or Alicante · oba-',
+               'A Michelin-starred food trip into inland Spain: getting to oba- from Valencia, Alicante and the Costa Blanca, Murcia or Madrid, what to see and where to stay.'),
+    },
     'tienda': {
         'en': ('Gift vouchers · Michelin-star restaurant experience · oba-',
                'Digital gift vouchers for oba-, a Michelin Star and Green Star restaurant in Casas-Ibáñez, Spain: Cuaderno Dos, Cuaderno Medio and dinner-and-stay packages.'),
@@ -178,6 +185,12 @@ ALT = {
     'oba-paraje-foto-las-chorreras.webp': ('Cascadas de Las Chorreras del Cabriel, en Enguídanos', 'Las Chorreras waterfalls on the Cabriel, in Enguídanos'),
     'oba-paraje-foto-jorquera.webp': ('Jorquera, sobre un meandro del Júcar', 'Jorquera, above a bend of the Júcar river'),
     'oba-paraje-foto-tranco-del-lobo.webp': ('Tranco del Lobo, en Casas de Ves', 'Tranco del Lobo, in Casas de Ves'),
+    # fotos de las ciudades de /escapada-gastronomica (Wikimedia Commons, créditos en la página)
+    'oba-escapada-valencia.jpg': ('El Hemisfèric de la Ciudad de las Artes y las Ciencias de Valencia al atardecer', "Valencia's City of Arts and Sciences at dusk"),
+    'oba-escapada-alicante.jpg': ('Playa del Postiguet y castillo de Santa Bárbara, en Alicante', 'Postiguet beach and Santa Bárbara castle in Alicante, Costa Blanca'),
+    'oba-escapada-murcia.jpg': ('Catedral de Murcia al atardecer', 'Murcia cathedral at sunset'),
+    'oba-escapada-albacete.jpg': ('Pasaje de Lodares, en Albacete', 'Pasaje de Lodares arcade in Albacete'),
+    'oba-escapada-madrid.jpg': ('Gran Vía y edificio Metrópolis, en Madrid', 'Gran Vía and the Metrópolis building in Madrid'),
     'oba-paraje-09.png': ('Ilustración del menú Cuaderno Dos de oba-', "Illustration of oba-'s Cuaderno Dos menu"),
     'oba-maridaje-natura.webp': ('Ilustración del maridaje Natura de oba-', "Illustration of oba-'s Natura pairing"),
     'oba-maridaje-matices-olvidados.webp': ('Ilustración del maridaje Matices Olvidados de oba-', "Illustration of oba-'s Matices Olvidados wine pairing"),
@@ -367,6 +380,13 @@ def page_url(key, lang):
     return SITE + (es if lang == 'es' else en)
 
 
+def sentence_case(q):
+    """'¿SE PUEDE IR?' -> '¿Se puede ir?' (str.capitalize() dejaría '¿se puede ir?')."""
+    q = q.lower()
+    i = next((n for n, c in enumerate(q) if c.isalpha()), 0)
+    return q[:i] + q[i:i + 1].upper() + q[i + 1:]
+
+
 def extra_jsonld(key, lang, s, d):
     t = d[lang]
     url = page_url(key, lang)
@@ -432,7 +452,7 @@ def extra_jsonld(key, lang, s, d):
     faq = [k[len('faq_q_'):] for k in t if k.startswith('faq_q_') and t.get('faq_a_' + k[len('faq_q_'):])]
     if faq:
         nodes.append({'@type': 'FAQPage', '@id': url + '#antes-de-venir', 'inLanguage': lang,
-                      'mainEntity': [{'@type': 'Question', 'name': t['faq_q_' + k].capitalize(),
+                      'mainEntity': [{'@type': 'Question', 'name': sentence_case(t['faq_q_' + k]),
                                       'acceptedAnswer': {'@type': 'Answer', 'text': t['faq_a_' + k]}} for k in faq]})
     if not nodes:
         return ''

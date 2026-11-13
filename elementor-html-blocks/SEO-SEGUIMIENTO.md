@@ -15,6 +15,8 @@ Para comparar más adelante (propuesta: **finales de noviembre** y **finales de 
 | 30/10/2026 | Web del hotel: tarjeta "Oferta Pack Noche OBA-" en /paquetes/ y enlace en /canitas-maite-gastronomico/ |
 | 30/10/2026 | Desplegables "Antes de venir" (/reservar) y "Antes de tu escapada" (/pack-noche) + FAQPage |
 | 30/10/2026 | Títulos y descripciones orientados a Albacete, Manchuela, Valencia, Alicante y Murcia; llms.txt ampliado |
+| 11/11/2026 | Precios de los maridajes |
+| 13/11/2026 | Página nueva `/escapada-gastronomica` + `/en/food-trip` (escapada desde Valencia, Alicante, Murcia, Albacete y Madrid; inglés para turista extranjero) |
 
 ## Search Console — 28 días (1–28 oct 2026)
 
@@ -71,3 +73,7 @@ Propiedad nueva desde el 30/10/2026: sin histórico. Para la comparación: usuar
 2. Rendimiento → **IA generativa** → Días: media de impresiones/día de la última semana.
 3. Analytics (marketingcanitasmaite → oba- → obarestaurante.es): usuarios por ciudad y canal, y `reserva_visita`.
 4. No cambiar títulos ni textos de las páginas medidas hasta la comparación, para saber qué ha funcionado.
+
+## Primera revisión — 13/11/2026 (dos semanas tras los cambios del 30/10)
+
+31/10–12/11 frente a 18/10–30/10: clics 385 → **631** (+64 %), impresiones 3.030 → 3.990, CTR 12,7 % → 15,8 %, posición 4,6 → 4,0. Sin marca: 50 → 82 clics. España 96 % de los clics. Versión inglesa: 2 clics en 28 días. "Escapada": 0 impresiones (de ahí la página nueva). Para la página nueva, vigilar: búsquedas con "escapada", "valencia", "alicante", "day trip" y las visitas a `/escapada-gastronomica` y `/en/food-trip`.

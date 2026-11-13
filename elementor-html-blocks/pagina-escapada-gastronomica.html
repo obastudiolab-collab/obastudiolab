@@ -1,0 +1,1215 @@
+<!-- ================================================================
+  PÁGINA: ESCAPADA GASTRONÓMICA (/escapada-gastronomica) — pegar todo esto en un único widget "HTML" de Elementor
+    Página: Configuración → Diseño de página → "Elementor Canvas"
+    La Sección/Contenedor que contenga este widget debe estar en modo
+    "Full Width" (ancho completo) y con Margen/Relleno a 0 — si no, el
+    contenido queda encogido con huecos a los lados (visto ya en Restaurante).
+    La sección/columna que contenga este widget tampoco debe tener Motion
+    Effects (sticky, parallax...) porque rompe el position: fixed.
+    Las imágenes ya llevan la URL real de la Mediateca (wp-content/uploads/...).
+    Solo funciona si subes antes los archivos de /wp-uploads/ con ESE MISMO
+    nombre y SIN que WordPress las meta en subcarpetas de mes/año
+    (ver README.md de esta carpeta para el porqué).
+================================================================ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "oba-",
+      "item": "https://obarestaurante.es/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Escapada gastronómica",
+      "item": "https://obarestaurante.es/escapada-gastronomica"
+    }
+  ]
+}
+</script>
+<!-- seo-extra (generado por build-seo.py) -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "FAQPage",
+      "@id": "https://obarestaurante.es/escapada-gastronomica#antes-de-venir",
+      "inLanguage": "es",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "¿Se puede ir y volver en el día?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, desde Albacete y Valencia es fácil. Desde Alicante, Murcia o Madrid recomendamos quedarse a dormir: el hotel está en el mismo edificio que el restaurante."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué días abrís?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "De jueves a domingo, a mediodía (13:00–17:00) y por la noche (20:00–23:30)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Dónde dormir?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En el Hotel Cañitas Maite Gastronómico, en el mismo edificio. El Pack Noche incluye la cena Cuaderno Medio en oba- y la noche de hotel con desayuno por 215€ por persona."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Qué ver cerca?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Alcalá del Júcar está a 15 minutos, y muy cerca tienes Jorquera, la Cueva de los Ángeles y las Hoces del Cabriel."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Y sin coche?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "En tren de alta velocidad desde Madrid puedes bajar en Requena-Utiel (línea de Valencia) o en Albacete, a 35 minutos; desde allí, en coche o taxi. Los aeropuertos más cercanos son los de Valencia y Alicante."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "¿Hay aparcamiento?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sí, gratuito y justo enfrente del restaurante."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+<!-- /seo-extra -->
+<style>
+html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !important; }
+
+.oba-page, .oba-page * { box-sizing: border-box; }
+
+.oba-page {
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif !important;
+  background: #fae1c0 !important;
+  color: #1a1a1a !important;
+}
+
+/* -------- Header (logo + idioma + menú), versión clara para fondo crema -------- */
+.oba-page .oba-detail-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 48px;
+}
+
+.oba-page .oba-detail-logo { display: block; width: 90px; margin: 0; }
+.oba-page .oba-detail-logo img { display: block; width: 100%; height: auto; }
+
+.oba-page .oba-lang-switch {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.oba-page .oba-lang-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  color: rgba(26,26,26,0.45) !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.08em;
+  padding: 4px 2px;
+  margin: 0;
+  transition: color 0.2s ease;
+  text-decoration: none !important;
+}
+.oba-page .oba-lang-btn:hover { color: rgba(26,26,26,0.75) !important; }
+.oba-page .oba-lang-btn.active {
+  color: #1a1a1a !important;
+  text-decoration: underline !important;
+  text-underline-offset: 4px;
+}
+.oba-page .oba-lang-sep { color: rgba(26,26,26,0.3) !important; font-size: 14px; }
+
+.oba-page .oba-menu-btn {
+  background: none !important;
+  border: none !important;
+  cursor: pointer;
+  width: 32px; height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0; margin: 0;
+}
+.oba-page .oba-menu-btn span {
+  display: block;
+  height: 2px; width: 100%;
+  background: #1a1a1a !important;
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.oba-page .oba-menu-btn.active span:nth-child(1) { transform: translateY(10px) rotate(45deg); }
+.oba-page .oba-menu-btn.active span:nth-child(2) { opacity: 0; }
+.oba-page .oba-menu-btn.active span:nth-child(3) { transform: translateY(-10px) rotate(-45deg); }
+
+.oba-page .oba-inline-menu {
+  position: absolute;
+  top: calc(100% + 20px);
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 16px;
+  margin: 0; padding: 0; list-style: none;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-6px);
+  transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+  z-index: 20;
+}
+.oba-page .oba-inline-menu.open { opacity: 1 !important; visibility: visible !important; transform: translateY(0) !important; }
+.oba-page .oba-inline-menu a {
+  position: relative;
+  color: rgba(26,26,26,0.65) !important;
+  text-decoration: none !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.12em;
+  padding-bottom: 4px;
+  transition: color 0.25s ease;
+  white-space: nowrap;
+}
+.oba-page .oba-inline-menu a:hover { color: #1a1a1a !important; }
+
+@media (max-width: 700px) {
+  .oba-page .oba-detail-header { padding: 20px 24px; }
+}
+
+/* -------- Detalle: kicker/h2/párrafos/botones, compartido con Restaurante/Entorno -------- */
+.oba-page .oba-detail-section h2,
+.oba-page .oba-detail-kicker {
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.06em;
+  margin-bottom: 24px;
+  color: #1a1a1a !important;
+}
+.oba-page .oba-detail-section p {
+  font-size: 15px !important;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  max-width: 500px;
+  color: #2a2a2a !important;
+}
+.oba-page .oba-btn-row { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+.oba-page .oba-btn {
+  display: inline-block;
+  background: #9d7759 !important;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.15em;
+  padding: 17px 30px;
+  text-align: center;
+  transition: background 0.2s ease;
+}
+.oba-page .oba-btn:hover { background: #806148 !important; }
+
+/* -------- Entorno: una fotografía por apartado (reutilizado para Parajes) -------- */
+.oba-page .oba-entorno-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 64px;
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 90px 48px;
+}
+.oba-page .oba-entorno-row + .oba-entorno-row {
+  border-top: 1px solid rgba(26,26,26,0.1);
+}
+
+.oba-page .oba-entorno-media {
+  flex: 0 0 360px;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+  background: #111;
+}
+.oba-page .oba-entorno-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+.oba-page .oba-entorno-row .oba-detail-section { flex: 1; max-width: 560px; }
+
+.oba-page .oba-entorno-row--rev { flex-direction: row-reverse; }
+
+/* -------- Parajes: bloque de introducción sin foto, seguido de filas -------- */
+.oba-page .oba-parajes-intro {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 160px 48px 56px;
+  border-bottom: 1px solid rgba(26,26,26,0.1);
+}
+
+.oba-page.oba-parajes-page .oba-entorno-media { aspect-ratio: 1 / 1; }
+
+.oba-page .oba-parajes-cta {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 90px 48px 140px;
+  text-align: center;
+  border-top: 1px solid rgba(26,26,26,0.1);
+}
+
+@media (max-width: 900px) {
+  .oba-page .oba-parajes-intro { padding: 132px 24px 40px; }
+  .oba-page .oba-entorno-row--rev { flex-direction: column; }
+  .oba-page .oba-entorno-row {
+    flex-direction: column;
+    gap: 32px;
+    padding: 56px 24px;
+  }
+  .oba-page .oba-entorno-media { flex: none; width: 100%; aspect-ratio: 4 / 3; }
+  .oba-page.oba-parajes-page .oba-entorno-media { aspect-ratio: 1 / 1; }
+}
+
+/* ================= ESCAPADA ================= */
+/* Cabecera en blanco sobre la foto de portada */
+.oba-page.oba-escapada-page .oba-lang-btn { color: rgba(255,255,255,0.6) !important; }
+.oba-page.oba-escapada-page .oba-lang-btn:hover,
+.oba-page.oba-escapada-page .oba-lang-btn.active { color: #fff !important; }
+.oba-page.oba-escapada-page .oba-lang-sep { color: rgba(255,255,255,0.4) !important; }
+.oba-page.oba-escapada-page .oba-menu-btn span { background: #fff !important; }
+.oba-page.oba-escapada-page .oba-inline-menu a { color: rgba(255,255,255,0.8) !important; }
+.oba-page.oba-escapada-page .oba-inline-menu a:hover { color: #fff !important; }
+
+/* Portada */
+.oba-page .oba-esc-hero {
+  position: relative; min-height: 92vh; display: flex; align-items: flex-end; justify-content: center;
+  padding: 160px 24px 90px; background: #0c0c0c; isolation: isolate; overflow: hidden;
+}
+.oba-page .oba-esc-hero > img {
+  position: absolute !important; inset: 0; z-index: -2; width: 100% !important; height: 100% !important;
+  max-width: none !important; object-fit: cover; object-position: center 60%;
+}
+.oba-page .oba-esc-hero-overlay {
+  position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.72) 100%);
+}
+.oba-page .oba-esc-hero-content { max-width: 760px; text-align: center; }
+.oba-page .oba-esc-kicker {
+  font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.24em;
+  color: rgba(255,255,255,0.75) !important; margin: 0 0 20px;
+}
+.oba-page .oba-esc-hero-content h1 {
+  font-family: 'Archivo', sans-serif !important; font-size: clamp(34px, 5.4vw, 64px) !important;
+  font-weight: 500 !important; line-height: 1.08; color: #fff !important; margin: 0 0 24px;
+}
+.oba-page .oba-esc-intro {
+  font-size: 15px !important; line-height: 1.8; color: rgba(255,255,255,0.85) !important;
+  max-width: 560px; margin: 0 auto 40px;
+}
+.oba-page .oba-esc-scroll {
+  display: inline-block; color: #fff !important; text-decoration: none !important;
+  font-size: 12px !important; letter-spacing: 0.2em; padding: 15px 36px; border-radius: 999px;
+  background: rgba(255,255,255,0.1) !important; border: 1px solid rgba(255,255,255,0.35);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); transition: background 0.25s ease;
+}
+.oba-page .oba-esc-scroll::after { content: " ↓"; }
+.oba-page .oba-esc-scroll:hover { background: rgba(255,255,255,0.22) !important; }
+
+/* Tarjetas de ciudades */
+.oba-page .oba-esc-cities { max-width: 1240px; margin: 0 auto; padding: 72px 48px 24px; }
+.oba-page .oba-esc-cities-track { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.oba-page .oba-esc-city {
+  position: relative; display: block; aspect-ratio: 3 / 4; overflow: hidden; background: #111;
+  text-decoration: none !important; isolation: isolate;
+}
+.oba-page .oba-esc-city img {
+  position: absolute; inset: 0; z-index: -2; width: 100% !important; height: 100% !important;
+  max-width: none !important; object-fit: cover; transition: transform 0.6s ease;
+}
+.oba-page .oba-esc-city::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,0.75) 100%);
+}
+.oba-page .oba-esc-city:hover img { transform: scale(1.05); }
+.oba-page .oba-esc-city-txt {
+  position: absolute; left: 18px; right: 18px; bottom: 18px;
+  display: flex; flex-direction: column; gap: 2px; color: #fff !important;
+}
+.oba-page .oba-esc-city-name { font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.16em; text-transform: uppercase; }
+.oba-page .oba-esc-city-time { font-size: 34px !important; font-weight: 300 !important; line-height: 1.1; }
+
+/* Filas por ciudad */
+.oba-page .oba-esc-row { scroll-margin-top: 24px; }
+.oba-page .oba-esc-row .oba-btn-row { margin-top: 4px; }
+.oba-page .oba-esc-media { margin: 0; position: relative; }
+.oba-page .oba-esc-media figcaption {
+  position: absolute; left: 0; bottom: 0; right: 0; padding: 40px 18px 14px;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%);
+  color: #fff; font-size: 11px; font-weight: 700; font-style: normal; letter-spacing: 0.14em; text-transform: uppercase;
+}
+.oba-page .oba-detail-section p.oba-esc-time {
+  font-size: clamp(48px, 6vw, 76px) !important; font-weight: 300 !important; line-height: 1;
+  color: #9d7759 !important; margin: 0 0 14px; letter-spacing: -0.01em;
+}
+
+/* Planes */
+.oba-page .oba-esc-plans-wrap {
+  max-width: 1160px; margin: 0 auto; padding: 90px 48px 140px; border-top: 1px solid rgba(26,26,26,0.1);
+}
+.oba-page .oba-esc-center { text-align: center; margin-left: auto; margin-right: auto; }
+.oba-page .oba-esc-plans { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin: 8px 0 36px; }
+.oba-page .oba-esc-plan {
+  position: relative; display: flex; align-items: flex-end; min-height: 440px; overflow: hidden;
+  text-decoration: none !important; background: #111; isolation: isolate;
+}
+.oba-page .oba-esc-plan img {
+  position: absolute; inset: 0; z-index: -2; width: 100% !important; height: 100% !important;
+  max-width: none !important; object-fit: cover; transition: transform 0.6s ease;
+}
+.oba-page .oba-esc-plan::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(0,0,0,0.1) 20%, rgba(0,0,0,0.8) 100%);
+}
+.oba-page .oba-esc-plan:hover img { transform: scale(1.04); }
+.oba-page .oba-esc-plan-txt { display: flex; flex-direction: column; gap: 10px; padding: 36px; color: #fff !important; }
+.oba-page .oba-esc-plan-kicker { font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.2em; color: rgba(255,255,255,0.75) !important; }
+.oba-page .oba-esc-plan-title { font-size: 30px !important; font-weight: 500 !important; line-height: 1.15; }
+.oba-page .oba-esc-plan-text { font-size: 14px !important; line-height: 1.6; color: rgba(255,255,255,0.85) !important; max-width: 380px; }
+.oba-page .oba-esc-plan-btn {
+  align-self: flex-start; margin-top: 10px; font-size: 12px !important; letter-spacing: 0.18em;
+  padding: 13px 28px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.08); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+}
+.oba-page .oba-esc-plan:hover .oba-esc-plan-btn { background: rgba(255,255,255,0.2); }
+.oba-page .oba-esc-textlink {
+  color: #9d7759 !important; font-size: 12px !important; font-weight: 700 !important;
+  letter-spacing: 0.15em; text-decoration: none !important;
+}
+.oba-page .oba-esc-textlink:hover { color: #806148 !important; }
+
+/* Preguntas frecuentes */
+.oba-page .oba-faq { max-width: 560px; margin: 40px auto 0; text-align: left; }
+.oba-page .oba-faq > summary {
+  list-style: none; cursor: pointer; text-align: center;
+  font-size: 12px !important; font-weight: 700 !important; letter-spacing: 0.15em;
+  color: rgba(26,26,26,0.6) !important; padding: 10px 0; user-select: none;
+}
+.oba-page .oba-faq > summary::-webkit-details-marker { display: none; }
+.oba-page .oba-faq > summary::after { content: " +"; }
+.oba-page .oba-faq[open] > summary::after { content: " –"; }
+.oba-page .oba-faq > summary:hover { color: #1a1a1a !important; }
+.oba-page .oba-faq dl { margin: 14px 0 0; border-top: 1px solid rgba(26,26,26,0.12); }
+.oba-page .oba-faq dt { font-size: 11px !important; font-weight: 700 !important; letter-spacing: 0.12em; color: #1a1a1a !important; margin: 18px 0 6px; }
+.oba-page .oba-faq dd { margin: 0; font-size: 14px !important; line-height: 1.6; color: #2a2a2a !important; }
+
+.oba-page .oba-esc-credits {
+  max-width: 760px; margin: 64px auto 0; text-align: center;
+  font-size: 10px !important; line-height: 1.7; color: rgba(26,26,26,0.45) !important;
+}
+.oba-page .oba-esc-credits a { color: rgba(26,26,26,0.5) !important; text-decoration: none !important; }
+.oba-page .oba-esc-credits a:hover { text-decoration: underline !important; }
+
+@media (max-width: 900px) {
+  .oba-page .oba-esc-cities { padding: 48px 0 8px; }
+  .oba-page .oba-esc-cities-track {
+    display: flex; overflow-x: auto; scroll-snap-type: x mandatory; gap: 12px;
+    padding: 0 24px 12px; scrollbar-width: none;
+  }
+  .oba-page .oba-esc-cities-track::-webkit-scrollbar { display: none; }
+  .oba-page .oba-esc-city { flex: 0 0 42%; scroll-snap-align: start; }
+  .oba-page .oba-esc-plans { grid-template-columns: 1fr; }
+  .oba-page .oba-esc-plan { min-height: 360px; }
+  .oba-page .oba-esc-plans-wrap { padding: 56px 24px 100px; }
+}
+@media (max-width: 700px) {
+  .oba-page .oba-esc-hero { min-height: 88vh; padding: 132px 24px 64px; }
+  .oba-page .oba-esc-city { flex-basis: 58%; }
+  .oba-page .oba-esc-plan-txt { padding: 26px; }
+}
+
+/* -------- Reveal footer: al hacer scroll más allá del final de la página,
+   se descubre una franja a pantalla completa con el nav de la Home. -------- */
+.oba-page {
+  position: relative;
+  z-index: 1;
+  padding-bottom: 100px;
+  margin-bottom: 100vh;
+}
+
+.oba-reveal-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background: #000;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.oba-reveal-logo {
+  position: absolute;
+  top: 28px;
+  left: 48px;
+  z-index: 2;
+  display: block;
+  width: 90px;
+}
+.oba-reveal-logo img { display: block; width: 100%; height: auto; }
+
+.oba-reveal-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  filter: blur(6px);
+  transform: scale(1.015);
+  transition: opacity 0.5s ease, filter 0.5s ease, transform 0.6s ease;
+}
+.oba-reveal-bg.active { opacity: 1 !important; filter: blur(0) !important; transform: scale(1) !important; }
+
+.oba-reveal-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.55) 100%);
+}
+
+.oba-reveal-nav {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 64px;
+  gap: 24px;
+}
+
+.oba-reveal-link {
+  position: relative;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  font-size: clamp(20px, 2.6vw, 42px);
+  line-height: 1.1;
+  white-space: nowrap;
+  padding-bottom: 10px;
+}
+.oba-reveal-link::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  height: 2px; width: 100%;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+}
+.oba-reveal-link:hover::after,
+.oba-reveal-link:focus-visible::after,
+.oba-reveal-link.active::after { transform: scaleX(1); }
+
+@property --oba-shine-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.oba-reveal-reserve {
+  position: absolute;
+  bottom: 48px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: #fff !important;
+  text-decoration: none !important;
+  font-family: 'Archivo', sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 400 !important;
+  letter-spacing: 0.2em;
+  padding: 16px 42px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06) !important;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.25s ease;
+}
+.oba-reveal-reserve:hover { background: rgba(255,255,255,0.16) !important; }
+.oba-reveal-reserve::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(from var(--oba-shine-angle), transparent 0deg, transparent 300deg, rgba(255,255,255,0.85) 340deg, rgba(255,255,255,0.95) 353deg, transparent 360deg);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  animation: oba-shine-rotate 4.5s linear infinite;
+}
+@keyframes oba-shine-rotate {
+  to { --oba-shine-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .oba-reveal-reserve::before { animation: none; }
+}
+
+.oba-legal-links {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.4);
+}
+.oba-legal-links a { color: rgba(255,255,255,0.5) !important; text-decoration: none !important; }
+.oba-legal-links a:hover { color: rgba(255,255,255,0.85) !important; }
+.oba-legal-links span { color: rgba(255,255,255,0.3); }
+
+@media (max-width: 700px) {
+  .oba-reveal-logo { width: 64px; top: 20px; left: 24px; }
+  .oba-reveal-nav {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 24px;
+    text-align: center;
+  }
+}
+
+/* -------- Aviso de cookies -------- */
+.oba-cookie-banner {
+  position: fixed;
+  left: 20px; right: 20px; bottom: 20px;
+  z-index: 9999;
+  max-width: 640px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  color: #fff;
+  padding: 22px 26px;
+  border-radius: 10px;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.35);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+}
+.oba-cookie-text { margin: 0; font-size: 13px; line-height: 1.6; color: rgba(255,255,255,0.85); flex: 1 1 260px; }
+.oba-cookie-text a { color: #fff !important; text-decoration: underline !important; }
+.oba-cookie-actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.oba-cookie-btn {
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 11px 20px;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  background: #9d7759;
+  color: #fff;
+  transition: background 0.2s ease;
+  white-space: nowrap;
+}
+.oba-cookie-btn:hover { background: #806148; }
+.oba-cookie-btn--ghost { background: transparent; color: rgba(255,255,255,0.75); border: 1px solid rgba(255,255,255,0.3); }
+.oba-cookie-btn--ghost:hover { color: #fff; border-color: rgba(255,255,255,0.6); }
+@media (max-width: 600px) {
+  .oba-cookie-banner { left: 12px; right: 12px; bottom: 12px; padding: 18px; }
+  .oba-cookie-actions { width: 100%; }
+  .oba-cookie-btn { flex: 1; text-align: center; }
+}
+
+/* H1 solo para buscadores y lectores de pantalla (SEO) */
+.oba-sr-only {
+  position: absolute !important;
+  width: 1px !important; height: 1px !important;
+  padding: 0 !important; margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* seo-build: selector de idioma con enlaces y fotos como <img> */
+.oba-page a.oba-lang-btn { text-decoration: none !important; display: inline-block; }
+.oba-page .oba-has-bg-img { isolation: isolate; }
+.oba-page img.oba-bg-img {
+  position: absolute !important; inset: 0; z-index: -1;
+  width: 100% !important; height: 100% !important; max-width: none !important;
+  margin: 0 !important; object-fit: cover; object-position: center;
+}
+.oba-page img.oba-bg-layer { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; object-position: center; }
+/* /seo-build */
+</style>
+
+<div class="oba-page oba-escapada-page">
+  <header class="oba-detail-header">
+    <a href="/" class="oba-detail-logo" aria-label="oba-">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+    </a>
+
+    <div class="oba-lang-switch" role="group" aria-label="Seleccionar idioma" data-i18n-attr="aria-label:aria_lang">
+      <a class="oba-lang-btn active" data-lang="es" href="/escapada-gastronomica" hreflang="es" lang="es" aria-current="page">ES</a>
+      <span class="oba-lang-sep">/</span>
+      <a class="oba-lang-btn" data-lang="en" href="/en/food-trip" hreflang="en" lang="en">EN</a>
+    </div>
+
+    <div class="oba-header-right" style="position:relative;">
+      <nav class="oba-inline-menu" id="oba-inline-menu">
+        <a href="/reservar" data-i18n="menu_reserva">RESERVA</a>
+        <a href="/nosotros#contacto" data-i18n="menu_contacto">CONTACTO</a>
+        <a href="/tienda" data-i18n="menu_tienda">TIENDA</a>
+      </nav>
+      <button class="oba-menu-btn" aria-label="Abrir menú" data-i18n-attr="aria-label:aria_menu" aria-expanded="false" aria-controls="oba-inline-menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <section class="oba-esc-hero">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-paraje-foto-las-chorreras.webp" alt="Cascadas de Las Chorreras del Cabriel, en Enguídanos" fetchpriority="high">
+    <div class="oba-esc-hero-overlay"></div>
+    <div class="oba-esc-hero-content">
+      <p class="oba-esc-kicker" data-i18n="kicker_escapada">DESDE VALENCIA, ALICANTE, MURCIA, ALBACETE Y MADRID</p>
+      <h1 data-i18n="h1_escapada">Escapada gastronómica a la Manchuela</h1>
+      <p class="oba-esc-intro" data-i18n="p_escapada_intro">oba- está en Casas-Ibáñez, entre las hoces del Júcar y del Cabriel. Una escapada para comer con Estrella Michelin, recorrer los pueblos del río y, si quieres, quedarte a dormir en el mismo edificio.</p>
+      <a class="oba-esc-scroll" href="#origenes" data-i18n="escapada_scroll">¿DESDE DÓNDE VIENES?</a>
+    </div>
+  </section>
+
+  <div class="oba-esc-cities" id="origenes">
+    <div class="oba-esc-cities-track">
+      <a class="oba-esc-city" href="#desde-valencia">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-escapada-valencia.jpg" alt="El Hemisfèric de la Ciudad de las Artes y las Ciencias de Valencia al atardecer" loading="lazy">
+        <span class="oba-esc-city-txt"><span class="oba-esc-city-name" data-i18n="esc_valencia_ciudad">Valencia</span><span class="oba-esc-city-time" data-i18n="esc_valencia_tiempo">1h30</span></span>
+      </a>
+      <a class="oba-esc-city" href="#desde-alicante">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-escapada-alicante.jpg" alt="Playa del Postiguet y castillo de Santa Bárbara, en Alicante" loading="lazy">
+        <span class="oba-esc-city-txt"><span class="oba-esc-city-name" data-i18n="esc_alicante_ciudad">Alicante</span><span class="oba-esc-city-time" data-i18n="esc_alicante_tiempo">2h</span></span>
+      </a>
+      <a class="oba-esc-city" href="#desde-murcia">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-escapada-murcia.jpg" alt="Catedral de Murcia al atardecer" loading="lazy">
+        <span class="oba-esc-city-txt"><span class="oba-esc-city-name" data-i18n="esc_murcia_ciudad">Murcia</span><span class="oba-esc-city-time" data-i18n="esc_murcia_tiempo">2h</span></span>
+      </a>
+      <a class="oba-esc-city" href="#desde-albacete">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-escapada-albacete.jpg" alt="Pasaje de Lodares, en Albacete" loading="lazy">
+        <span class="oba-esc-city-txt"><span class="oba-esc-city-name" data-i18n="esc_albacete_ciudad">Albacete</span><span class="oba-esc-city-time" data-i18n="esc_albacete_tiempo">35 min</span></span>
+      </a>
+      <a class="oba-esc-city" href="#desde-madrid">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-escapada-madrid.jpg" alt="Gran Vía y edificio Metrópolis, en Madrid" loading="lazy">
+        <span class="oba-esc-city-txt"><span class="oba-esc-city-name" data-i18n="esc_madrid_ciudad">Madrid</span><span class="oba-esc-city-time" data-i18n="esc_madrid_tiempo">2h30</span></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="oba-entorno-row oba-esc-row" id="desde-valencia">
+    <figure class="oba-entorno-media oba-esc-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-paraje-foto-la-terrera.webp" alt="La Terrera, a orillas del río Cabriel" loading="lazy">
+      <figcaption data-i18n="esc_valencia_parada">De camino: La Terrera, junto al Cabriel</figcaption>
+    </figure>
+    <section class="oba-detail-section">
+      <p class="oba-esc-time" data-i18n="esc_valencia_tiempo">1h30</p>
+      <h2 data-i18n="esc_valencia_titulo">Desde Valencia</h2>
+      <p data-i18n="esc_valencia_ruta">Por la A-3 y la N-322. Pasado Requena, la carretera baja hacia el Cabriel y entras en la Manchuela.</p>
+      <p data-i18n="esc_valencia_plan">Se puede ir y volver en el día: sal por la mañana, pasea junto al río en La Terrera, come en oba- y vuelve por la tarde. Si prefieres no conducir de vuelta, quédate a dormir con el Pack Noche.</p>
+      <div class="oba-btn-row"><a class="oba-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Valencia%2C%20Espa%C3%B1a&amp;destination=Restaurante%20oba-%2C%20Calle%20Tom%C3%A1s%20P%C3%A9rez%20%C3%9Abeda%206%2C%2002200%20Casas-Ib%C3%A1%C3%B1ez%2C%20Albacete&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="esc_valencia_llegar">CÓMO LLEGAR DESDE VALENCIA</a></div>
+    </section>
+  </div>
+  <div class="oba-entorno-row oba-esc-row oba-entorno-row--rev" id="desde-alicante">
+    <figure class="oba-entorno-media oba-esc-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-paraje-foto-alcala-del-jucar.webp" alt="Alcalá del Júcar, en la Manchuela (Albacete)" loading="lazy">
+      <figcaption data-i18n="esc_alicante_parada">De camino: Alcalá del Júcar</figcaption>
+    </figure>
+    <section class="oba-detail-section">
+      <p class="oba-esc-time" data-i18n="esc_alicante_tiempo">2h</p>
+      <h2 data-i18n="esc_alicante_titulo">Desde Alicante</h2>
+      <p data-i18n="esc_alicante_ruta">Por la A-31, en dirección a Almansa, y después por las carreteras de la Manchuela.</p>
+      <p data-i18n="esc_alicante_plan">Por el camino puedes desviarte a Alcalá del Júcar, encajado en el cañón del río y a 15 minutos del restaurante. Para no hacer la vuelta de noche, la cena con habitación es lo más cómodo.</p>
+      <div class="oba-btn-row"><a class="oba-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Alicante%2C%20Espa%C3%B1a&amp;destination=Restaurante%20oba-%2C%20Calle%20Tom%C3%A1s%20P%C3%A9rez%20%C3%9Abeda%206%2C%2002200%20Casas-Ib%C3%A1%C3%B1ez%2C%20Albacete&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="esc_alicante_llegar">CÓMO LLEGAR DESDE ALICANTE</a></div>
+    </section>
+  </div>
+  <div class="oba-entorno-row oba-esc-row" id="desde-murcia">
+    <figure class="oba-entorno-media oba-esc-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-paraje-foto-jorquera.webp" alt="Jorquera, sobre un meandro del Júcar" loading="lazy">
+      <figcaption data-i18n="esc_murcia_parada">De camino: Jorquera</figcaption>
+    </figure>
+    <section class="oba-detail-section">
+      <p class="oba-esc-time" data-i18n="esc_murcia_tiempo">2h</p>
+      <h2 data-i18n="esc_murcia_titulo">Desde Murcia</h2>
+      <p data-i18n="esc_murcia_ruta">Por la A-30, pasando por Albacete.</p>
+      <p data-i18n="esc_murcia_plan">Antes de llegar, Jorquera se asoma a un meandro del Júcar. Lo ideal es hacer noche: cena, duerme en el mismo edificio y dedica la mañana siguiente a los pueblos del río.</p>
+      <div class="oba-btn-row"><a class="oba-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Murcia%2C%20Espa%C3%B1a&amp;destination=Restaurante%20oba-%2C%20Calle%20Tom%C3%A1s%20P%C3%A9rez%20%C3%9Abeda%206%2C%2002200%20Casas-Ib%C3%A1%C3%B1ez%2C%20Albacete&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="esc_murcia_llegar">CÓMO LLEGAR DESDE MURCIA</a></div>
+    </section>
+  </div>
+  <div class="oba-entorno-row oba-esc-row oba-entorno-row--rev" id="desde-albacete">
+    <figure class="oba-entorno-media oba-esc-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-paraje-foto-ruta-del-molinar.webp" alt="Ruta del Molinar, en la Manchuela" loading="lazy">
+      <figcaption data-i18n="esc_albacete_parada">Muy cerca: la Ruta del Molinar</figcaption>
+    </figure>
+    <section class="oba-detail-section">
+      <p class="oba-esc-time" data-i18n="esc_albacete_tiempo">35 min</p>
+      <h2 data-i18n="esc_albacete_titulo">Desde Albacete</h2>
+      <p data-i18n="esc_albacete_ruta">Por la N-322, sin salir de la provincia.</p>
+      <p data-i18n="esc_albacete_plan">Lo bastante cerca para venir a comer o a cenar y volver a casa. Y para un fin de semana, la Ruta del Molinar y la Cueva de los Ángeles están a un paso.</p>
+      <div class="oba-btn-row"><a class="oba-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Albacete%2C%20Espa%C3%B1a&amp;destination=Restaurante%20oba-%2C%20Calle%20Tom%C3%A1s%20P%C3%A9rez%20%C3%9Abeda%206%2C%2002200%20Casas-Ib%C3%A1%C3%B1ez%2C%20Albacete&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="esc_albacete_llegar">CÓMO LLEGAR DESDE ALBACETE</a></div>
+    </section>
+  </div>
+  <div class="oba-entorno-row oba-esc-row" id="desde-madrid">
+    <figure class="oba-entorno-media oba-esc-media">
+      <img src="https://obarestaurante.es/wp-content/uploads/oba-fondo-principal.jpg" alt="Comedor de oba- con paredes de madera y lámparas colgantes, restaurante con Estrella Michelin en Casas-Ibáñez (Albacete)" loading="lazy">
+      <figcaption data-i18n="esc_madrid_parada">La cena: el comedor de oba-</figcaption>
+    </figure>
+    <section class="oba-detail-section">
+      <p class="oba-esc-time" data-i18n="esc_madrid_tiempo">2h30</p>
+      <h2 data-i18n="esc_madrid_titulo">Desde Madrid</h2>
+      <p data-i18n="esc_madrid_ruta">Por la A-3, la autovía de Valencia.</p>
+      <p data-i18n="esc_madrid_plan">Mejor con noche de hotel: llega por la tarde, cena Cuaderno Medio en oba-, duerme en Cañitas Maite Gastronómico, en el mismo edificio, y al día siguiente recorre Alcalá del Júcar antes de volver.</p>
+      <div class="oba-btn-row"><a class="oba-btn" href="https://www.google.com/maps/dir/?api=1&amp;origin=Madrid%2C%20Espa%C3%B1a&amp;destination=Restaurante%20oba-%2C%20Calle%20Tom%C3%A1s%20P%C3%A9rez%20%C3%9Abeda%206%2C%2002200%20Casas-Ib%C3%A1%C3%B1ez%2C%20Albacete&amp;travelmode=driving" target="_blank" rel="noopener" data-i18n="esc_madrid_llegar">CÓMO LLEGAR DESDE MADRID</a></div>
+    </section>
+  </div>
+
+  <div class="oba-esc-plans-wrap">
+    <p class="oba-detail-kicker oba-esc-center" data-i18n="kicker_planes">ELIGE TU PLAN</p>
+    <div class="oba-esc-plans">
+      <a class="oba-esc-plan" href="/reservar">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg" alt="Bocados del menú degustación de oba- servidos sobre madera y piel de oveja" loading="lazy">
+        <span class="oba-esc-plan-txt">
+          <span class="oba-esc-plan-kicker" data-i18n="plan_dia_kicker">DE DÍA</span>
+          <span class="oba-esc-plan-title" data-i18n="plan_dia_titulo">Comida con Estrella Michelin</span>
+          <span class="oba-esc-plan-text" data-i18n="plan_dia_texto">De jueves a domingo, de 13:00 a 17:00. El plan perfecto desde Albacete o Valencia.</span>
+          <span class="oba-esc-plan-btn" data-i18n="plan_dia_btn">RESERVAR MESA</span>
+        </span>
+      </a>
+      <a class="oba-esc-plan" href="/pack-noche">
+        <img src="https://obarestaurante.es/wp-content/uploads/oba-pack-noche.jpg" alt="Plato de oba- servido entre hojas verdes con una copa de vino: cena y alojamiento en Casas-Ibáñez" loading="lazy">
+        <span class="oba-esc-plan-txt">
+          <span class="oba-esc-plan-kicker" data-i18n="plan_noche_kicker">CON NOCHE DE HOTEL</span>
+          <span class="oba-esc-plan-title" data-i18n="plan_noche_titulo">Pack Noche</span>
+          <span class="oba-esc-plan-text" data-i18n="plan_noche_texto">Cena Cuaderno Medio, habitación en Cañitas Maite Gastronómico y desayuno: 215€ por persona.</span>
+          <span class="oba-esc-plan-btn" data-i18n="plan_noche_btn">VER PACK NOCHE</span>
+        </span>
+      </a>
+    </div>
+    <p class="oba-esc-center"><a class="oba-esc-textlink" href="/parajes" data-i18n="esc_link_parajes">QUÉ VER EN LA MANCHUELA →</a></p>
+    <details class="oba-faq">
+      <summary data-i18n="faq_summary">PREGUNTAS FRECUENTES</summary>
+      <dl>
+        <dt data-i18n="faq_q_dia">¿SE PUEDE IR Y VOLVER EN EL DÍA?</dt>
+        <dd data-i18n="faq_a_dia">Sí, desde Albacete y Valencia es fácil. Desde Alicante, Murcia o Madrid recomendamos quedarse a dormir: el hotel está en el mismo edificio que el restaurante.</dd>
+        <dt data-i18n="faq_q_horario">¿QUÉ DÍAS ABRÍS?</dt>
+        <dd data-i18n="faq_a_horario">De jueves a domingo, a mediodía (13:00–17:00) y por la noche (20:00–23:30).</dd>
+        <dt data-i18n="faq_q_dormir">¿DÓNDE DORMIR?</dt>
+        <dd data-i18n="faq_a_dormir">En el Hotel Cañitas Maite Gastronómico, en el mismo edificio. El Pack Noche incluye la cena Cuaderno Medio en oba- y la noche de hotel con desayuno por 215€ por persona.</dd>
+        <dt data-i18n="faq_q_tren">¿Y SIN COCHE?</dt>
+        <dd data-i18n="faq_a_tren">En tren de alta velocidad desde Madrid puedes bajar en Requena-Utiel (línea de Valencia) o en Albacete, a 35 minutos; desde allí, en coche o taxi. Los aeropuertos más cercanos son los de Valencia y Alicante.</dd>
+        <dt data-i18n="faq_q_ver">¿QUÉ VER CERCA?</dt>
+        <dd data-i18n="faq_a_ver">Alcalá del Júcar está a 15 minutos, y muy cerca tienes Jorquera, la Cueva de los Ángeles y las Hoces del Cabriel.</dd>
+        <dt data-i18n="faq_q_aparcar">¿HAY APARCAMIENTO?</dt>
+        <dd data-i18n="faq_a_aparcar">Sí, gratuito y justo enfrente del restaurante.</dd>
+      </dl>
+    </details>
+    <p class="oba-esc-credits"><span data-i18n="creditos">Fotos de las ciudades (Wikimedia Commons):</span> <a href="https://commons.wikimedia.org/wiki/File:Hemispheric_-_Valencia,_Spain_-_Jan_2007.jpg" target="_blank" rel="noopener nofollow">Valencia: Diliff (CC BY 2.5)</a> · <a href="https://commons.wikimedia.org/wiki/File:Playa_del_Postiguet_1.jpg" target="_blank" rel="noopener nofollow">Alicante: kallerna (CC BY-SA 4.0)</a> · <a href="https://commons.wikimedia.org/wiki/File:Catedral_de_Murcia._Fachada_principal_y_torre..jpg" target="_blank" rel="noopener nofollow">Murcia: Morini33 (CC BY-SA 3.0 ES)</a> · <a href="https://commons.wikimedia.org/wiki/File:Pasaje_de_Lodares,_Albacete,_Espa%C3%B1a,_2022-07-12,_DD_01.jpg" target="_blank" rel="noopener nofollow">Albacete: Diego Delso (CC BY-SA 4.0)</a> · <a href="https://commons.wikimedia.org/wiki/File:Gran_V%C3%ADa_%2B_Metr%C3%B3polis_(13875993993).jpg" target="_blank" rel="noopener nofollow">Madrid: Álvaro Ibáñez (CC BY 2.0)</a></p>
+  </div>
+
+</div>
+
+<footer class="oba-reveal-footer">
+  <a href="/" class="oba-reveal-logo" aria-label="oba-">
+    <img src="https://obarestaurante.es/wp-content/uploads/oba-logo.png" alt="oba-">
+  </a>
+  <div class="oba-reveal-bg" id="rv-bg-chef" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-restaurante.jpg');"></div>
+  <div class="oba-reveal-bg active" id="rv-bg-bar" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-entorno.jpg');"></div>
+  <div class="oba-reveal-bg" id="rv-bg-about" style="background-image:url('https://obarestaurante.es/wp-content/uploads/oba-chefs.jpg');"></div>
+  <div class="oba-reveal-overlay"></div>
+  <nav class="oba-reveal-nav">
+    <a href="/restaurante" class="oba-reveal-link" data-bg="rv-bg-chef" data-i18n="nav_restaurante">RESTAURANTE</a>
+    <a href="/entorno" class="oba-reveal-link active" data-bg="rv-bg-bar" data-i18n="nav_entorno">ENTORNO</a>
+    <a href="/nosotros" class="oba-reveal-link" data-bg="rv-bg-about" data-i18n="nav_nosotros">NOSOTROS</a>
+  </nav>
+  <a href="/reservar" class="oba-reveal-reserve" data-i18n="btn_reservar">RESERVAR</a>
+  <div class="oba-legal-links">
+    <a href="/aviso-legal">Aviso Legal</a><span>·</span><a href="/politica-privacidad">Privacidad</a><span>·</span><a href="/cookies">Cookies</a>
+  </div>
+</footer>
+
+<script>
+// ============================================================
+// MOTOR DE TRADUCCIÓN ES/EN — cada página lleva su propia copia
+// (solo con las claves de texto que usa esta página).
+// ============================================================
+window.OBA_PAGE_LANG = 'es';
+window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
+  es: {
+    menu_reserva: "RESERVA", menu_contacto: "CONTACTO", menu_tienda: "TIENDA",
+    nav_restaurante: "RESTAURANTE", nav_entorno: "ENTORNO", nav_nosotros: "NOSOTROS",
+    btn_reservar: "RESERVAR",
+    aria_menu: "Abrir menú", aria_lang: "Seleccionar idioma",
+    kicker_escapada: "DESDE VALENCIA, ALICANTE, MURCIA, ALBACETE Y MADRID",
+    h1_escapada: "Escapada gastronómica a la Manchuela",
+    p_escapada_intro: "oba- está en Casas-Ibáñez, entre las hoces del Júcar y del Cabriel. Una escapada para comer con Estrella Michelin, recorrer los pueblos del río y, si quieres, quedarte a dormir en el mismo edificio.",
+    escapada_scroll: "¿DESDE DÓNDE VIENES?",
+    esc_valencia_ciudad: "Valencia",
+    esc_valencia_tiempo: "1h30",
+    esc_alicante_ciudad: "Alicante",
+    esc_alicante_tiempo: "2h",
+    esc_murcia_ciudad: "Murcia",
+    esc_murcia_tiempo: "2h",
+    esc_albacete_ciudad: "Albacete",
+    esc_albacete_tiempo: "35 min",
+    esc_madrid_ciudad: "Madrid",
+    esc_madrid_tiempo: "2h30",
+    esc_valencia_titulo: "Desde Valencia",
+    esc_valencia_ruta: "Por la A-3 y la N-322. Pasado Requena, la carretera baja hacia el Cabriel y entras en la Manchuela.",
+    esc_valencia_plan: "Se puede ir y volver en el día: sal por la mañana, pasea junto al río en La Terrera, come en oba- y vuelve por la tarde. Si prefieres no conducir de vuelta, quédate a dormir con el Pack Noche.",
+    esc_valencia_llegar: "CÓMO LLEGAR DESDE VALENCIA",
+    esc_valencia_parada: "De camino: La Terrera, junto al Cabriel",
+    esc_alicante_titulo: "Desde Alicante",
+    esc_alicante_ruta: "Por la A-31, en dirección a Almansa, y después por las carreteras de la Manchuela.",
+    esc_alicante_plan: "Por el camino puedes desviarte a Alcalá del Júcar, encajado en el cañón del río y a 15 minutos del restaurante. Para no hacer la vuelta de noche, la cena con habitación es lo más cómodo.",
+    esc_alicante_llegar: "CÓMO LLEGAR DESDE ALICANTE",
+    esc_alicante_parada: "De camino: Alcalá del Júcar",
+    esc_murcia_titulo: "Desde Murcia",
+    esc_murcia_ruta: "Por la A-30, pasando por Albacete.",
+    esc_murcia_plan: "Antes de llegar, Jorquera se asoma a un meandro del Júcar. Lo ideal es hacer noche: cena, duerme en el mismo edificio y dedica la mañana siguiente a los pueblos del río.",
+    esc_murcia_llegar: "CÓMO LLEGAR DESDE MURCIA",
+    esc_murcia_parada: "De camino: Jorquera",
+    esc_albacete_titulo: "Desde Albacete",
+    esc_albacete_ruta: "Por la N-322, sin salir de la provincia.",
+    esc_albacete_plan: "Lo bastante cerca para venir a comer o a cenar y volver a casa. Y para un fin de semana, la Ruta del Molinar y la Cueva de los Ángeles están a un paso.",
+    esc_albacete_llegar: "CÓMO LLEGAR DESDE ALBACETE",
+    esc_albacete_parada: "Muy cerca: la Ruta del Molinar",
+    esc_madrid_titulo: "Desde Madrid",
+    esc_madrid_ruta: "Por la A-3, la autovía de Valencia.",
+    esc_madrid_plan: "Mejor con noche de hotel: llega por la tarde, cena Cuaderno Medio en oba-, duerme en Cañitas Maite Gastronómico, en el mismo edificio, y al día siguiente recorre Alcalá del Júcar antes de volver.",
+    esc_madrid_llegar: "CÓMO LLEGAR DESDE MADRID",
+    esc_madrid_parada: "La cena: el comedor de oba-",
+    kicker_planes: "ELIGE TU PLAN",
+    plan_dia_kicker: "DE DÍA",
+    plan_dia_titulo: "Comida con Estrella Michelin",
+    plan_dia_texto: "De jueves a domingo, de 13:00 a 17:00. El plan perfecto desde Albacete o Valencia.",
+    plan_dia_btn: "RESERVAR MESA",
+    plan_noche_kicker: "CON NOCHE DE HOTEL",
+    plan_noche_titulo: "Pack Noche",
+    plan_noche_texto: "Cena Cuaderno Medio, habitación en Cañitas Maite Gastronómico y desayuno: 215€ por persona.",
+    plan_noche_btn: "VER PACK NOCHE",
+    esc_link_parajes: "QUÉ VER EN LA MANCHUELA →",
+    faq_summary: "PREGUNTAS FRECUENTES",
+    faq_q_dia: "¿SE PUEDE IR Y VOLVER EN EL DÍA?",
+    faq_a_dia: "Sí, desde Albacete y Valencia es fácil. Desde Alicante, Murcia o Madrid recomendamos quedarse a dormir: el hotel está en el mismo edificio que el restaurante.",
+    faq_q_horario: "¿QUÉ DÍAS ABRÍS?",
+    faq_a_horario: "De jueves a domingo, a mediodía (13:00–17:00) y por la noche (20:00–23:30).",
+    faq_q_dormir: "¿DÓNDE DORMIR?",
+    faq_a_dormir: "En el Hotel Cañitas Maite Gastronómico, en el mismo edificio. El Pack Noche incluye la cena Cuaderno Medio en oba- y la noche de hotel con desayuno por 215€ por persona.",
+    faq_q_ver: "¿QUÉ VER CERCA?",
+    faq_a_ver: "Alcalá del Júcar está a 15 minutos, y muy cerca tienes Jorquera, la Cueva de los Ángeles y las Hoces del Cabriel.",
+    faq_q_tren: "¿Y SIN COCHE?",
+    faq_a_tren: "En tren de alta velocidad desde Madrid puedes bajar en Requena-Utiel (línea de Valencia) o en Albacete, a 35 minutos; desde allí, en coche o taxi. Los aeropuertos más cercanos son los de Valencia y Alicante.",
+    faq_q_aparcar: "¿HAY APARCAMIENTO?",
+    faq_a_aparcar: "Sí, gratuito y justo enfrente del restaurante.",
+    creditos: "Fotos de las ciudades (Wikimedia Commons):",
+  },
+  en: {
+    menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
+    nav_restaurante: "RESTAURANT", nav_entorno: "SURROUNDINGS", nav_nosotros: "ABOUT US",
+    btn_reservar: "BOOK NOW",
+    aria_menu: "Open menu", aria_lang: "Select language",
+    kicker_escapada: "FROM VALENCIA, ALICANTE, MURCIA, ALBACETE AND MADRID",
+    h1_escapada: "A Michelin-star food trip to La Manchuela, Spain",
+    p_escapada_intro: "Away from the coast, 1h30 inland from Valencia, oba- is in Casas-Ibáñez, a quiet corner of Spain between the Júcar and Cabriel river gorges. Come for a Michelin-starred lunch, explore the cave villages along the river and, if you like, stay the night in the same building.",
+    escapada_scroll: "WHERE ARE YOU COMING FROM?",
+    esc_valencia_ciudad: "Valencia",
+    esc_valencia_tiempo: "1h30",
+    esc_alicante_ciudad: "Costa Blanca",
+    esc_alicante_tiempo: "2h",
+    esc_murcia_ciudad: "Murcia",
+    esc_murcia_tiempo: "2h",
+    esc_albacete_ciudad: "Albacete",
+    esc_albacete_tiempo: "35 min",
+    esc_madrid_ciudad: "Madrid",
+    esc_madrid_tiempo: "2h30",
+    esc_valencia_titulo: "From Valencia",
+    esc_valencia_ruta: "By car on the A-3 and N-322. After Requena the road drops down to the Cabriel river and into La Manchuela.",
+    esc_valencia_plan: "An easy day trip: set off in the morning, walk by the river at La Terrera, have lunch at oba- and drive back in the afternoon. Or skip the drive home with our Night Pack.",
+    esc_valencia_llegar: "DIRECTIONS FROM VALENCIA",
+    esc_valencia_parada: "On the way: La Terrera, on the Cabriel",
+    esc_alicante_titulo: "From Alicante and the Costa Blanca",
+    esc_alicante_ruta: "On the A-31 towards Almansa, then country roads through La Manchuela.",
+    esc_alicante_plan: "On the way, stop at Alcalá del Júcar, a village built into the river canyon, 15 minutes from the restaurant. To avoid driving back at night, dinner with a hotel room is the most relaxed option.",
+    esc_alicante_llegar: "DIRECTIONS FROM ALICANTE",
+    esc_alicante_parada: "On the way: Alcalá del Júcar",
+    esc_murcia_titulo: "From Murcia",
+    esc_murcia_ruta: "On the A-30, via Albacete.",
+    esc_murcia_plan: "Just before you arrive, Jorquera looks out over a bend in the Júcar. Best as an overnight stay: dinner, a room in the same building and the next morning for the river villages.",
+    esc_murcia_llegar: "DIRECTIONS FROM MURCIA",
+    esc_murcia_parada: "On the way: Jorquera",
+    esc_albacete_titulo: "From Albacete",
+    esc_albacete_ruta: "On the N-322.",
+    esc_albacete_plan: "Close enough for lunch or dinner and home again. For a weekend nearby, the Ruta del Molinar trail and the Cueva de los Ángeles cave are just around the corner.",
+    esc_albacete_llegar: "DIRECTIONS FROM ALBACETE",
+    esc_albacete_parada: "Nearby: the Ruta del Molinar trail",
+    esc_madrid_titulo: "From Madrid",
+    esc_madrid_ruta: "On the A-3, the Madrid–Valencia motorway.",
+    esc_madrid_plan: "Best with a night at the hotel: arrive in the afternoon, have the Cuaderno Medio dinner at oba-, sleep at Cañitas Maite Gastronómico in the same building and see Alcalá del Júcar the next day before heading back.",
+    esc_madrid_llegar: "DIRECTIONS FROM MADRID",
+    esc_madrid_parada: "Dinner: the oba- dining room",
+    kicker_planes: "CHOOSE YOUR PLAN",
+    plan_dia_kicker: "BY DAY",
+    plan_dia_titulo: "Michelin-starred lunch",
+    plan_dia_texto: "Lunch is Spain's main meal: Thursday to Sunday, 1pm to 5pm. The perfect day trip from Valencia or Albacete.",
+    plan_dia_btn: "BOOK A TABLE",
+    plan_noche_kicker: "WITH A HOTEL NIGHT",
+    plan_noche_titulo: "Night Pack",
+    plan_noche_texto: "Cuaderno Medio dinner, a room at Cañitas Maite Gastronómico and breakfast: €215 per person.",
+    plan_noche_btn: "SEE THE NIGHT PACK",
+    esc_link_parajes: "WHAT TO SEE IN LA MANCHUELA →",
+    faq_summary: "FREQUENTLY ASKED QUESTIONS",
+    faq_q_dia: "CAN I DO IT AS A DAY TRIP?",
+    faq_a_dia: "Yes, from Albacete or Valencia it's easy. From Alicante, Murcia or Madrid we recommend staying the night: the hotel is in the same building as the restaurant.",
+    faq_q_horario: "WHEN ARE YOU OPEN?",
+    faq_a_horario: "Thursday to Sunday, lunch (1pm–5pm) and dinner (8pm–11:30pm).",
+    faq_q_dormir: "WHERE CAN I STAY?",
+    faq_a_dormir: "At Hotel Cañitas Maite Gastronómico, in the same building. The Night Pack includes the Cuaderno Medio dinner at oba- and a hotel night with breakfast for €215 per person.",
+    faq_q_ver: "WHAT IS THERE TO SEE NEARBY?",
+    faq_a_ver: "Alcalá del Júcar is 15 minutes away, with Jorquera, the Cueva de los Ángeles cave and the Cabriel gorges close by.",
+    faq_q_tren: "HOW DO I GET THERE FROM ABROAD?",
+    faq_a_tren: "Fly into Valencia (1h30 by car) or Alicante (2h). By high-speed train from Madrid, get off at Requena-Utiel (Valencia line) or Albacete (35 minutes away) and continue by car or taxi. A car is the easiest way to explore La Manchuela.",
+    faq_q_aparcar: "IS THERE PARKING?",
+    faq_a_aparcar: "Yes, free parking right across the street.",
+    creditos: "City photos (Wikimedia Commons):",
+  }
+};
+
+function obaApplyLang(lang) {
+  const dict = window.OBA_TRANSLATIONS[lang];
+  if (!dict) return;
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (dict[key] !== undefined) el.textContent = dict[key];
+  });
+  document.querySelectorAll('[data-i18n-attr]').forEach((el) => {
+    el.dataset.i18nAttr.split(';').forEach((pair) => {
+      const [attr, key] = pair.split(':').map(s => s.trim());
+      if (attr && dict[key] !== undefined) el.setAttribute(attr, dict[key]);
+    });
+  });
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+  document.documentElement.lang = lang;
+  try { localStorage.setItem('oba_lang', lang); } catch (e) {}
+}
+
+function obaInit() {
+  let saved = 'es';
+  saved = window.OBA_PAGE_LANG || 'es';
+  obaApplyLang(saved);
+
+  document.querySelectorAll('.oba-lang-btn').forEach((btn) => {
+    btn.addEventListener('click', () => obaApplyLang(btn.dataset.lang));
+  });
+
+  var menuBtn = document.querySelector('.oba-page .oba-menu-btn');
+  var inlineMenu = document.querySelector('.oba-page #oba-inline-menu');
+  if (menuBtn && inlineMenu) {
+    menuBtn.addEventListener('click', function () {
+      var isOpen = inlineMenu.classList.toggle('open');
+      menuBtn.classList.toggle('active', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+    });
+  }
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', obaInit);
+} else {
+  obaInit();
+}
+
+// ============================================================
+// REVEAL FOOTER — cruce de fondos al pasar el ratón por los links,
+// igual que en el hero de la Home.
+// ============================================================
+(function () {
+  function ready(fn) {
+    if (document.readyState !== 'loading') fn();
+    else document.addEventListener('DOMContentLoaded', fn);
+  }
+
+  ready(function () {
+    var links = document.querySelectorAll('.oba-reveal-link');
+    var layers = document.querySelectorAll('.oba-reveal-bg');
+    var nav = document.querySelector('.oba-reveal-nav');
+    var DEFAULT_BG = 'rv-bg-bar';
+    if (!links.length || !layers.length) return;
+
+    function showBg(targetId) {
+      layers.forEach(function (layer) { layer.classList.remove('active'); });
+      var target = document.getElementById(targetId);
+      if (target) target.classList.add('active');
+    }
+
+    links.forEach(function (link) {
+      var targetId = link.dataset.bg;
+      link.addEventListener('mouseenter', function () { showBg(targetId); });
+      link.addEventListener('focus', function () { showBg(targetId); });
+    });
+
+    if (nav) {
+      nav.addEventListener('mouseleave', function () { showBg(DEFAULT_BG); });
+      nav.addEventListener('focusout', function (e) {
+        if (!nav.contains(e.relatedTarget)) showBg(DEFAULT_BG);
+      });
+    }
+
+    // En móvil no hay hover: las fotos van rotando solas cada ~2s
+    var bgIds = Array.prototype.map.call(layers, function (layer) { return layer.id; });
+    var mobileQuery = window.matchMedia('(max-width: 700px)');
+    var carouselTimer = null;
+    var carouselIndex = 0;
+    function startCarousel() {
+      if (carouselTimer || bgIds.length < 2) return;
+      carouselIndex = bgIds.indexOf(DEFAULT_BG);
+      if (carouselIndex < 0) carouselIndex = 0;
+      carouselTimer = setInterval(function () {
+        carouselIndex = (carouselIndex + 1) % bgIds.length;
+        showBg(bgIds[carouselIndex]);
+      }, 2000);
+    }
+    function stopCarousel() {
+      if (carouselTimer) { clearInterval(carouselTimer); carouselTimer = null; }
+      showBg(DEFAULT_BG);
+    }
+    mobileQuery.addEventListener('change', function (e) {
+      if (e.matches) startCarousel(); else stopCarousel();
+    });
+    if (mobileQuery.matches) startCarousel();
+  });
+})();
+
+// ============================================================
+// AVISO DE COOKIES + GOOGLE ANALYTICS — cada página lleva su propia copia.
+// Solo carga Analytics si el usuario pulsa "Aceptar" (nunca antes).
+// ============================================================
+(function () {
+  var KEY = 'oba_cookie_consent';
+
+  // Sustituir por el ID de medición real de Google Analytics (GA4),
+  // formato "G-XXXXXXXXXX", en TODAS las páginas cuando esté disponible.
+  var GA_MEASUREMENT_ID = 'G-569C4M80ZY';
+
+  function getConsent() {
+    try { return localStorage.getItem(KEY); } catch (e) { return null; }
+  }
+  function setConsent(value) {
+    try { localStorage.setItem(KEY, value); } catch (e) {}
+  }
+
+  function loadAnalytics() {
+    if (!GA_MEASUREMENT_ID || GA_MEASUREMENT_ID.indexOf('XXXX') !== -1) return;
+    // Sin Analytics para usuarios conectados a WordPress (como hacía Site Kit)
+    if (document.body && document.body.classList.contains('logged-in')) return;
+    if (window.__obaGaLoaded) return;
+    window.__obaGaLoaded = true;
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', GA_MEASUREMENT_ID, { anonymize_ip: true });
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+    document.head.appendChild(script);
+  }
+
+  function texts() {
+    var lang = 'es';
+    try { lang = (window.OBA_PAGE_LANG || document.documentElement.lang || 'es').slice(0, 2); } catch (e) {}
+    if (lang === 'en') {
+      return {
+        text: 'We use our own technical cookies to remember your language and keep the site working properly, and — only if you accept — Google Analytics to measure site usage. You can accept, reject non-essential cookies, or read more in our ',
+        link: 'Cookie Policy',
+        accept: 'Accept',
+        reject: 'Reject non-essential'
+      };
+    }
+    return {
+      text: 'Usamos cookies propias y técnicas para recordar tu idioma y que la web funcione correctamente y, solo si las aceptas, Google Analytics para medir el uso del sitio. Puedes aceptarlas, rechazar las no esenciales o leer más en nuestra ',
+      link: 'Política de Cookies',
+      accept: 'Aceptar',
+      reject: 'Rechazar no esenciales'
+    };
+  }
+
+  function buildBanner() {
+    var t = texts();
+    var wrap = document.createElement('div');
+    wrap.className = 'oba-cookie-banner';
+    wrap.setAttribute('role', 'region');
+    wrap.setAttribute('aria-label', 'Aviso de cookies');
+    wrap.innerHTML =
+      '<p class="oba-cookie-text">' + t.text + '<a href="/cookies">' + t.link + '</a>.</p>' +
+      '<div class="oba-cookie-actions">' +
+        '<button type="button" class="oba-cookie-btn oba-cookie-btn--ghost" data-action="reject">' + t.reject + '</button>' +
+        '<button type="button" class="oba-cookie-btn" data-action="accept">' + t.accept + '</button>' +
+      '</div>';
+    document.body.appendChild(wrap);
+    wrap.querySelector('[data-action="accept"]').addEventListener('click', function () {
+      setConsent('accepted');
+      loadAnalytics();
+      wrap.remove();
+    });
+    wrap.querySelector('[data-action="reject"]').addEventListener('click', function () {
+      setConsent('rejected');
+      wrap.remove();
+    });
+  }
+
+  function initCookies() {
+    var consent = getConsent();
+    if (!consent) {
+      buildBanner();
+    } else if (consent === 'accepted') {
+      loadAnalytics();
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCookies);
+  } else {
+    initCookies();
+  }
+})();
+</script>

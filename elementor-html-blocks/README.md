@@ -52,6 +52,7 @@ Los enlaces entre páginas (RESTAURANTE, ENTORNO, NOSOTROS, CONTACTO...) ya est�
 | Menú (Cuaderno Dos) | `menu` |
 | Huerto | `huerto` |
 | Parajes | `parajes` |
+| Escapada gastronómica | `escapada-gastronomica` |
 | Raw Season | `rawseason` |
 | Eventos Especiales | `eventos` |
 | Pack Noche | `pack-noche` |
@@ -118,6 +119,7 @@ Paginas inglesas (hijas de la pagina `en` en WordPress, plantilla Elementor Canv
 | `/nosotros` | `/en/about-us` |
 | `/huerto` | `/en/kitchen-garden` |
 | `/parajes` | `/en/manchuela` |
+| `/escapada-gastronomica` | `/en/food-trip` |
 | `/rawseason` | `/en/raw-season` |
 | `/pack-noche` | `/en/dinner-and-stay` |
 | `/eventos` | `/en/events` |
