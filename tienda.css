@@ -339,3 +339,36 @@ html { scroll-behavior: smooth; }
 .oba-cart-checkout:hover { background: #806148 !important; }
 .oba-cart-checkout:disabled { opacity: 0.4; cursor: not-allowed; }
 .oba-cart-secure { font-size: 11px !important; color: rgba(26,26,26,0.45) !important; text-align: center; margin: 12px 0 0; }
+
+/* -------- BLACK FRIDAY 2026 (23–30 nov) — franja + código BLACKOBA27 --------
+   Se muestra sola entre las fechas de OBA_BF (JS) y se oculta sola después.
+   Para retirarla del todo: borrar este bloque, el <div id="oba-bf"> y OBA_BF. */
+.oba-bf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 0 auto 40px;
+  padding: 16px 22px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+.oba-bf[hidden] { display: none !important; }
+.oba-bf-kicker { font-weight: 700; letter-spacing: 0.12em; }
+.oba-bf-text { color: rgba(255,255,255,0.85); }
+.oba-bf-code {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border: 1px solid #806148;
+  background: #806148;
+  color: #fff;
+  user-select: all;
+}
+.oba-bf-note { flex-basis: 100%; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+@media (max-width: 600px) { .oba-bf { font-size: 13px; padding: 14px 16px; margin-bottom: 32px; } }

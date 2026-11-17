@@ -877,6 +877,39 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
 }
 .oba-page img.oba-bg-layer { width: 100% !important; height: 100% !important; max-width: none !important; object-fit: cover; object-position: center; }
 /* /seo-build */
+
+/* -------- BLACK FRIDAY 2026 (23–30 nov) — franja + código BLACKOBA27 --------
+   Se muestra sola entre las fechas de OBA_BF (JS) y se oculta sola después.
+   Para retirarla del todo: borrar este bloque, el <div id="oba-bf"> y OBA_BF. */
+.oba-bf {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 8px 14px;
+  margin: 0 auto 40px;
+  padding: 16px 22px;
+  background: #1a1a1a;
+  color: #fff;
+  font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+.oba-bf[hidden] { display: none !important; }
+.oba-bf-kicker { font-weight: 700; letter-spacing: 0.12em; }
+.oba-bf-text { color: rgba(255,255,255,0.85); }
+.oba-bf-code {
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding: 3px 10px;
+  border: 1px solid #806148;
+  background: #806148;
+  color: #fff;
+  user-select: all;
+}
+.oba-bf-note { flex-basis: 100%; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+@media (max-width: 600px) { .oba-bf { font-size: 13px; padding: 14px 16px; margin-bottom: 32px; } }
 </style>
 
 <div class="oba-page">
@@ -912,6 +945,12 @@ html, body { margin: 0 !important; padding: 0 !important; background: #fae1c0 !i
   </header>
 
   <section class="oba-tienda-hero">
+    <div class="oba-bf" id="oba-bf" hidden>
+      <span class="oba-bf-kicker">BLACK FRIDAY</span>
+      <span class="oba-bf-text" data-i18n="bf_text">10 % en todos los bonos y experiencias con el código</span>
+      <span class="oba-bf-code">BLACKOBA27</span>
+      <span class="oba-bf-note" data-i18n="bf_note">Del 23 al 30 de noviembre · Se aplica solo al finalizar la compra</span>
+    </div>
     <p class="oba-detail-kicker" data-i18n="kicker_tienda">00 — TIENDA ONLINE</p>
     <h1 data-i18n="h1_tienda">Regala Oba-</h1>
     <p data-i18n="p_tienda_intro">Bonos regalo digitales para vivir la experiencia Oba- en la mesa, con estancia en Cañitas Maite Gastronómico o recorriendo nuestros tres espacios. Se envían al instante por email.</p>
@@ -1004,7 +1043,9 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     tienda_note: "El pago se completa de forma segura en la pasarela de Shopify. Recibirás el bono por email tras la compra.",
     tienda_cart_title: "TU CESTA",
     tienda_subtotal: "Subtotal",
-    tienda_checkout: "FINALIZAR COMPRA"
+    tienda_checkout: "FINALIZAR COMPRA",
+    bf_text: "10 % en todos los bonos y experiencias con el código",
+    bf_note: "Del 23 al 30 de noviembre · Se aplica solo al finalizar la compra"
   },
   en: {
     menu_reserva: "BOOK", menu_contacto: "CONTACT", menu_tienda: "SHOP",
@@ -1023,7 +1064,9 @@ window.OBA_TRANSLATIONS = window.OBA_TRANSLATIONS || {
     tienda_note: "Payment is completed securely through Shopify's checkout. You'll receive the voucher by email after purchase.",
     tienda_cart_title: "YOUR CART",
     tienda_subtotal: "Subtotal",
-    tienda_checkout: "CHECKOUT"
+    tienda_checkout: "CHECKOUT",
+    bf_text: "10% off all vouchers and experiences with code",
+    bf_note: "23–30 November · Applied automatically at checkout"
   }
 };
 
@@ -1468,15 +1511,34 @@ function obaCloseCart() {
   if (overlay) overlay.classList.remove('open');
   if (drawer) drawer.classList.remove('open');
 }
+// BLACK FRIDAY 2026 — del 23/11 00:00 al 30/11 23:59 (hora peninsular).
+// Mientras está activo: se ve la franja #oba-bf y el checkout de Shopify se
+// abre con ?discount=BLACKOBA27 (el código tiene que existir en Shopify).
+var OBA_BF = {
+  code: 'BLACKOBA27',
+  start: Date.parse('2026-11-23T00:00:00+01:00'),
+  end: Date.parse('2026-12-01T00:00:00+01:00')
+};
+function obaBfActive() {
+  var now = Date.now();
+  return now >= OBA_BF.start && now < OBA_BF.end;
+}
+function obaBfShow() {
+  var el = document.getElementById('oba-bf');
+  if (el && obaBfActive()) el.hidden = false;
+}
 function obaBuildCheckoutUrl() {
   var cart = obaLoadCart();
   if (!cart.length) return null;
   var parts = cart.map(function (l) { return l.variantId + ':' + l.qty; });
-  return OBA_SHOP_DOMAIN + '/cart/' + parts.join(',');
+  var url = OBA_SHOP_DOMAIN + '/cart/' + parts.join(',');
+  if (obaBfActive()) url += '?discount=' + encodeURIComponent(OBA_BF.code);
+  return url;
 }
 
 function obaInitTienda() {
   if (!document.getElementById('oba-tienda-grid-bono')) return;
+  obaBfShow();
   obaRenderProducts();
   obaRenderCart();
 

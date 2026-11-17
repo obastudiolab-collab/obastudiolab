@@ -413,15 +413,34 @@ function obaCloseCart() {
   if (drawer) drawer.classList.remove('open');
 }
 
+// BLACK FRIDAY 2026 — del 23/11 00:00 al 30/11 23:59 (hora peninsular).
+// Mientras está activo: se ve la franja #oba-bf y el checkout de Shopify se
+// abre con ?discount=BLACKOBA27 (el código tiene que existir en Shopify).
+var OBA_BF = {
+  code: 'BLACKOBA27',
+  start: Date.parse('2026-11-23T00:00:00+01:00'),
+  end: Date.parse('2026-12-01T00:00:00+01:00')
+};
+function obaBfActive() {
+  var now = Date.now();
+  return now >= OBA_BF.start && now < OBA_BF.end;
+}
+function obaBfShow() {
+  var el = document.getElementById('oba-bf');
+  if (el && obaBfActive()) el.hidden = false;
+}
 function obaBuildCheckoutUrl() {
   var cart = obaLoadCart();
   if (!cart.length) return null;
   var parts = cart.map(function (l) { return l.variantId + ':' + l.qty; });
-  return OBA_SHOP_DOMAIN + '/cart/' + parts.join(',');
+  var url = OBA_SHOP_DOMAIN + '/cart/' + parts.join(',');
+  if (obaBfActive()) url += '?discount=' + encodeURIComponent(OBA_BF.code);
+  return url;
 }
 
 function obaInitTienda() {
   if (!document.getElementById('oba-tienda-grid-bono')) return;
+  obaBfShow();
 
   obaRenderProducts();
   obaRenderCart();
