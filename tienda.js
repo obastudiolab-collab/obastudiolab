@@ -425,9 +425,12 @@ function obaBfActive() {
   var now = Date.now();
   return now >= OBA_BF.start && now < OBA_BF.end;
 }
+// Vista previa antes de fechas: añadir ?bf=1 a la URL (solo muestra la franja;
+// el código en el checkout sigue dependiendo de las fechas).
 function obaBfShow() {
   var el = document.getElementById('oba-bf');
-  if (el && obaBfActive()) el.hidden = false;
+  var preview = /[?&]bf=1(&|$)/.test(window.location.search);
+  if (el && (obaBfActive() || preview)) el.hidden = false;
 }
 function obaBuildCheckoutUrl() {
   var cart = obaLoadCart();
