@@ -371,4 +371,6 @@ html { scroll-behavior: smooth; }
   user-select: all;
 }
 .oba-bf-note { flex-basis: 100%; font-size: 12px; color: rgba(255,255,255,0.6); letter-spacing: 0.04em; }
+.oba-bf-mesa { flex-basis: 100%; margin-top: 6px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.18); color: rgba(255,255,255,0.85); }
+.oba-bf-mesa a { font-weight: 700; letter-spacing: 0.1em; color: #fff !important; text-decoration: underline !important; text-underline-offset: 3px; margin-left: 6px; white-space: nowrap; }
 @media (max-width: 600px) { .oba-bf { font-size: 13px; padding: 14px 16px; margin-bottom: 32px; } }

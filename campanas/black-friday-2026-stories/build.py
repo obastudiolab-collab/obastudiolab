@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Stories de Black Friday 2026 (1080x1920), una cada dos días: 23, 25, 27 y 29 nov.
+Dos ofertas: 10 % en bonos (23–30, BLACKOBA27) y 10 % en mesa (25–29, en el restaurante).
 
     python3 campanas/black-friday-2026-stories/build.py
 
@@ -20,6 +21,7 @@ IMG = {
     "078": ROOT / "imagenes/oba-078.jpg",
     "galeria": ROOT / "imagenes/oba-galeria-restaurante.jpg",
     "cm": ROOT / "oba-film/public/img/shop-cuaderno-medio.jpg",
+    "sala": ROOT / "imagenes/oba-fondo-principal.jpg",
 }
 LOGO = (ROOT / "imagenes/oba-logo.png").as_uri()  # versión clara, para fondo oscuro
 
@@ -46,6 +48,13 @@ body { font-family: 'Archivo', 'Helvetica Neue', Arial, sans-serif; color: #fff;
 .row:last-child { border-bottom: 1px solid rgba(255,255,255,0.2); }
 .row s { font-size: 30px; color: rgba(255,255,255,0.5); margin-right: 18px; }
 .row b { font-weight: 500; }
+.offers { text-align: left; margin: 0 auto; max-width: 860px; }
+.offer { display: flex; gap: 34px; align-items: center; padding: 28px 0; border-top: 1px solid rgba(255,255,255,0.22); }
+.offer:last-child { border-bottom: 1px solid rgba(255,255,255,0.22); }
+.offer .pct { font-size: 92px; font-weight: 500; letter-spacing: -0.02em; min-width: 250px; }
+.offer .t { font-size: 42px; line-height: 1.25; }
+.offer .t > span { display: block; font-size: 28px; line-height: 1.4; color: rgba(255,255,255,0.7); margin-top: 8px; }
+.ci { font-weight: 700; letter-spacing: 0.08em; color: #fff; background: #806148; padding: 1px 10px; }
 """
 
 def bg(key, pos="center", top=0.55, mid=0.2):
@@ -59,48 +68,52 @@ def logo(top=250, w=190):
 CODE = """<p class="label">CÓDIGO</p><span class="code">BLACKOBA27</span>"""
 URL = """<p class="url"><span>EN LA WEB · ENLACE EN LA BIO</span>obarestaurante.es/tienda</p>"""
 
+FOOT = """<p class="url"><span>BONOS · ENLACE EN LA BIO</span>obarestaurante.es/tienda</p>
+<p class="url" style="border:0;padding-top:22px"><span>RESERVAS</span>TheFork · +34 604 962 117</p>"""
+
+def offers(bonos_sub, mesa_sub):
+    return f"""<div class="offers">
+  <div class="offer"><span class="pct">10 %</span><span class="t">en bonos y experiencias<span>{bonos_sub}</span></span></div>
+  <div class="offer"><span class="pct">10 %</span><span class="t">en tu mesa<span>{mesa_sub}</span></span></div>
+</div>"""
+
 S = {
-    # Lunes 23 · lanzamiento
+    # Lunes 23 · lanzamiento: las dos ofertas
     "1-lun23-black-friday": bg("144", "28% center") + logo() + f"""
-<div class="content" style="top:1000px">
-  <p class="kicker">BLACK FRIDAY · REGALA OBA-</p>
-  <p class="title" style="margin-top:26px">10 %</p>
-  <p class="sub" style="margin-top:10px">en todos los bonos y experiencias<br>del 23 al 30 de noviembre</p>
-  <div style="margin-top:46px">{CODE}</div>
-  <div style="margin-top:56px">{URL}</div>
+<div class="content" style="top:880px">
+  <p class="kicker" style="margin-bottom:34px">BLACK FRIDAY OBA-</p>
+  {offers("Del 23 al 30 nov · código <b class='ci'>BLACKOBA27</b>",
+          "Si vienes del miércoles 25 al domingo 29 · se descuenta en el restaurante al pagar")}
+  <div style="margin-top:44px">{FOOT}</div>
 </div>""",
 
-    # Miércoles 25 · qué regalar, con precios
-    "2-mie25-precios": bg("cm", "center 40%", 0.6, 0.15) + logo() + f"""
-<div class="content" style="top:930px">
-  <p class="kicker" style="margin-bottom:38px">REGALA OBA- CON UN 10 %</p>
-  <div class="prices">
-    <div class="row"><span>Cuaderno Medio</span><span><s>155 €</s><b>139,50 €</b></span></div>
-    <div class="row"><span>Cuaderno Dos</span><span><s>195 €</s><b>175,50 €</b></span></div>
-    <div class="row"><span>Cena + hotel</span><span><s>335 €</s><b>301,50 €</b></span></div>
-  </div>
-  <p class="sub" style="font-size:30px;margin-top:20px;color:rgba(255,255,255,0.6)">Precio por persona · con el código BLACKOBA27</p>
-  <div style="margin-top:50px">{URL}</div>
+    # Miércoles 25 · empieza el 10 % en mesa
+    "2-mie25-tu-mesa": bg("sala", "center", 0.6, 0.4) + logo() + f"""
+<div class="content" style="top:1010px">
+  <p class="kicker">BLACK FRIDAY OBA-</p>
+  <p class="title" style="margin-top:24px;font-size:104px">Desde hoy,<br>10 % en tu mesa.</p>
+  <p class="sub" style="margin-top:26px">Ven a comer o cenar hasta el domingo 29.<br>El descuento se aplica en el restaurante al pagar.</p>
+  <p class="url" style="margin-top:50px"><span>RESERVAS</span>TheFork · +34 604 962 117</p>
 </div>""",
 
     # Viernes 27 · Black Friday
     "3-vie27-hoy-es-el-dia": bg("galeria", "60% center") + logo() + f"""
-<div class="content" style="top:960px">
+<div class="content" style="top:860px">
   <p class="kicker">BLACK FRIDAY</p>
-  <p class="title" style="margin-top:24px">Hoy es el día.</p>
-  <p class="sub" style="margin-top:22px">10 % en bonos y experiencias.<br>Te llegan al momento por email.</p>
-  <div style="margin-top:44px">{CODE}</div>
-  <div style="margin-top:54px">{URL}</div>
+  <p class="title" style="margin-top:20px;margin-bottom:34px">Hoy es el día.</p>
+  {offers("Hasta el lunes 30 · código <b class='ci'>BLACKOBA27</b>",
+          "Hasta el domingo 29 · en el restaurante al pagar")}
+  <div style="margin-top:40px">{FOOT}</div>
 </div>""",
 
-    # Domingo 29 · últimos días
-    "4-dom29-ultimos-dias": bg("078", "center") + logo() + f"""
-<div class="content" style="top:960px">
+    # Domingo 29 · último día en mesa, bonos hasta mañana
+    "4-dom29-ultimo-dia-mesa": bg("078", "center") + logo() + f"""
+<div class="content" style="top:860px">
   <p class="kicker">BLACK FRIDAY OBA-</p>
-  <p class="title" style="margin-top:24px">Últimos días.</p>
-  <p class="sub" style="margin-top:22px">10 % hasta el lunes 30<br>a las 23:59.</p>
-  <div style="margin-top:44px">{CODE}</div>
-  <div style="margin-top:54px">{URL}</div>
+  <p class="title" style="margin-top:20px;margin-bottom:34px">Último día.</p>
+  {offers("Hasta mañana, 23:59 · <b class='ci'>BLACKOBA27</b>",
+          "Solo hoy domingo · en el restaurante al pagar")}
+  <div style="margin-top:40px">{FOOT}</div>
 </div>""",
 }
 
