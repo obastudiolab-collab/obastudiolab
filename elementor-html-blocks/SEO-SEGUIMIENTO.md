@@ -77,3 +77,18 @@ Propiedad nueva desde el 30/10/2026: sin histórico. Para la comparación: usuar
 ## Primera revisión — 13/11/2026 (dos semanas tras los cambios del 30/10)
 
 31/10–12/11 frente a 18/10–30/10: clics 385 → **631** (+64 %), impresiones 3.030 → 3.990, CTR 12,7 % → 15,8 %, posición 4,6 → 4,0. Sin marca: 50 → 82 clics. España 96 % de los clics. Versión inglesa: 2 clics en 28 días. "Escapada": 0 impresiones (de ahí la página nueva). Para la página nueva, vigilar: búsquedas con "escapada", "valencia", "alicante", "day trip" y las visitas a `/escapada-gastronomica` y `/en/food-trip`.
+
+## Revisión — 25/11/2026 (últimos 28 días: 27/10–23/11)
+
+| Métrica | Línea base (1–28 oct) | 27/10–23/11 |
+|---|---|---|
+| Clics | 895 | **1.120** |
+| Impresiones | 7.720 | 7.900 |
+| CTR | 11,6 % | **14,2 %** |
+| Posición media | 5,7 | **4,4** |
+| Clics sin marca | 126 | 147 (posición 11,3 → 7,6; impresiones 2.170 → 1.800) |
+| Impresiones en IA de Google | 1.430 (28 días anteriores) | **2.700** (~96/día) |
+
+- "estrella michelin albacete": posición 4,1 → 3,0. "restaurante casas ibañez": 5 → 12 clics.
+- `/escapada-gastronomica`: indexada, 140 impresiones (aparece como enlace bajo las búsquedas de marca, posición 2–3), 0 clics. Búsquedas con "escapada": todavía 0. `/en/food-trip`: 17 impresiones.
+- Analytics (28/10–24/11, solo quien acepta cookies): 1.177 usuarios, 1.587 sesiones. Orgánico 53 %, directo 21 %, referencias 18 % (sobre todo hotelcanitasmaite.com), redes 4 %, asistentes de IA 20 sesiones (ChatGPT). Ciudades: Valencia 221, Madrid 190, Barcelona 113, Albacete 62, Murcia 25. `reserva_visita` (entrar en /reservar): 644 usuarios.
